@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_19_162915) do
+ActiveRecord::Schema.define(version: 2020_08_27_230609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "add_description_to_todo_items", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "todo_items", force: :cascade do |t|
     t.string "title"
@@ -21,6 +26,7 @@ ActiveRecord::Schema.define(version: 2019_11_19_162915) do
     t.boolean "complete", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "description"
     t.index ["user_id"], name: "index_todo_items_on_user_id"
   end
 

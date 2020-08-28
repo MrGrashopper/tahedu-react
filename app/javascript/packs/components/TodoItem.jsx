@@ -14,6 +14,7 @@ class TodoItem extends React.Component {
         this.handleChange = this.handleChange.bind(this)
         this.updateTodoItem = this.updateTodoItem.bind(this)
         this.inputRef = React.createRef()
+        this.descriptionRef = React.createRef()
         this.completedRef = React.createRef()
         this.path = `/api/v1/todo_items/${this.props.todoItem.id}`
     }
@@ -29,6 +30,7 @@ class TodoItem extends React.Component {
             .put(this.path, {
                 todo_item: {
                     title: this.inputRef.current.value,
+                    description: this.descriptionRef.current.value,
                     complete: this.completedRef.current.checked,
                 },
             })
@@ -95,6 +97,17 @@ class TodoItem extends React.Component {
                         ref={this.inputRef}
                         className="form-control"
                         id={`todoItem__title-${todoItem.id}`}
+                    />
+                </td>
+                <td>
+                    <input
+                        type="text"
+                        defaultValue={todoItem.description}
+                        disabled={this.state.complete}
+                        onChange={this.handleChange}
+                        ref={this.descriptionRef}
+                        className="form-control"
+                        id={`todoItem__description-${todoItem.id}`}
                     />
                 </td>
                 <td className="text-right">
