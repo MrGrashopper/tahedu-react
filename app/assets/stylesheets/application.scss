@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+$green: #399aaa;
+$blue: #0000FF;
+
+// Bootstrap
+.thumbnail {
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid $blue;
+}
+.btn-primary {
+  background: $blue !important;
+}
+
+.nav-link {
+  display: inline-block !important;
+}

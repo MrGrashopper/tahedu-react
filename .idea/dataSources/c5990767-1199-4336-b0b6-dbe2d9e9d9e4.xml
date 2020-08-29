@@ -49,11 +49,13 @@
       <ObjectId>100881</ObjectId>
       <StateNumber>11332</StateNumber>
       <Owner>danielmikolai</Owner>
-      <IntrospectionStateNumber>11361</IntrospectionStateNumber>
+      <IntrospectionStateNumber>11424</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
       <Relations>sequence|table|100899|100901|1
-sequence|table|100914|100916|1
+sequence|table|100932|100934|1
+sequence|table|100950|100952|1
+sequence|table|100958|100960|1
 </Relations>
     </database>
     <database id="11" parent="1" name="rails_react_example_test">
@@ -208,7 +210,7 @@ sequence|table|100914|100916|1
       <Comment>standard public schema</Comment>
       <StateNumber>359</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>11362</IntrospectionStateNumber>
+      <IntrospectionStateNumber>11425</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -268,15 +270,31 @@ sequence|table|100914|100916|1
       <SchemaName>pg_catalog</SchemaName>
       <SchemaId>11</SchemaId>
     </extension>
-    <sequence id="46" parent="38" name="todo_items_id_seq">
-      <ObjectId>100914</ObjectId>
-      <StateNumber>11337</StateNumber>
+    <sequence id="46" parent="38" name="add_description_to_todo_items_id_seq">
+      <ObjectId>100950</ObjectId>
+      <StateNumber>11389</StateNumber>
       <Owner>danielmikolai</Owner>
       <SequenceIdentity>1</SequenceIdentity>
       <CacheSize>1</CacheSize>
       <DataType>bigint</DataType>
     </sequence>
-    <sequence id="47" parent="38" name="users_id_seq">
+    <sequence id="47" parent="38" name="skills_id_seq">
+      <ObjectId>100958</ObjectId>
+      <StateNumber>11423</StateNumber>
+      <Owner>danielmikolai</Owner>
+      <SequenceIdentity>1</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>bigint</DataType>
+    </sequence>
+    <sequence id="48" parent="38" name="todo_items_id_seq">
+      <ObjectId>100932</ObjectId>
+      <StateNumber>11388</StateNumber>
+      <Owner>danielmikolai</Owner>
+      <SequenceIdentity>1</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>bigint</DataType>
+    </sequence>
+    <sequence id="49" parent="38" name="users_id_seq">
       <ObjectId>100899</ObjectId>
       <StateNumber>11336</StateNumber>
       <Owner>danielmikolai</Owner>
@@ -284,152 +302,197 @@ sequence|table|100914|100916|1
       <CacheSize>1</CacheSize>
       <DataType>bigint</DataType>
     </sequence>
-    <table id="48" parent="38" name="ar_internal_metadata">
+    <table id="50" parent="38" name="add_description_to_todo_items">
+      <ObjectId>100952</ObjectId>
+      <Owner>danielmikolai</Owner>
+      <StateNumber>11389</StateNumber>
+    </table>
+    <table id="51" parent="38" name="ar_internal_metadata">
       <ObjectId>100891</ObjectId>
       <Owner>danielmikolai</Owner>
       <StateNumber>11335</StateNumber>
     </table>
-    <table id="49" parent="38" name="schema_migrations">
+    <table id="52" parent="38" name="schema_migrations">
       <ObjectId>100883</ObjectId>
       <Owner>danielmikolai</Owner>
       <StateNumber>11334</StateNumber>
     </table>
-    <table id="50" parent="38" name="todo_items">
-      <ObjectId>100916</ObjectId>
+    <table id="53" parent="38" name="skills">
+      <ObjectId>100960</ObjectId>
       <Owner>danielmikolai</Owner>
-      <StateNumber>11337</StateNumber>
+      <StateNumber>11423</StateNumber>
     </table>
-    <table id="51" parent="38" name="users">
+    <table id="54" parent="38" name="todo_items">
+      <ObjectId>100934</ObjectId>
+      <Owner>danielmikolai</Owner>
+      <StateNumber>11391</StateNumber>
+    </table>
+    <table id="55" parent="38" name="users">
       <ObjectId>100901</ObjectId>
       <Owner>danielmikolai</Owner>
       <StateNumber>11337</StateNumber>
     </table>
-    <column id="52" parent="48" name="key">
+    <column id="56" parent="50" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>11389</StateNumber>
+      <DefaultExpression>nextval(&apos;add_description_to_todo_items_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="57" parent="50" name="created_at">
+      <Position>2</Position>
+      <DataType>timestamp(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>11389</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="58" parent="50" name="updated_at">
+      <Position>3</Position>
+      <DataType>timestamp(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>11389</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <index id="59" parent="50" name="add_description_to_todo_items_pkey">
+      <ObjectId>100956</ObjectId>
+      <StateNumber>11389</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="60" parent="50" name="add_description_to_todo_items_pkey">
+      <ObjectId>100957</ObjectId>
+      <StateNumber>11389</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>add_description_to_todo_items_pkey</UnderlyingIndexName>
+    </key>
+    <column id="61" parent="51" name="key">
       <Position>1</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>11335</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="53" parent="48" name="value">
+    <column id="62" parent="51" name="value">
       <Position>2</Position>
       <DataType>varchar|0s</DataType>
       <StateNumber>11335</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="54" parent="48" name="created_at">
+    <column id="63" parent="51" name="created_at">
       <Position>3</Position>
       <DataType>timestamp(6)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>11335</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="55" parent="48" name="updated_at">
+    <column id="64" parent="51" name="updated_at">
       <Position>4</Position>
       <DataType>timestamp(6)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>11335</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <index id="56" parent="48" name="ar_internal_metadata_pkey">
+    <index id="65" parent="51" name="ar_internal_metadata_pkey">
       <ObjectId>100897</ObjectId>
       <StateNumber>11335</StateNumber>
       <ColNames>key</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="57" parent="48" name="ar_internal_metadata_pkey">
+    <key id="66" parent="51" name="ar_internal_metadata_pkey">
       <ObjectId>100898</ObjectId>
       <StateNumber>11335</StateNumber>
       <ColNames>key</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>ar_internal_metadata_pkey</UnderlyingIndexName>
     </key>
-    <column id="58" parent="49" name="version">
+    <column id="67" parent="52" name="version">
       <Position>1</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>11334</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="59" parent="49" name="schema_migrations_pkey">
+    <index id="68" parent="52" name="schema_migrations_pkey">
       <ObjectId>100889</ObjectId>
       <StateNumber>11334</StateNumber>
       <ColNames>version</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="60" parent="49" name="schema_migrations_pkey">
+    <key id="69" parent="52" name="schema_migrations_pkey">
       <ObjectId>100890</ObjectId>
       <StateNumber>11334</StateNumber>
       <ColNames>version</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>schema_migrations_pkey</UnderlyingIndexName>
     </key>
-    <column id="61" parent="50" name="id">
+    <column id="70" parent="53" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>11337</StateNumber>
-      <DefaultExpression>nextval(&apos;todo_items_id_seq&apos;::regclass)</DefaultExpression>
+      <StateNumber>11423</StateNumber>
+      <DefaultExpression>nextval(&apos;skills_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>20</TypeId>
     </column>
-    <column id="62" parent="50" name="title">
+    <column id="71" parent="53" name="user_id">
       <Position>2</Position>
-      <DataType>varchar|0s</DataType>
-      <StateNumber>11337</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="63" parent="50" name="user_id">
-      <Position>3</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>11337</StateNumber>
+      <StateNumber>11423</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <column id="64" parent="50" name="complete">
-      <Position>4</Position>
-      <DataType>boolean|0s</DataType>
-      <StateNumber>11337</StateNumber>
-      <DefaultExpression>false</DefaultExpression>
-      <TypeId>16</TypeId>
+    <column id="72" parent="53" name="department">
+      <Position>3</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>11423</StateNumber>
+      <TypeId>1043</TypeId>
     </column>
-    <column id="65" parent="50" name="created_at">
+    <column id="73" parent="53" name="skills">
+      <Position>4</Position>
+      <DataType>text|0s</DataType>
+      <StateNumber>11423</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="74" parent="53" name="created_at">
       <Position>5</Position>
       <DataType>timestamp(6)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>11337</StateNumber>
+      <StateNumber>11423</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="66" parent="50" name="updated_at">
+    <column id="75" parent="53" name="updated_at">
       <Position>6</Position>
       <DataType>timestamp(6)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>11337</StateNumber>
+      <StateNumber>11423</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <index id="67" parent="50" name="todo_items_pkey">
-      <ObjectId>100924</ObjectId>
-      <StateNumber>11337</StateNumber>
+    <index id="76" parent="53" name="skills_pkey">
+      <ObjectId>100967</ObjectId>
+      <StateNumber>11423</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <index id="68" parent="50" name="index_todo_items_on_user_id">
-      <ObjectId>100931</ObjectId>
-      <StateNumber>11337</StateNumber>
+    <index id="77" parent="53" name="index_skills_on_user_id">
+      <ObjectId>100974</ObjectId>
+      <StateNumber>11423</StateNumber>
       <ColNames>user_id</ColNames>
     </index>
-    <key id="69" parent="50" name="todo_items_pkey">
-      <ObjectId>100925</ObjectId>
-      <StateNumber>11337</StateNumber>
+    <key id="78" parent="53" name="skills_pkey">
+      <ObjectId>100968</ObjectId>
+      <StateNumber>11423</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
-      <UnderlyingIndexName>todo_items_pkey</UnderlyingIndexName>
+      <UnderlyingIndexName>skills_pkey</UnderlyingIndexName>
     </key>
-    <foreign-key id="70" parent="50" name="fk_rails_d6ff5e17fe">
-      <ObjectId>100926</ObjectId>
-      <StateNumber>11337</StateNumber>
+    <foreign-key id="79" parent="53" name="fk_rails_ee47b87d76">
+      <ObjectId>100969</ObjectId>
+      <StateNumber>11423</StateNumber>
       <ColNames>user_id</ColNames>
       <RefTableId>100901</RefTableId>
       <RefColPositions>1</RefColPositions>
@@ -437,7 +500,84 @@ sequence|table|100914|100916|1
       <RefKeyName>users_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="71" parent="51" name="id">
+    <column id="80" parent="54" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>11388</StateNumber>
+      <DefaultExpression>nextval(&apos;todo_items_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="81" parent="54" name="title">
+      <Position>2</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>11388</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="82" parent="54" name="user_id">
+      <Position>3</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>11388</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="83" parent="54" name="complete">
+      <Position>4</Position>
+      <DataType>boolean|0s</DataType>
+      <StateNumber>11388</StateNumber>
+      <DefaultExpression>false</DefaultExpression>
+      <TypeId>16</TypeId>
+    </column>
+    <column id="84" parent="54" name="created_at">
+      <Position>5</Position>
+      <DataType>timestamp(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>11388</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="85" parent="54" name="updated_at">
+      <Position>6</Position>
+      <DataType>timestamp(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>11388</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="86" parent="54" name="description">
+      <Position>7</Position>
+      <DataType>text|0s</DataType>
+      <StateNumber>11391</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <index id="87" parent="54" name="todo_items_pkey">
+      <ObjectId>100942</ObjectId>
+      <StateNumber>11388</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <index id="88" parent="54" name="index_todo_items_on_user_id">
+      <ObjectId>100949</ObjectId>
+      <StateNumber>11388</StateNumber>
+      <ColNames>user_id</ColNames>
+    </index>
+    <key id="89" parent="54" name="todo_items_pkey">
+      <ObjectId>100943</ObjectId>
+      <StateNumber>11388</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>todo_items_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="90" parent="54" name="fk_rails_d6ff5e17fe">
+      <ObjectId>100944</ObjectId>
+      <StateNumber>11388</StateNumber>
+      <ColNames>user_id</ColNames>
+      <RefTableId>100901</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>users</RefTableName>
+      <RefKeyName>users_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="91" parent="55" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
@@ -445,7 +585,7 @@ sequence|table|100914|100916|1
       <DefaultExpression>nextval(&apos;users_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>20</TypeId>
     </column>
-    <column id="72" parent="51" name="email">
+    <column id="92" parent="55" name="email">
       <Position>2</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
@@ -453,7 +593,7 @@ sequence|table|100914|100916|1
       <DefaultExpression>&apos;&apos;::character varying</DefaultExpression>
       <TypeId>1043</TypeId>
     </column>
-    <column id="73" parent="51" name="encrypted_password">
+    <column id="93" parent="55" name="encrypted_password">
       <Position>3</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
@@ -461,58 +601,58 @@ sequence|table|100914|100916|1
       <DefaultExpression>&apos;&apos;::character varying</DefaultExpression>
       <TypeId>1043</TypeId>
     </column>
-    <column id="74" parent="51" name="reset_password_token">
+    <column id="94" parent="55" name="reset_password_token">
       <Position>4</Position>
       <DataType>varchar|0s</DataType>
       <StateNumber>11336</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="75" parent="51" name="reset_password_sent_at">
+    <column id="95" parent="55" name="reset_password_sent_at">
       <Position>5</Position>
       <DataType>timestamp|0s</DataType>
       <StateNumber>11336</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="76" parent="51" name="remember_created_at">
+    <column id="96" parent="55" name="remember_created_at">
       <Position>6</Position>
       <DataType>timestamp|0s</DataType>
       <StateNumber>11336</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="77" parent="51" name="created_at">
+    <column id="97" parent="55" name="created_at">
       <Position>7</Position>
       <DataType>timestamp(6)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>11336</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="78" parent="51" name="updated_at">
+    <column id="98" parent="55" name="updated_at">
       <Position>8</Position>
       <DataType>timestamp(6)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>11336</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <index id="79" parent="51" name="users_pkey">
+    <index id="99" parent="55" name="users_pkey">
       <ObjectId>100910</ObjectId>
       <StateNumber>11336</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <index id="80" parent="51" name="index_users_on_email">
+    <index id="100" parent="55" name="index_users_on_email">
       <ObjectId>100912</ObjectId>
       <StateNumber>11336</StateNumber>
       <ColNames>email</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="81" parent="51" name="index_users_on_reset_password_token">
+    <index id="101" parent="55" name="index_users_on_reset_password_token">
       <ObjectId>100913</ObjectId>
       <StateNumber>11336</StateNumber>
       <ColNames>reset_password_token</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="82" parent="51" name="users_pkey">
+    <key id="102" parent="55" name="users_pkey">
       <ObjectId>100911</ObjectId>
       <StateNumber>11336</StateNumber>
       <ColNames>id</ColNames>
