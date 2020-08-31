@@ -17,6 +17,10 @@ $green: #399aaa;
 $blue: #0000FF;
 
 // Bootstrap
+.progress, .btn-info {
+  height: 2.35rem !important;
+  border-radius: 20px !important;
+}
 .thumbnail {
   height: 50px;
   border-radius: 50%;
@@ -28,4 +32,9 @@ $blue: #0000FF;
 
 .nav-link {
   display: inline-block !important;
+}
+.seat {
+  .form-control {
+    max-width: 100px !important;
+  }
 }

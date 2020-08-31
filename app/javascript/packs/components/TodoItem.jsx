@@ -1,5 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import ProgressBar from 'react-bootstrap/ProgressBar'
+import Badge from 'react-bootstrap/Badge'
+import Button from 'react-bootstrap/Button'
 
 import _ from 'lodash'
 import axios from 'axios'
@@ -14,9 +17,10 @@ class TodoItem extends React.Component {
         this.handleChange = this.handleChange.bind(this)
         this.updateTodoItem = this.updateTodoItem.bind(this)
         this.inputRef = React.createRef()
-        this.descriptionRef = React.createRef()
+        //this.reservated_by = React.createRef()
         this.completedRef = React.createRef()
         this.path = `/api/v1/todo_items/${this.props.todoItem.id}`
+        console.log(this.props.todoItem)
     }
     handleChange() {
         this.setState({
@@ -30,7 +34,7 @@ class TodoItem extends React.Component {
             .put(this.path, {
                 todo_item: {
                     title: this.inputRef.current.value,
-                    description: this.descriptionRef.current.value,
+                    //reservated_by: this.reservated_by.current.value,
                     complete: this.completedRef.current.checked,
                 },
             })
@@ -58,13 +62,7 @@ class TodoItem extends React.Component {
     render() {
         const { todoItem } = this.props
         return (
-            <tr
-                className={`${
-                    this.state.complete && this.props.hideCompletedTodoItems
-                        ? `d-none`
-                        : ''
-                } ${this.state.complete ? 'table-light' : ''}`}
-            >
+            <tr className={`${this.state.complete && this.props.hideCompletedTodoItems ? `d-none` : ''} ${this.state.complete ? 'table-light' : ''}`}>
                 <td>
                     <svg
                         className={`bi bi-check-circle ${
@@ -89,6 +87,9 @@ class TodoItem extends React.Component {
                     </svg>
                 </td>
                 <td>
+                    <p></p>
+                </td>
+                <td className="seat">
                     <input
                         type="text"
                         defaultValue={todoItem.title}
@@ -99,18 +100,13 @@ class TodoItem extends React.Component {
                         id={`todoItem__title-${todoItem.id}`}
                     />
                 </td>
+                <td><Badge pill variant="secondary">{todoItem.floor}</Badge>{''}</td>
                 <td>
-                    <input
-                        type="text"
-                        defaultValue={todoItem.description}
-                        disabled={this.state.complete}
-                        onChange={this.handleChange}
-                        ref={this.descriptionRef}
-                        className="form-control"
-                        id={`todoItem__description-${todoItem.id}`}
-                    />
+                    <ProgressBar now={todoItem.progress} />
                 </td>
-                <td className="text-right">
+                <td>{todoItem.reservated_by}</td>
+                <td>  <Button variant="outline-info">ansehen</Button>{' '}</td>
+                <td>
                     <div className="form-check form-check-inline">
                         <input
                             type="boolean"
@@ -121,18 +117,16 @@ class TodoItem extends React.Component {
                             className="form-check-input"
                             id={`complete-${todoItem.id}`}
                         />
-                        <label
-                            className="form-check-label"
-                            htmlFor={`complete-${todoItem.id}`}
-                        >
-                            Complete?
-                        </label>
+
+                        <span variant={`${this.state.complete ? `` : ''}`} htmlFor={`complete-${todoItem.id}`}>{this.state.complete ? 'abmelden' : 'reservieren'}</span>{' '}
                     </div>
+                </td>
+                <td className="text-right">
                     <button
                         onClick={this.handleDestroy}
                         className="btn btn-outline-danger"
                     >
-                        Delete
+                        löschen
                     </button>
                 </td>
             </tr>

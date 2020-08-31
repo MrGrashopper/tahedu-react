@@ -18,16 +18,21 @@ class TodoItems extends React.Component {
                     onClick={this.handleClick}
                 >
                     {this.props.hideCompletedTodoItems
-                        ? `Show Completed Items`
-                        : `Hide Completed Items `}
+                        ? `Alle anzeigen`
+                        : `Reservierte Plätze ausblenden `}
                 </button>
                 <div className="table-responsive">
                     <table className="table">
                         <thead>
                             <tr>
-                                <th scope="col">Status</th>
-                                <th scope="col">Item</th>
-                                <th scope="col">Description</th>
+                                <th scope="col"></th>
+                                <th scope="col">Zeitraum</th>
+                                <th scope="col">Sitzplatz</th>
+                                <th scope="col">Stunden</th>
+                                <th scope="col">Belegzeit</th>
+                                <th scope="col">Reserviert von</th>
+                                <th scope="col">volle Ansicht</th>
+                                <th scope="col">Reservieren</th>
                                 <th scope="col" className="text-right">Actions</th>
                             </tr>
                         </thead>
