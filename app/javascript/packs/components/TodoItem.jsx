@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import Badge from 'react-bootstrap/Badge'
 import Button from 'react-bootstrap/Button'
+import { AiFillDelete } from "react-icons/ai";
 import DateTimeRangePicker from './DateTimePicker'
 import _ from 'lodash'
 import axios from 'axios'
@@ -21,8 +22,6 @@ class TodoItem extends React.Component {
         //this.reservated_by = React.createRef()
         this.completedRef = React.createRef()
         this.path = `/api/v1/todo_items/${this.props.todoItem.id}`
-
-        // Datetimepicker
     }
 
     handleChange() {
@@ -108,7 +107,6 @@ class TodoItem extends React.Component {
                     <ProgressBar now={todoItem.progress} />
                 </td>
                 <td>{todoItem.reservated_by}</td>
-                <td>  <Button variant="outline-info">ansehen</Button>{' '}</td>
                 <td>
                     <div className="form-check form-check-inline">
                         <input
@@ -124,13 +122,10 @@ class TodoItem extends React.Component {
                         <span variant={`${this.state.complete ? `` : ''}`} htmlFor={`complete-${todoItem.id}`}>{this.state.complete ? 'abmelden' : 'reservieren'}</span>{' '}
                     </div>
                 </td>
-                <td className="text-right">
-                    <button
-                        onClick={this.handleDestroy}
-                        className="btn btn-outline-danger"
-                    >
-                        löschen
-                    </button>
+                <td className="text-center">
+                    <div onClick={this.handleDestroy} className="delete">
+                        <AiFillDelete/>
+                    </div>
                 </td>
             </tr>
         )

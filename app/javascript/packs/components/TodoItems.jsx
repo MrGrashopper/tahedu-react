@@ -31,9 +31,8 @@ class TodoItems extends React.Component {
                                 <th scope="col">Stunden</th>
                                 <th scope="col">Belegzeit</th>
                                 <th scope="col">Reserviert von</th>
-                                <th scope="col">volle Ansicht</th>
                                 <th scope="col">Reservieren</th>
-                                <th scope="col" className="text-right">Actions</th>
+                                <th scope="col">Löschen</th>
                             </tr>
                         </thead>
                         <tbody>{this.props.children}</tbody>

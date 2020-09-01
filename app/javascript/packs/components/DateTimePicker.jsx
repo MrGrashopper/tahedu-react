@@ -40,7 +40,7 @@ class DateTimeRangePicker extends React.Component {
             "sundayFirst" : false
         }
         let maxDate = moment(start).add(24, "hour")
-        let value = `${this.state.start.format("DD-MM-YYYY HH:mm")} - ${this.state.end.format("DD-MM-YYYY HH:mm")}`;
+        let value = `${this.state.start.format("DD/MM HH:mm")} - ${this.state.end.format("DD/MM HH:mm")}`;
         return(
             <div>
                 <DateTimeRangeContainer

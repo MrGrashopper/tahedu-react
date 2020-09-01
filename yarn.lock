@@ -6259,6 +6259,13 @@ react-dot-fragment@^0.2.7:
   resolved "https://registry.yarnpkg.com/react-dot-fragment/-/react-dot-fragment-0.2.10.tgz#f4aaac9be211cfa1e90c535f4d165dc7935f2bf3"
   integrity sha512-fjPAFiyA79chUgJDi8nKxd6bsPkuwrzJcNqSnYg8vNyv6gRgEPrEs+ZCsnjLC3q3D5E6lZLNl3k8seqj6sI3lw==
 
+react-icons@^3.11.0:
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-3.11.0.tgz#2ca2903dfab8268ca18ebd8cc2e879921ec3b254"
+  integrity sha512-JRgiI/vdF6uyBgyZhVyYJUZAop95Sy4XDe/jmT3R/bKliFWpO/uZBwvSjWEdxwzec7SYbEPNPck0Kff2tUGM2Q==
+  dependencies:
+    camelcase "^5.0.0"
+
 react-is@^16.3.2:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"

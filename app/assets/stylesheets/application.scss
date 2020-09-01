@@ -38,3 +38,14 @@ $blue: #0000FF;
     max-width: 100px !important;
   }
 }
+.delete {
+  svg {
+    color: red;
+    font-size: 22px;
+  }
+}
+.DateRangePickerChildren {
+    input {
+      font-size: 0.7rem !important;
+    }
+}
