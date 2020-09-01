@@ -3,10 +3,11 @@ import PropTypes from 'prop-types'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import Badge from 'react-bootstrap/Badge'
 import Button from 'react-bootstrap/Button'
-
+import DateTimeRangePicker from './DateTimePicker'
 import _ from 'lodash'
 import axios from 'axios'
 import setAxiosHeaders from './AxiosHeaders'
+
 class TodoItem extends React.Component {
     constructor(props) {
         super(props)
@@ -20,8 +21,10 @@ class TodoItem extends React.Component {
         //this.reservated_by = React.createRef()
         this.completedRef = React.createRef()
         this.path = `/api/v1/todo_items/${this.props.todoItem.id}`
-        console.log(this.props.todoItem)
+
+        // Datetimepicker
     }
+
     handleChange() {
         this.setState({
             complete: this.completedRef.current.checked,
@@ -87,7 +90,7 @@ class TodoItem extends React.Component {
                     </svg>
                 </td>
                 <td>
-                    <p></p>
+                    <DateTimeRangePicker></DateTimeRangePicker>
                 </td>
                 <td className="seat">
                     <input
