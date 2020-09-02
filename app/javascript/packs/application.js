@@ -16,5 +16,6 @@ require('channels')
 // const imagePath = (name) => images(name, true)
 require('./components/TodoApp')
 require('./components/UsersApp')
+require('./components/DesksApp')
 require('bootstrap')
 import 'bootstrap/dist/css/bootstrap'

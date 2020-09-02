@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :desks
 
   devise_for :users
   
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:index, :show, :create, :update, :destroy]
       resources :todo_items, only: [:index, :show, :create, :update, :destroy]
+      resources :desks, only: [:index, :show, :create, :update, :destroy]
     end
   end
 
