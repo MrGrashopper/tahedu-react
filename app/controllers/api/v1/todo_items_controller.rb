@@ -4,7 +4,7 @@ class Api::V1::TodoItemsController < ApplicationController
 
     def index
       @todo_items = current_user.todo_items.all
-      @current_user = current_user
+      @users = User.all
     end
   
     def show
@@ -87,6 +87,6 @@ class Api::V1::TodoItemsController < ApplicationController
       end
   
       def todo_item_params
-        params.require(:todo_item).permit(:title, :complete, :reservated_by)
+        params.require(:todo_item).permit(:title, :complete, :reservated_by, :period)
       end    
 end

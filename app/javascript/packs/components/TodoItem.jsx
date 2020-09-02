@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ProgressBar from 'react-bootstrap/ProgressBar'
+import Form from 'react-bootstrap/Form'
 import Badge from 'react-bootstrap/Badge'
-import Button from 'react-bootstrap/Button'
 import { AiFillDelete } from "react-icons/ai";
-import DateTimeRangePicker from './DateTimePicker'
 import _ from 'lodash'
 import axios from 'axios'
 import setAxiosHeaders from './AxiosHeaders'
+import CalendarComponent from "./Calendar";
 
 class TodoItem extends React.Component {
     constructor(props) {
@@ -19,25 +19,34 @@ class TodoItem extends React.Component {
         this.handleChange = this.handleChange.bind(this)
         this.updateTodoItem = this.updateTodoItem.bind(this)
         this.inputRef = React.createRef()
-        //this.reservated_by = React.createRef()
         this.completedRef = React.createRef()
+        this.dateRef = React.createRef()
         this.path = `/api/v1/todo_items/${this.props.todoItem.id}`
-    }
 
+    }
+    componentDidMount() {
+        axios
+            .get('/api/v1/users')
+            .then(response => {
+                this.setState({ users: response.data });
+                console.log(response.data)
+            })
+    }
     handleChange() {
         this.setState({
             complete: this.completedRef.current.checked,
         })
         this.updateTodoItem()
     }
+
     updateTodoItem = _.debounce(() => {
         setAxiosHeaders()
         axios
             .put(this.path, {
                 todo_item: {
                     title: this.inputRef.current.value,
-                    //reservated_by: this.reservated_by.current.value,
                     complete: this.completedRef.current.checked,
+                    period: this.dateRef.current.value,
                 },
             })
             .then(() => {
@@ -47,6 +56,7 @@ class TodoItem extends React.Component {
                 this.props.handleErrors(error)
             })
     }, 1000)
+
     handleDestroy() {
         setAxiosHeaders()
         const confirmation = confirm('Are you sure?')
@@ -63,6 +73,7 @@ class TodoItem extends React.Component {
     }
     render() {
         const { todoItem } = this.props
+
         return (
             <tr className={`${this.state.complete && this.props.hideCompletedTodoItems ? `d-none` : ''} ${this.state.complete ? 'table-light' : ''}`}>
                 <td>
@@ -89,7 +100,14 @@ class TodoItem extends React.Component {
                     </svg>
                 </td>
                 <td>
-                    <DateTimeRangePicker></DateTimeRangePicker>
+                    <Form.Group>
+                        <Form.Control size="sm" as="select" ref={this.dateRef} disabled={this.state.complete}>
+                            <option>{todoItem.period}</option>
+                            <option>2020</option>
+                            <option>2021</option>
+                            <option>2023</option>
+                        </Form.Control>
+                    </Form.Group>
                 </td>
                 <td className="seat">
                     <input

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import DateTimePicker from 'react-datetime-picker';
 
 class CalendarComponent extends Component {
     state = {
@@ -8,11 +7,10 @@ class CalendarComponent extends Component {
     }
 
     onChange = date => this.setState({ date })
-
     render() {
         return (
             <div>
-                <Calendar
+                <DateTimePicker
                     onChange={this.onChange}
                     value={this.state.date}
                 />
