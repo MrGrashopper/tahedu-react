@@ -1,1 +1,1 @@
-json.extract! desk, :id, :created_at
+json.extract! desk, :id, :created_at, :year, :month, :day, :starts_at, :ends_at, :user_id, :desk_id, :name

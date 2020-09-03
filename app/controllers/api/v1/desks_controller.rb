@@ -2,7 +2,15 @@ class Api::V1::DesksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_desk, only: [:show, :edit, :update, :destroy]
   def index
-    @desks = Desk.all
+    desks = Desk.all
+    @desks = Reservation.all
+
+    search = params[:year].present? ? params[:year] : nil
+    @desks = if search
+               Reservation.where(year: search)
+             else
+               Reservation.all
+             end
   end
 
   def show
@@ -19,6 +27,19 @@ class Api::V1::DesksController < ApplicationController
   end
   def destroy
   end
+
+  def search
+    render json: Reservation.search(params[:query], {
+        fields: ["title^3"],
+        match: :word_start,
+        suggest: [:title],
+        limit: 10,
+        load: false,
+        autocomplete: true,
+        misspellings: {below: 3}
+    }).map(&:title)
+  end
+
   private
 
   def set_desk

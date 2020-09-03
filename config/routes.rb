@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:index, :show, :create, :update, :destroy]
       resources :todo_items, only: [:index, :show, :create, :update, :destroy]
-      resources :desks, only: [:index, :show, :create, :update, :destroy]
+      resources :desks, only: [:index, :show, :create, :update, :destroy, :search]
     end
   end
 
