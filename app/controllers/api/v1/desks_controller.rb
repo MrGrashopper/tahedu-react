@@ -5,11 +5,13 @@ class Api::V1::DesksController < ApplicationController
     desks = Desk.all
     @desks = Reservation.all
 
-    search = params[:year].present? ? params[:year] : nil
-    @desks = if search
-               Reservation.where(year: search)
+    date_params = params[:date].present? ? params[:date] : nil
+    puts params
+    @desks = if date_params
+               search = date_params[0..9]
+               Reservation.where(date: search)
              else
-               Reservation.all
+               Reservation.where(date: DateTime.now.strftime("%Y-%m-%d"))
              end
   end
 

@@ -1,20 +1,28 @@
-import React, { Component } from 'react';
-import DateTimePicker from 'react-datetime-picker';
+import React from "react";
+import DatePicker from "react-datepicker";
 
-class CalendarComponent extends Component {
+import "react-datepicker/dist/react-datepicker.css";
+
+// CSS Modules, react-datepicker-cssmodules.css
+// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+
+class CalendarComponent extends React.Component {
     state = {
-        date: new Date(),
-    }
+        startDate: new Date()
+    };
 
-    onChange = date => this.setState({ date })
+    handleChangeDate = date => {
+        this.setState({
+            startDate: date
+        });
+    };
+
     render() {
         return (
-            <div>
-                <DateTimePicker
-                    onChange={this.onChange}
-                    value={this.state.date}
-                />
-            </div>
+            <DatePicker
+                selected={this.state.startDate}
+                onChange={this.handleChangeDate}
+            />
         );
     }
 }

@@ -32,6 +32,9 @@ $blue: #0000FF;
 
 .nav-link {
   display: inline-block !important;
+  &:hover {
+    background: none;
+  }
 }
 .seat {
   .form-control {
@@ -51,4 +54,20 @@ $blue: #0000FF;
 }
 .card {
   margin-bottom: 30px;
+}
+
+.btn{
+    &:visited {
+      color: white !important;
+    }
+}
+
+.margin-bottom {
+  margin-bottom: 20px;
+}
+
+.react-datepicker__input-container {
+  input {
+    width: 120px;
+  }
 }

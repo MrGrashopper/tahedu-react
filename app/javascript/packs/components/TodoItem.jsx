@@ -7,7 +7,6 @@ import { AiFillDelete } from "react-icons/ai";
 import _ from 'lodash'
 import axios from 'axios'
 import setAxiosHeaders from './AxiosHeaders'
-import CalendarComponent from "./Calendar";
 
 class TodoItem extends React.Component {
     constructor(props) {

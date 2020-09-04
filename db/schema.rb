@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_02_162705) do
+ActiveRecord::Schema.define(version: 2020_09_04_113722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,9 +28,7 @@ ActiveRecord::Schema.define(version: 2020_09_02_162705) do
   create_table "reservations", force: :cascade do |t|
     t.bigint "desk_id", null: false
     t.bigint "user_id", null: false
-    t.string "year", default: "2020"
-    t.string "month", default: "01"
-    t.string "day", default: "01"
+    t.string "date", default: "2020"
     t.string "starts_at", default: "09:00"
     t.string "ends_at", default: "18:00"
     t.datetime "created_at", precision: 6, null: false
