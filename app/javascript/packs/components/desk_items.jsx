@@ -9,23 +9,25 @@ import "react-datepicker/dist/react-datepicker.css";
 
 
 class DeskItems extends Component {
-    state = {
-        desks: [],
-        startDate: new Date()
-    };
-
     constructor(props) {
         super(props)
+        this.state = {
+            reservations: [],
+            startDate: new Date()
+        };
         this.handleFilter = this.handleFilter.bind(this)
-        this.yearRef = React.createRef()
-        this.monthRef = React.createRef()
-        this.dayRef = React.createRef()
     }
     componentDidMount() {
         axios
-            .get('/api/v1/desks')
+            .get('/api/v1/desks/', {
+                params: {
+                    date:  this.state.startDate,
+                },
+            })
             .then(response => {
-                this.setState({ desks: response.data });
+                this.setState({
+                    reservations: response.data
+                });
             })
     }
 
@@ -38,8 +40,8 @@ class DeskItems extends Component {
                 },
             })
             .then(response => {
-                console.log(response.data)
-                this.setState({ desks: response.data });
+                this.setState({ reservations: response.data });
+                console.log("kuuuuuuku")
             })
     }
 
@@ -66,17 +68,17 @@ class DeskItems extends Component {
                     <h3>Reservierte Arbeitsplätze</h3>
                 </div>
                 <div className="row">
-                    {this.state.desks.map(desk => (
+                    {this.state.reservations.map(reservation => (
                         <div className="col-sm-4">
                             <div className="card">
                                 <div className="card-body">
                                     <div className="row">
-                                        <div className="col-sm-9"><h5 className="card-title">{desk.name} </h5></div>
+                                        <div className="col-sm-9"><h5 className="card-title" key={reservation.name}>{reservation.name} </h5></div>
                                         <div className="col-sm-3"><img src={MyImage} alt="..." className="thumbnail"></img></div>
                                     </div>
-                                    <p className="card-text" >{desk.date}</p>
-                                    <p className="card-text">{desk.starts_at} bis {desk.ends_at}</p>
-                                    <a href="#" className="btn btn-primary">ansehen</a>
+                                    <p className="card-text" key={reservation.date}>{reservation.date}</p>
+                                    <p className="card-text" key={reservation.starts_at}>{reservation.starts_at} bis {reservation.ends_at}</p>
+                                    <a href="#" className="btn btn-outline-primary">ansehen</a>
                                 </div>
                             </div>
                         </div>

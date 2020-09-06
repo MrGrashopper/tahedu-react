@@ -1,0 +1,1 @@
+json.extract! freedesk, :id, :created_at

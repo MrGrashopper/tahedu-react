@@ -1,1 +1,1 @@
-json.array! @desks, partial: "api/v1/desks/desk", as: :desk
+json.array! @reservations, partial: "api/v1/desks/desk", as: :reservation

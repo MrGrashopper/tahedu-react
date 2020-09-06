@@ -24,10 +24,6 @@ $blue: #0000FF;
 .thumbnail {
   height: 50px;
   border-radius: 50%;
-  border: 1px solid $blue;
-}
-.btn-primary {
-  background: $blue !important;
 }
 
 .nav-link {
@@ -56,11 +52,16 @@ $blue: #0000FF;
   margin-bottom: 30px;
 }
 
+// Buttons
 .btn{
     &:visited {
-      color: white !important;
+      color: #007bff !important;
+      &:hover {
+        color: white !important;
+      }
     }
 }
+
 
 .margin-bottom {
   margin-bottom: 20px;

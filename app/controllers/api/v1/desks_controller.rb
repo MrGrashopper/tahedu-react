@@ -2,16 +2,13 @@ class Api::V1::DesksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_desk, only: [:show, :edit, :update, :destroy]
   def index
-    desks = Desk.all
-    @desks = Reservation.all
 
     date_params = params[:date].present? ? params[:date] : nil
-    puts params
     @desks = if date_params
                search = date_params[0..9]
-               Reservation.where(date: search)
+               @reservations = Reservation.where(date: search)
              else
-               Reservation.where(date: DateTime.now.strftime("%Y-%m-%d"))
+               @reservations = Reservation.where(date: DateTime.now.strftime("%Y-%m-%d"))
              end
   end
 
