@@ -13,15 +13,16 @@ class DeskItems extends Component {
         super(props)
         this.state = {
             reservations: [],
-            startDate: new Date()
+            resDate: new Date()
         };
         this.handleFilter = this.handleFilter.bind(this)
     }
-    componentDidMount() {
+
+   componentDidMount() {
         axios
             .get('/api/v1/desks/', {
                 params: {
-                    date:  this.state.startDate,
+                    date:  this.state.resDate,
                 },
             })
             .then(response => {
@@ -36,18 +37,19 @@ class DeskItems extends Component {
         axios
             .get('/api/v1/desks/', {
                 params: {
-                    date:  this.state.startDate,
+                    date:  this.state.resDate,
                 },
             })
             .then(response => {
                 this.setState({ reservations: response.data });
+                response.preventDefault();
                 console.log("kuuuuuuku")
             })
     }
 
     handleChangeDate = date => {
         this.setState({
-            startDate: date
+            resDate: date
         });
     };
 
@@ -56,12 +58,8 @@ class DeskItems extends Component {
             <div className="">
                 <div className="row">
                     <div className="row container margin-bottom">
-                        <Form className="col-sm-12">
-                            <Form.Group controlId="exampleForm.ControlSelect1">
-                                <Button variant="outline-dark" type="submit" onClick={this.handleFilter}>anzeigen</Button>{' '}
-                                <DatePicker className="btn dark" dateFormat="dd/MM/yyyy" selected={this.state.startDate} onChange={this.handleChangeDate}/>
-                            </Form.Group>
-                        </Form>
+                        <Button variant="outline-dark" type="submit" onClick={this.handleFilter.bind(this)}>anzeigen</Button>{' '}
+                        <DatePicker className="btn dark" dateFormat="dd/MM/yyyy" selected={this.state.resDate} onChange={this.handleChangeDate}/>
                     </div>
                 </div>
                 <div className="row container margin-bottom">

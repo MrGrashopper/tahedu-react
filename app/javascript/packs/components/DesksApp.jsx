@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import DeskItems from "./desk_items";
+import CreateReservation from "./createReservation";
 
 class DesksApp extends React.Component {
 
@@ -10,9 +11,16 @@ class DesksApp extends React.Component {
         )
     }
 
+    renderCreateReservation = () => {
+        return(
+            <CreateReservation></CreateReservation>
+        )
+    }
+
     render() {
         return (
             <div>
+                {this.renderCreateReservation()}
                 {this.renderAllDesks()}
             </div>
         )
