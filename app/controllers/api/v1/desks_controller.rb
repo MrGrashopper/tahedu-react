@@ -6,7 +6,10 @@ class Api::V1::DesksController < ApplicationController
 
     if params['reservation_date'].present?
       date = params['reservation_date'][0..9]
-      @free_desks = desks.select{|desk| desk&.reservations&.first&.date != date}
+      desk_arr = []
+      desks.each{|desk| desk_arr << desk if desk.reservations.first.nil?}
+      desks.each{|desk| desk&.reservations.each{|res| desk_arr << desk if res.date != date}}
+      @free_desks = desk_arr
       render :json => @free_desks
     end
 
@@ -18,7 +21,6 @@ class Api::V1::DesksController < ApplicationController
         else
            Reservation.where(date: DateTime.now.strftime("%Y-%m-%d"))
         end
-    puts @reservations
 
   end
 

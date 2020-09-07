@@ -37,10 +37,10 @@ class CreateReservation extends React.Component{
             })
     }
     handleChangeDate = date => {
-        this.handleFreeDesks();
         this.setState({
             startDate: date
         });
+        this.handleFreeDesks();
     };
 
     createReservation(){
