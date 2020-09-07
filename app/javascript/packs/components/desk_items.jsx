@@ -6,16 +6,19 @@ import Form from 'react-bootstrap/Form'
 import DatePicker from "react-datepicker";
 import Button from 'react-bootstrap/Button'
 import "react-datepicker/dist/react-datepicker.css";
+import ToastMessage from './toast'
+import FlashMessage from "react-flash-message";
 
 
 class DeskItems extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            reservations: [],
+            desks: [],
             resDate: new Date()
         };
         this.handleFilter = this.handleFilter.bind(this)
+        this.reservationRef = React.createRef()
     }
 
    componentDidMount() {
@@ -27,7 +30,7 @@ class DeskItems extends Component {
             })
             .then(response => {
                 this.setState({
-                    reservations: response.data
+                    desks: response.data
                 });
             })
     }
@@ -41,9 +44,7 @@ class DeskItems extends Component {
                 },
             })
             .then(response => {
-                this.setState({ reservations: response.data });
-                response.preventDefault();
-                console.log("kuuuuuuku")
+                this.setState({ desks: response.data });
             })
     }
 
@@ -52,6 +53,27 @@ class DeskItems extends Component {
             resDate: date
         });
     };
+
+
+    createReservation(id){
+        setAxiosHeaders()
+        axios
+            .post('/api/v1/desks', {
+                reservation: {
+                    date: this.state.resDate,
+                    desk_id: id
+                },
+            })
+            .then(
+                console.log("success")
+            )
+    };
+
+    message = () => (
+        <FlashMessage duration={5000}>
+            <strong>I will disapper in 5 seconds!</strong>
+        </FlashMessage>
+    )
 
     render() {
         return (
@@ -63,20 +85,19 @@ class DeskItems extends Component {
                     </div>
                 </div>
                 <div className="row container margin-bottom">
-                    <h3>Reservierte Arbeitsplätze</h3>
+                    <h3>Arbeitsplätze</h3>
                 </div>
                 <div className="row">
-                    {this.state.reservations.map(reservation => (
+                    {this.state.desks.map(desk => (
                         <div className="col-sm-4">
                             <div className="card">
                                 <div className="card-body">
                                     <div className="row">
-                                        <div className="col-sm-9"><h5 className="card-title" key={reservation.name}>{reservation.name} </h5></div>
+                                        <div className="col-sm-9"><h5 className="card-title" key={desk.kind}>{desk.kind} </h5></div>
                                         <div className="col-sm-3"><img src={MyImage} alt="..." className="thumbnail"></img></div>
                                     </div>
-                                    <p className="card-text" key={reservation.date}>{reservation.date}</p>
-                                    <p className="card-text" key={reservation.starts_at}>{reservation.starts_at} bis {reservation.ends_at}</p>
-                                    <a href="#" className="btn btn-outline-primary">ansehen</a>
+                                    <p className="card-text" key={desk.id}>Platznummer: {desk.id}</p>
+                                    <a href="#" className="btn btn-outline-primary" onClick={() => this.createReservation(desk.id)} ref={this.reservationRef}>reservieren</a>
                                 </div>
                             </div>
                         </div>

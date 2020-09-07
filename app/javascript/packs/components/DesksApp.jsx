@@ -20,7 +20,6 @@ class DesksApp extends React.Component {
     render() {
         return (
             <div>
-                {this.renderCreateReservation()}
                 {this.renderAllDesks()}
             </div>
         )

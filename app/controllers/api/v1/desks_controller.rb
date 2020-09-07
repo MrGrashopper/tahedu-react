@@ -2,7 +2,6 @@ class Api::V1::DesksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_desk, only: [:show, :edit, :update, :destroy]
   def index
-    desks = Desk.all
 
     if params['reservation_date'].present?
       date = params['reservation_date'][0..9]
@@ -14,13 +13,16 @@ class Api::V1::DesksController < ApplicationController
     end
 
     date_params = params[:date].present? ? params[:date] : nil
-    @reservations =
-        if date_params
-           search = date_params[0..9]
-           Reservation.where(date: search)
-        else
-           Reservation.where(date: DateTime.now.strftime("%Y-%m-%d"))
-        end
+
+    if date_params
+       date = date_params[0..9]
+       free_desks = Desk.left_joins(:reservations).where(reservations: {id: nil}) + Desk.left_joins(:reservations).where.not(reservations: {date: date})
+       @desks = free_desks
+    else
+       date = DateTime.now.strftime("%Y-%m-%d")
+       desks = Desk.left_joins(:reservations).where(reservations: {id: nil}) + Desk.left_joins(:reservations).where.not(reservations: {date: date})
+       @desks = desks
+    end
 
   end
 
@@ -36,7 +38,7 @@ class Api::V1::DesksController < ApplicationController
 
   def create
     date = params['reservation']['date'][0..9]
-    desk = Desk.find_by(id: params['reservation']['desk'].to_i)
+    desk = Desk.find_by(id: params['reservation']['desk_id'].to_i)
 
     if authorized?
       begin

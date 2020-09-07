@@ -6368,6 +6368,13 @@ react-fit@^1.0.3:
     detect-element-overflow "^1.2.0"
     prop-types "^15.6.0"
 
+react-flash-message@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-flash-message/-/react-flash-message-1.0.3.tgz#938a0f6a27883f7c9b95c9147c4c2c47651170d7"
+  integrity sha512-cwqUm+/DUlT8SXId8wRuOcEK7m7pGW4VHTLtts7AU07yFlusHcvrMVtC+6p/v8FKpAww1xxX36V+QaFQo3/pMg==
+  dependencies:
+    prop-types "^15.6.1"
+
 react-icons@^3.11.0:
   version "3.11.0"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-3.11.0.tgz#2ca2903dfab8268ca18ebd8cc2e879921ec3b254"
