@@ -4,6 +4,7 @@ class Api::V1::TodoItemsController < ApplicationController
 
     def index
       @todo_items = current_user.todo_items.all
+      @users = User.all
     end
   
     def show
@@ -38,6 +39,13 @@ class Api::V1::TodoItemsController < ApplicationController
       if authorized?
         respond_to do |format|
           if @todo_item.update(todo_item_params)
+            complete = todo_item_params["complete"]
+            case complete
+            when true
+              @todo_item.update(reservated_by: current_user.email)
+            when false
+              @todo_item.update(reservated_by: nil)
+            end
             format.json { render :show, status: :ok, location: api_v1_todo_item_path(@todo_item) }
           else
             # TODO: Handle errors
@@ -79,6 +87,6 @@ class Api::V1::TodoItemsController < ApplicationController
       end
   
       def todo_item_params
-        params.require(:todo_item).permit(:title, :complete, :description)
+        params.require(:todo_item).permit(:title, :complete, :reservated_by, :period)
       end    
 end

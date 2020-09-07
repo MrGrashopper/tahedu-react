@@ -1,0 +1,74 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+$green: #399aaa;
+$blue: #0000FF;
+
+// Bootstrap
+.progress, .btn-info {
+  height: 2.35rem !important;
+  border-radius: 20px !important;
+}
+.thumbnail {
+  height: 50px;
+  border-radius: 50%;
+}
+
+.nav-link {
+  display: inline-block !important;
+  &:hover {
+    background: none;
+  }
+}
+.seat {
+  .form-control {
+    max-width: 100px !important;
+  }
+}
+.delete {
+  svg {
+    color: red;
+    font-size: 22px;
+  }
+}
+.DateRangePickerChildren {
+    input {
+      font-size: 0.7rem !important;
+    }
+}
+.card {
+  margin-bottom: 30px;
+}
+
+// Buttons
+.btn{
+    &:visited {
+      color: #007bff !important;
+      &:hover {
+        color: white !important;
+      }
+    }
+}
+
+
+.margin-bottom {
+  margin-bottom: 20px;
+}
+
+.react-datepicker__input-container {
+  input {
+    width: 120px;
+  }
+}

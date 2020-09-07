@@ -13,22 +13,21 @@ class TodoItems extends React.Component {
         return (
             <>
                 <hr />
-                <button
-                    className="btn btn-outline-primary btn-block mb-3"
-                    onClick={this.handleClick}
-                >
-                    {this.props.hideCompletedTodoItems
-                        ? `Show Completed Items`
-                        : `Hide Completed Items `}
+                <button className="btn btn-outline-primary btn-block mb-3" onClick={this.handleClick}>
+                    {this.props.hideCompletedTodoItems ? `Alle anzeigen` : `Reservierte Plätze ausblenden `}
                 </button>
                 <div className="table-responsive">
                     <table className="table">
                         <thead>
                             <tr>
-                                <th scope="col">Status</th>
-                                <th scope="col">Item</th>
-                                <th scope="col">Description</th>
-                                <th scope="col" className="text-right">Actions</th>
+                                <th scope="col"></th>
+                                <th scope="col">Jahr</th>
+                                <th scope="col">Sitzplatz</th>
+                                <th scope="col">Stunden</th>
+                                <th scope="col">Belegzeit</th>
+                                <th scope="col">Reserviert von</th>
+                                <th scope="col">Reservieren</th>
+                                <th scope="col">Löschen</th>
                             </tr>
                         </thead>
                         <tbody>{this.props.children}</tbody>

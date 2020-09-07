@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import axios from 'axios'
 import setAxiosHeaders from './AxiosHeaders'
+
 class TodoForm extends React.Component {
     constructor(props) {
         super(props)
@@ -43,13 +44,13 @@ class TodoForm extends React.Component {
                             required
                             className="form-control"
                             id="title"
-                            placeholder="Title"
+                            placeholder="Sitzplatz | Etage"
                         />
                     </div>
 
                     <div className="form-group col-md-4">
                         <button className="btn btn-outline-success btn-block">
-                            Add To Do Item
+                            anlegen
                         </button>
                     </div>
                 </div>

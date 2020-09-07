@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_27_230609) do
+ActiveRecord::Schema.define(version: 2020_09_04_113722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,13 +20,46 @@ ActiveRecord::Schema.define(version: 2020_08_27_230609) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "desks", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.bigint "desk_id", null: false
+    t.bigint "user_id", null: false
+    t.string "date", default: "2020"
+    t.string "starts_at", default: "09:00"
+    t.string "ends_at", default: "18:00"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.index ["desk_id"], name: "index_reservations_on_desk_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "department"
+    t.text "skills"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "email"
+    t.string "first_name"
+    t.string "last_name"
+    t.index ["user_id"], name: "index_skills_on_user_id"
+  end
+
   create_table "todo_items", force: :cascade do |t|
     t.string "title"
     t.bigint "user_id", null: false
     t.boolean "complete", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "description"
+    t.text "reservated_by"
+    t.integer "floor"
+    t.float "progress"
+    t.string "period", default: "Zeitraum angeben"
     t.index ["user_id"], name: "index_todo_items_on_user_id"
   end
 
@@ -42,5 +75,8 @@ ActiveRecord::Schema.define(version: 2020_08_27_230609) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "reservations", "desks"
+  add_foreign_key "reservations", "users"
+  add_foreign_key "skills", "users"
   add_foreign_key "todo_items", "users"
 end
