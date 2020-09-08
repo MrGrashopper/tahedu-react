@@ -1,5 +1,5 @@
 class DesksController < ApplicationController
-  before_action :set_desk, only: [:show, :edit, :update, :destroy]
+  before_action :set_desk, only: [:show, :edit, :update, :destroy, :deskcenter]
 
   # GET /desks
   # GET /desks.json
@@ -19,6 +19,10 @@ class DesksController < ApplicationController
 
   # GET /desks/1/edit
   def edit
+  end
+
+  def deskcenter
+
   end
 
   # POST /desks

@@ -22,6 +22,17 @@ $dark-green: #84bfaa;
 .sidebar {
   top: 55px;
 }
+.navbar{
+  .navbar-brand {
+    padding: 0 1rem;
+  }
+  a {
+    font-size: 26px;
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
 .right {
   position: absolute;
   right: 0px;
@@ -43,6 +54,19 @@ $dark-green: #84bfaa;
   display: inline-block !important;
   &:hover {
     background: none;
+  }
+}
+.sidebar-sticky {
+  .nav-link {
+    a {
+      color: #ccc;
+      display: inline-block !important;
+      &:hover {
+        color: #ccc;
+        background: none;
+        text-decoration: none;
+      }
+    }
   }
 }
 .seat {
