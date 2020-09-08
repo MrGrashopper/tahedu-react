@@ -87,7 +87,7 @@ class DeskItems extends Component {
                     </div>
                 </div>
                 <div className="row container margin-bottom">
-                    <h3>Freie Plätze reservieren</h3>
+                    <h3>Freie Desks reservieren</h3>
                 </div>
                 <div className="row">
                     {this.state.desks.map(desk => (
@@ -95,7 +95,7 @@ class DeskItems extends Component {
                             <div className="card">
                                 <div className="card-body">
                                     <div className="row">
-                                        <div className="col-sm-9"><h5 className="card-title" key={desk.kind}>{desk.kind} </h5></div>
+                                        <div className="col-sm-9"><h5 className="card-title" key={desk.kind}>{desk.kind}-Desk</h5></div>
                                         <div className="col-sm-3"><img src={MyImage} alt="..." className="thumbnail"></img></div>
                                     </div>
                                     <p className="card-text" key={desk.id}>Platznummer: {desk.id}</p>
