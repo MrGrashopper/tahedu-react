@@ -6,9 +6,10 @@ import Form from 'react-bootstrap/Form'
 import DatePicker from "react-datepicker";
 import Button from 'react-bootstrap/Button'
 import "react-datepicker/dist/react-datepicker.css";
-import ToastMessage from './toast'
-import FlashMessage from "react-flash-message";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure()
+const notify = (message) => toast(message);
 
 class DeskItems extends Component {
     constructor(props) {
@@ -21,7 +22,8 @@ class DeskItems extends Component {
         this.reservationRef = React.createRef()
     }
 
-   componentDidMount() {
+
+    componentDidMount() {
         axios
             .get('/api/v1/desks/', {
                 params: {
@@ -44,14 +46,16 @@ class DeskItems extends Component {
                 },
             })
             .then(response => {
-                this.setState({ desks: response.data });
-            })
+                this.setState({
+                    desks: response.data
+                });
+            },notify("Datum aktualisiert!"))
     }
 
     handleChangeDate = date => {
         this.setState({
             resDate: date
-        });
+        })
     };
 
 
@@ -62,30 +66,28 @@ class DeskItems extends Component {
                 reservation: {
                     date: this.state.resDate,
                     desk_id: id
-                },
+                }
             })
-            .then(
-                console.log("success")
-            )
+            .then(() => {
+                this.setState({
+                    resDate: new Date()
+                });
+            })
     };
 
-    message = () => (
-        <FlashMessage duration={5000}>
-            <strong>I will disapper in 5 seconds!</strong>
-        </FlashMessage>
-    )
 
     render() {
         return (
             <div className="">
+                <ToastContainer />
                 <div className="row">
-                    <div className="row container margin-bottom">
-                        <Button variant="outline-dark" type="submit" onClick={this.handleFilter.bind(this)}>anzeigen</Button>{' '}
-                        <DatePicker className="btn dark" dateFormat="dd/MM/yyyy" selected={this.state.resDate} onChange={this.handleChangeDate}/>
+                    <div className="col-sm-12 margin-bottom">
+                        <Button variant="secondary" className=""  type="submit" onClick={this.handleFilter.bind(this)}>anzeigen</Button>{' '}
+                        <DatePicker className="btn btn-light" dateFormat="dd/MM/yyyy" selected={this.state.resDate} onChange={this.handleChangeDate}/>
                     </div>
                 </div>
                 <div className="row container margin-bottom">
-                    <h3>Arbeitsplätze</h3>
+                    <h3>Freie Plätze reservieren</h3>
                 </div>
                 <div className="row">
                     {this.state.desks.map(desk => (
@@ -97,7 +99,7 @@ class DeskItems extends Component {
                                         <div className="col-sm-3"><img src={MyImage} alt="..." className="thumbnail"></img></div>
                                     </div>
                                     <p className="card-text" key={desk.id}>Platznummer: {desk.id}</p>
-                                    <a href="#" className="btn btn-outline-primary" onClick={() => this.createReservation(desk.id)} ref={this.reservationRef}>reservieren</a>
+                                    <a href="#" className="btn btn-primary" onClick={() => this.createReservation(desk.id)} ref={this.reservationRef}>reservieren</a>
                                 </div>
                             </div>
                         </div>

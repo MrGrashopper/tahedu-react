@@ -13,8 +13,21 @@
  *= require_tree .
  *= require_self
  */
-$green: #399aaa;
-$blue: #0000FF;
+$pink: #fbefef;
+$light-grey: #e9ecef;
+$dark-pink: #eadfdf;
+$green: #79AF9C;
+$dark-green: #84bfaa;
+
+.sidebar {
+  top: 55px;
+}
+.right {
+  position: absolute;
+  right: 0px;
+  width: 300px;
+  padding: 10px;
+}
 
 // Bootstrap
 .progress, .btn-info {
@@ -50,25 +63,52 @@ $blue: #0000FF;
 }
 .card {
   margin-bottom: 30px;
+  border-top-right-radius: 25px !important;
+  border-bottom-left-radius: 25px !important;
+  background: $light-grey !important;
+  border: none !important;
 }
 
 // Buttons
-.btn{
-    &:visited {
-      color: #007bff !important;
-      &:hover {
-        color: white !important;
-      }
+.outline-info{
+  border-color: $green !important;
+  &:visited {
+    color: $green !important;
+    &:hover {
+      color: white !important;
+      border-color: $green !important;
+      background: $green !important;
     }
+  }
+}
+
+.btn-primary {
+  color: white !important;
+  border-color: $green !important;
+  background: $green !important;
+  &:visited {
+    color: white !important;
+    &:hover {
+      color: white !important;
+      border-color: $dark-green !important;
+      background: $dark-green !important;
+    }
+  }
 }
 
 
 .margin-bottom {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .react-datepicker__input-container {
   input {
     width: 120px;
   }
+}
+
+// navar
+
+.bg-pink {
+  background: $pink;
 }

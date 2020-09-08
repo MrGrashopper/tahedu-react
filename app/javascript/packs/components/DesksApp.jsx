@@ -1,19 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import DeskItems from "./desk_items";
-import CreateReservation from "./createReservation";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class DesksApp extends React.Component {
 
     renderAllDesks = () => {
         return(
             <DeskItems></DeskItems>
-        )
-    }
-
-    renderCreateReservation = () => {
-        return(
-            <CreateReservation></CreateReservation>
         )
     }
 
@@ -30,4 +25,4 @@ class DesksApp extends React.Component {
 document.addEventListener('turbolinks:load', () => {
     const desks = document.getElementById('desk-app')
     desks && ReactDOM.render(<DesksApp />, desks)
-})
+});

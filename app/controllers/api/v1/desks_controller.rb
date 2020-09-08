@@ -16,12 +16,10 @@ class Api::V1::DesksController < ApplicationController
 
     if date_params
        date = date_params[0..9]
-       free_desks = Desk.left_joins(:reservations).where(reservations: {id: nil}) + Desk.left_joins(:reservations).where.not(reservations: {date: date})
-       @desks = free_desks
+       @desks = Desk.left_joins(:reservations).where(reservations: {id: nil}) + Desk.left_joins(:reservations).where.not(reservations: {date: date})
     else
        date = DateTime.now.strftime("%Y-%m-%d")
-       desks = Desk.left_joins(:reservations).where(reservations: {id: nil}) + Desk.left_joins(:reservations).where.not(reservations: {date: date})
-       @desks = desks
+       @desks = Desk.left_joins(:reservations).where(reservations: {id: nil}) + Desk.left_joins(:reservations).where.not(reservations: {date: date})
     end
 
   end
