@@ -2,24 +2,16 @@ class Api::V1::DesksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_desk, only: [:show, :edit, :update, :destroy]
   def index
-
-    if params['reservation_date'].present?
-      date = params['reservation_date'][0..9]
-      desk_arr = []
-      desks.each{|desk| desk_arr << desk if desk.reservations.first.nil?}
-      desks.each{|desk| desk&.reservations.each{|res| desk_arr << desk if res.date != date}}
-      @free_desks = desk_arr
-      render :json => @free_desks
-    end
+    desks = Desk.where(team_id: current_user.team_id)
 
     date_params = params[:date].present? ? params[:date] : nil
 
     if date_params
        date = date_params[0..9]
-       @desks = Desk.left_joins(:reservations).where(reservations: {id: nil}) + Desk.left_joins(:reservations).where.not(reservations: {date: date})
+       @desks = desks.left_joins(:reservations).where(reservations: {id: nil}) + Desk.left_joins(:reservations).where.not(reservations: {date: date})
     else
        date = DateTime.now.strftime("%Y-%m-%d")
-       @desks = Desk.left_joins(:reservations).where(reservations: {id: nil}) + Desk.left_joins(:reservations).where.not(reservations: {date: date})
+       @desks = desks.left_joins(:reservations).where(reservations: {id: nil}) + Desk.left_joins(:reservations).where.not(reservations: {date: date})
     end
 
   end
