@@ -6,19 +6,24 @@ import Form from 'react-bootstrap/Form'
 import DatePicker from "react-datepicker";
 import Button from 'react-bootstrap/Button'
 import "react-datepicker/dist/react-datepicker.css";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure()
+const notify = (message) => toast(message);
 
 class DeskItems extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            reservations: [],
+            desks: [],
             resDate: new Date()
         };
         this.handleFilter = this.handleFilter.bind(this)
+        this.reservationRef = React.createRef()
     }
 
-   componentDidMount() {
+
+    componentDidMount() {
         axios
             .get('/api/v1/desks/', {
                 params: {
@@ -27,7 +32,7 @@ class DeskItems extends Component {
             })
             .then(response => {
                 this.setState({
-                    reservations: response.data
+                    desks: response.data
                 });
             })
     }
@@ -41,42 +46,60 @@ class DeskItems extends Component {
                 },
             })
             .then(response => {
-                this.setState({ reservations: response.data });
-                response.preventDefault();
-                console.log("kuuuuuuku")
-            })
+                this.setState({
+                    desks: response.data
+                });
+            },notify("Datum aktualisiert!"))
     }
 
     handleChangeDate = date => {
         this.setState({
             resDate: date
-        });
+        })
     };
+
+
+    createReservation(id){
+        setAxiosHeaders()
+        axios
+            .post('/api/v1/desks', {
+                reservation: {
+                    date: this.state.resDate,
+                    desk_id: id
+                }
+            })
+            .then(() => {
+                this.setState({
+                    resDate: new Date()
+                });
+            })
+    };
+
 
     render() {
         return (
             <div className="">
+                <ToastContainer />
                 <div className="row">
-                    <div className="row container margin-bottom">
-                        <Button variant="outline-dark" type="submit" onClick={this.handleFilter.bind(this)}>anzeigen</Button>{' '}
-                        <DatePicker className="btn dark" dateFormat="dd/MM/yyyy" selected={this.state.resDate} onChange={this.handleChangeDate}/>
+                    <div className="col-sm-12 margin-bottom">
+                        <Button variant="secondary" className=""  type="submit" onClick={this.handleFilter.bind(this)}>anzeigen</Button>{' '}
+                        <DatePicker className="btn btn-light" dateFormat="dd/MM/yyyy" selected={this.state.resDate} onChange={this.handleChangeDate}/>
                     </div>
                 </div>
                 <div className="row container margin-bottom">
-                    <h3>Reservierte Arbeitsplätze</h3>
+                    <h3>Freie Plätze reservieren</h3>
                 </div>
                 <div className="row">
-                    {this.state.reservations.map(reservation => (
+                    {this.state.desks.map(desk => (
                         <div className="col-sm-4">
                             <div className="card">
                                 <div className="card-body">
                                     <div className="row">
-                                        <div className="col-sm-9"><h5 className="card-title" key={reservation.name}>{reservation.name} </h5></div>
+                                        <div className="col-sm-9"><h5 className="card-title" key={desk.kind}>{desk.kind} </h5></div>
                                         <div className="col-sm-3"><img src={MyImage} alt="..." className="thumbnail"></img></div>
                                     </div>
-                                    <p className="card-text" key={reservation.date}>{reservation.date}</p>
-                                    <p className="card-text" key={reservation.starts_at}>{reservation.starts_at} bis {reservation.ends_at}</p>
-                                    <a href="#" className="btn btn-outline-primary">ansehen</a>
+                                    <p className="card-text" key={desk.id}>Platznummer: {desk.id}</p>
+                                    <a href="#" className="btn btn-primary" onClick={() => this.createReservation(desk.id)} ref={this.reservationRef}>reservieren</a>
                                 </div>
                             </div>
                         </div>

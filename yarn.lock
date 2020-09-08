@@ -6368,6 +6368,13 @@ react-fit@^1.0.3:
     detect-element-overflow "^1.2.0"
     prop-types "^15.6.0"
 
+react-flash-message@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-flash-message/-/react-flash-message-1.0.3.tgz#938a0f6a27883f7c9b95c9147c4c2c47651170d7"
+  integrity sha512-cwqUm+/DUlT8SXId8wRuOcEK7m7pGW4VHTLtts7AU07yFlusHcvrMVtC+6p/v8FKpAww1xxX36V+QaFQo3/pMg==
+  dependencies:
+    prop-types "^15.6.1"
+
 react-icons@^3.11.0:
   version "3.11.0"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-3.11.0.tgz#2ca2903dfab8268ca18ebd8cc2e879921ec3b254"
@@ -6453,6 +6460,15 @@ react-time-picker@^4.0.0:
     react-clock "^2.3.0"
     react-fit "^1.0.3"
     update-input-width "^1.1.1"
+
+react-toastify@^6.0.8:
+  version "6.0.8"
+  resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-6.0.8.tgz#84625d81d0fd01902a7f4c6f317eb074cb3bba67"
+  integrity sha512-NSqCNwv+C4IfR+c92PFZiNyeBwOJvigrP2bcRi2f6Hg3WqcHhEHOknbSQOs9QDFuqUjmK3SOrdvScQ3z63ifXg==
+  dependencies:
+    classnames "^2.2.6"
+    prop-types "^15.7.2"
+    react-transition-group "^4.4.1"
 
 react-transition-group@^4.4.1:
   version "4.4.1"
