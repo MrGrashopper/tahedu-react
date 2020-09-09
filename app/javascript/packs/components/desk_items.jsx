@@ -78,7 +78,7 @@ class DeskItems extends Component {
 
     render() {
         return (
-            <div className="">
+            <div className="container">
                 <ToastContainer />
                 <div className="row">
                     <div className="col-sm-12 margin-bottom">
@@ -87,7 +87,7 @@ class DeskItems extends Component {
                     </div>
                 </div>
                 <div className="row container margin-bottom">
-                    <h3>Freie Desks reservieren</h3>
+                    <h3>Freie Desks buchen</h3>
                 </div>
                 <div className="row">
                     {this.state.desks.map(desk => (
