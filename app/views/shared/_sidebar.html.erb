@@ -8,33 +8,27 @@
     </h6>
     <ul class="nav flex-column">
       <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="x-circle"></span>
-          Development 1
-        </a>
+        <div class="nav-link">
+          <span data-feather="check-circle"></span>
+          <%= link_to "Desk Buchen", root_path %>
+        </div>
+      </li>
+      <li class="nav-item">
+        <div class="nav-link">
+          <span data-feather="check-circle"></span>
+          <%= link_to "Desks verwalten", deskcenter_path %>
+        </div>
+      </li>
+      <li class="nav-item">
+        <div class="nav-link">
+          <span data-feather="check-circle"></span>
+          <%= link_to('Benutzer', users_path,class: "")%>
+        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">
           <span data-feather="check-circle"></span>
-          Development 2
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="check-circle"></span>
-          Stage 1
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link " href="#">
-          <span data-feather="check-circle"></span>
-          Stage 2 <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="check-circle"></span>
-          <Integration></Integration>
+          Buchungen
         </a>
       </li>
     </ul>
