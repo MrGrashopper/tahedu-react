@@ -21,5 +21,7 @@ Rails.application.routes.draw do
   resources :users do
     get :index, on: :collection
     get :show, on: :member
+    get :edit, on: :member
+    post :edit, on: :member
   end
 end

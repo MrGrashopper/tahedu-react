@@ -1,9 +1,8 @@
 class Api::V1::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :avatar]
   def index
     @users = User.all
-    @user_skills = Skill.all
   end
 
   def show
@@ -17,6 +16,10 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
+    if params[:avatar].present?
+      current_user.avatar.attach params[:avatar]
+    end
+
   end
   def destroy
   end
@@ -38,4 +41,5 @@ class Api::V1::UsersController < ApplicationController
       end
     end
   end
+
 end

@@ -144,3 +144,17 @@ $dark-green: #84bfaa;
 .Toastify__toast-container--top-right {
   top: 4.5em !important;
 }
+
+.avatar-bg {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

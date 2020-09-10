@@ -1,0 +1,13 @@
+<div class="container row">
+  <div class="avatar-bg">
+    <%= image_tag @user.avatar %>
+  </div>
+  <div class="col-sm-12">
+    <%= form_with url: api_v1_user_path(@user), method: :put do |f| %>
+      <h3><%= @user.email %></h3>
+      <%= f.file_field :avatar %>
+      <%= f.submit 'speichern', :class => 'btn btn-primary' %>
+    <% end %>
+  </div>
+
+</div>
