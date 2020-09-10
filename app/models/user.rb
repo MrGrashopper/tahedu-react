@@ -7,4 +7,6 @@ class User < ApplicationRecord
   has_many :todo_items, dependent: :destroy
   has_many :skills, dependent: :destroy
   has_many :reservations, dependent: :destroy
+  has_one_attached :avatar
+
 end
