@@ -18,6 +18,8 @@ $light-grey: #e9ecef;
 $dark-pink: #eadfdf;
 $green: #79AF9C;
 $dark-green: #84bfaa;
+$purple: #6c63ff;
+$purple-light: #6c63ffe8;
 
 .sidebar {
   top: 85px;
@@ -112,14 +114,19 @@ $dark-green: #84bfaa;
 
 .btn-primary {
   color: white !important;
-  border-color: $green !important;
-  background: $green !important;
+  border-color: $purple !important;
+  background: $purple !important;
+  &:hover {
+    color: white !important;
+    border-color: $purple-light !important;
+    background: $purple-light !important;
+  }
   &:visited {
     color: white !important;
     &:hover {
       color: white !important;
-      border-color: $dark-green !important;
-      background: $dark-green !important;
+      border-color: $purple-light !important;
+      background: $purple-light !important;
     }
   }
 }

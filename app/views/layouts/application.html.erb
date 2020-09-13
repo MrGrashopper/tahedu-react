@@ -14,18 +14,12 @@
   <body>
     <div class="">
       <div class="">
-      <% if user_signed_in? %>
+        <% if user_signed_in? %>
         <%= render "shared/sidebar" %>
-      <%end%>
-      </div>
-      <div class="">
+        <%end%>
         <%= render "shared/navigation" %>
-        <div class="">
-          <%= render "shared/flash" %>
-          <div class="">
-            <%= yield %>
-          </div>
-        </div>
+        <%= render "shared/flash" %>
+        <%= yield %>
       </div>
     </div>
   </body>
