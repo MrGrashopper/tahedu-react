@@ -93,10 +93,9 @@ $purple-light: #6c63ffe8;
 }
 .card {
   margin-bottom: 30px;
-  border-top-right-radius: 25px !important;
-  border-bottom-left-radius: 25px !important;
-  background: $light-grey !important;
-  border: none !important;
+  border-radius: 20px !important;
+  border: 1px soild $light-grey !important;
+  //box-shadow: 0px 0px 49px -9px rgba(251,239,239,1);
 }
 
 // Buttons
@@ -136,6 +135,10 @@ $purple-light: #6c63ffe8;
   margin-bottom: 30px;
 }
 
+.margin-top-zero {
+  margin-top: 0;
+}
+
 .react-datepicker__input-container {
   input {
     width: 120px;
@@ -165,3 +168,4 @@ $purple-light: #6c63ffe8;
     margin-right: auto;
   }
 }
+

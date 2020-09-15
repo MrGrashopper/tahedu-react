@@ -20,6 +20,8 @@ class DeskItems extends Component {
         };
         this.handleFilter = this.handleFilter.bind(this)
         this.reservationRef = React.createRef()
+        this.userDateRef = React.createRef();
+
     }
 
 
@@ -48,8 +50,9 @@ class DeskItems extends Component {
             .then(response => {
                 this.setState({
                     desks: response.data
-                });
-            },notify("Datum aktualisiert!"))
+                }),
+                    notify("Datum aktualisiert!");
+            })
     }
 
     handleChangeDate = date => {
@@ -69,21 +72,20 @@ class DeskItems extends Component {
                 }
             })
             .then(() => {
-                this.setState({
-                    resDate: new Date()
-                });
+                this.setState({resDate: new Date()}), notify("reserviert!");
             })
+            .catch((error)=>console.error(error));
     };
 
 
     render() {
         return (
-            <div className="container">
+            <div className="margin-top-xl">
                 <ToastContainer />
                 <div className="row">
                     <div className="col-sm-12 margin-bottom">
                         <Button variant="secondary" className=""  type="submit" onClick={this.handleFilter.bind(this)}>anzeigen</Button>{' '}
-                        <DatePicker className="btn btn-light" dateFormat="dd/MM/yyyy" selected={this.state.resDate} onChange={this.handleChangeDate}/>
+                        <DatePicker className="btn btn-light" dateFormat="dd/MM/yyyy" selected={this.state.resDate} onChange={this.handleChangeDate} ref={this.userDateRef}/>
                     </div>
                 </div>
                 <div className="row container margin-bottom">

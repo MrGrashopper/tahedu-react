@@ -10,13 +10,17 @@ Rails.application.routes.draw do
   end
   root "pages#home"
 
-  namespace :api, defaults: { format: :json } do 
+  namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :users, only: [:index, :show, :create, :update, :destroy]
+      resources :users, only: [:index, :show, :create, :update, :destroy] do
+        get :avatar, on: :member
+      end
       resources :todo_items, only: [:index, :show, :create, :update, :destroy]
       resources :desks, only: [:index, :show, :create, :update, :destroy, :search, :freedesks]
     end
   end
+
+  get 'api/v1/userres'
 
   resources :users do
     get :index, on: :collection
