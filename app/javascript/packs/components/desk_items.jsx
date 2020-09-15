@@ -8,7 +8,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-toast.configure()
 const notify = (message) => toast(message);
 
 class DeskItems extends Component {
@@ -48,9 +47,7 @@ class DeskItems extends Component {
                 },
             })
             .then(response => {
-                this.setState({
-                    desks: response.data
-                }),
+                this.setState({desks: response.data}),
                     notify("Datum aktualisiert!");
             })
     }
@@ -72,8 +69,9 @@ class DeskItems extends Component {
                 }
             })
             .then(()=>{
-                this.setState({resDate: new Date()});
+                this.setState({resDate: new Date()}),
                 notify("reserviert!");
+                console.log("works!!!")
             })
             .catch((error)=>console.error(error));
     };
