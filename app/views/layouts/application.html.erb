@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Rails React Example</title>
+    <title>Tahod:o:</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,19 +12,25 @@
   </head>
 
   <body>
-  <%= render "shared/navigation" %>
-  <% if user_signed_in? %>
     <%= render "shared/flash" %>
+    <%= render "shared/navigation" %>
     <div class="row">
-      <div class="col-sm-2">
-        <%= render "shared/sidebar" %>
-      </div>
-      <div class="col-sm-10">
-        <div class="container-fluid">
-          <%= yield %>
+      <% if user_signed_in? %>
+        <div class="col-sm-2">
+          <%= render "shared/sidebar" %>
         </div>
-      </div>
+        <div class="col-sm-10">
+          <div class="container-fluid">
+            <%= yield %>
+          </div>
+        </div>
+      <% else %>
+        <div class="col-sm-12">
+          <div class="container-fluid">
+            <%= yield %>
+          </div>
+        </div>
+      <% end %>
     </div>
-  <%end %>
   </body>
 </html>
