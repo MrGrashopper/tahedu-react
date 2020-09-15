@@ -50,8 +50,9 @@ class DeskItems extends Component {
             .then(response => {
                 this.setState({
                     desks: response.data
-                });
-            },notify("Datum aktualisiert!"))
+                }),
+                    notify("Datum aktualisiert!");
+            })
     }
 
     handleChangeDate = date => {
@@ -71,11 +72,8 @@ class DeskItems extends Component {
                 }
             })
             .then(() => {
-                this.setState({
-                    resDate: new Date()
-                });
-            },
-                notify("Datum aktualisiert!"))
+                this.setState({resDate: new Date()}), notify("reserviert!");
+            })
     };
 
 
