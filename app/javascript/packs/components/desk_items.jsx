@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button'
 import "react-datepicker/dist/react-datepicker.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 toast.configure()
 const notify = (message) => toast(message);
 
@@ -71,8 +72,9 @@ class DeskItems extends Component {
                     desk_id: id
                 }
             })
-            .then(() => {
-                this.setState({resDate: new Date()}), notify("reserviert!");
+            .then(()=>{
+                this.setState({resDate: new Date()});
+                notify("reserviert!");
             })
             .catch((error)=>console.error(error));
     };
@@ -93,14 +95,14 @@ class DeskItems extends Component {
                 </div>
                 <div className="row">
                     {this.state.desks.map(desk => (
-                        <div className="col-sm-4">
+                        <div className="col-xl-3 col-md-6 col-sm-12" key={desk.id}>
                             <div className="card">
                                 <div className="card-body">
                                     <div className="row">
-                                        <div className="col-sm-9"><h5 className="card-title" key={desk.kind}>{desk.kind}-Desk</h5></div>
+                                        <div className="col-sm-9"><h5 className="card-title" >{desk.kind}-Desk</h5></div>
                                         <div className="col-sm-3"><img src={MyImage} alt="..." className="thumbnail"></img></div>
                                     </div>
-                                    <p className="card-text" key={desk.id}>Platznummer: {desk.id}</p>
+                                    <p className="card-text">Platznummer: {desk.id}</p>
                                     <a href="#" className="btn btn-primary" onClick={() => this.createReservation(desk.id)} ref={this.reservationRef}>reservieren</a>
                                 </div>
                             </div>

@@ -34,11 +34,11 @@ class UserReservations extends Component {
             <div>
                 <h5 className="margin-top-zero margin-bottom " >Heute im Office</h5>
                 {this.state.userReservations.map(user => (
-                    <div className="">
+                    <div className="" key={user.id}>
                         <div className="">
                             <div className="">
                                 <div className="">
-                                    <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" key={user.email}>{user.email}</Tooltip>}>
+                                    <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{user.email}</Tooltip>}>
                                       <span className="d-inline-block">
                                         <img src={user.avatar_url} alt="..." className="thumbnail" disabled style={{ pointerEvents: 'none' }}></img>
                                       </span>

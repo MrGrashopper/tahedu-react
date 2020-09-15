@@ -54,6 +54,8 @@ $purple-light: #6c63ffe8;
 .thumbnail {
   height: 50px;
   border-radius: 50%;
+  float: right;
+  clear: both;
 }
 
 .nav-link {

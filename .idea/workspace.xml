@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aa0c5746-1a3c-4ab6-986a-bda4ec997604" name="Default Changelist" comment="" />
+    <list default="true" id="aa0c5746-1a3c-4ab6-986a-bda4ec997604" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/packs/components/DesksApp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/packs/components/DesksApp.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/packs/components/createReservation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/packs/components/createReservation.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/packs/components/desk_items.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/packs/components/desk_items.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/packs/components/userReservations.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/packs/components/userReservations.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/devise/registrations/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/devise/registrations/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/devise/sessions/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/devise/sessions/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
     <ignored path="$PROJECT_DIR$/log/" />
@@ -75,53 +84,62 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/desks_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="83">
+            <state relative-caret-position="476">
               <caret line="25" column="18" lean-forward="true" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/users/edit.html.erb">
+        <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/desk_items.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="371">
+              <caret line="99" column="59" lean-forward="true" selection-start-line="99" selection-start-column="59" selection-end-line="99" selection-end-column="59" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/TodoItem.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="921">
+              <caret line="128" column="30" lean-forward="true" selection-start-line="128" selection-start-column="30" selection-end-line="128" selection-end-column="30" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/DesksApp.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="63">
+              <caret line="3" column="35" lean-forward="true" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+        <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/userReservations.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
+            <state relative-caret-position="378">
+              <caret line="36" column="50" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="50" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/devise/sessions/new.html.erb">
+        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/devise/registrations/new.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="3" column="33" lean-forward="true" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/shared/_sidebar.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="43" selection-start-line="43" selection-end-line="43" selection-end-column="8" />
+            <state relative-caret-position="316">
+              <caret line="57" column="14" selection-start-line="57" selection-start-column="14" selection-end-line="57" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -130,11 +148,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>bg-light</find>
-      <find>align</find>
-      <find>navbarNav</find>
-      <find>.sidebar</find>
-      <find>card</find>
       <find>nav-link</find>
       <find>navbar</find>
       <find>brand</find>
@@ -160,6 +173,11 @@
       <find>User the following accounts to test the application</find>
       <find>Sign up</find>
       <find>.card</find>
+      <find>thumb</find>
+      <find>img</find>
+      <find>.map(</find>
+      <find>key</find>
+      <find>createReservation</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -168,7 +186,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/db/migrate/20200902155715_create_reservations.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20200902162705_add_name_to_reservations.rb" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/javascript/packs/components/TodoForm.jsx" />
@@ -182,7 +199,6 @@
         <option value="$PROJECT_DIR$/app/views/api/v1/desks/_freedesk.json.jbuilder" />
         <option value="$PROJECT_DIR$/app/models/reservation.rb" />
         <option value="$PROJECT_DIR$/app/controllers/api/v1/todo_items_controller.rb" />
-        <option value="$PROJECT_DIR$/app/javascript/packs/components/createReservation.jsx" />
         <option value="$PROJECT_DIR$/db/migrate/20200907131513_add_kind_to_desks.rb" />
         <option value="$PROJECT_DIR$/app/models/desk.rb" />
         <option value="$PROJECT_DIR$/app/views/api/v1/desks/_desk.json.jbuilder" />
@@ -209,16 +225,18 @@
         <option value="$PROJECT_DIR$/config/puma.rb" />
         <option value="$PROJECT_DIR$/app/controllers/api/v1/users_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/shared/_navigation.html.erb" />
-        <option value="$PROJECT_DIR$/app/javascript/packs/components/DesksApp.jsx" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/application.scss" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
         <option value="$PROJECT_DIR$/app/controllers/api/v1/desks_controller.rb" />
-        <option value="$PROJECT_DIR$/app/javascript/packs/components/desk_items.jsx" />
-        <option value="$PROJECT_DIR$/app/javascript/packs/components/userReservations.jsx" />
         <option value="$PROJECT_DIR$/app/views/shared/_sidebar.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/pages/home.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/views/devise/sessions/new.html.erb" />
         <option value="$PROJECT_DIR$/app/views/devise/registrations/new.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/application.scss" />
+        <option value="$PROJECT_DIR$/app/javascript/packs/components/desk_items.jsx" />
+        <option value="$PROJECT_DIR$/app/javascript/packs/components/DesksApp.jsx" />
+        <option value="$PROJECT_DIR$/app/javascript/packs/components/createReservation.jsx" />
+        <option value="$PROJECT_DIR$/app/javascript/packs/components/userReservations.jsx" />
       </list>
     </option>
   </component>
@@ -345,6 +363,21 @@
               <item name="api" type="462c0819:PsiDirectoryNode" />
               <item name="v1" type="462c0819:PsiDirectoryNode" />
               <item name="users" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tahedu-react" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tahedu-react" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="devise" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tahedu-react" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tahedu-react" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="devise" type="462c0819:PsiDirectoryNode" />
+              <item name="registrations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="tahedu-react" type="b2602c69:ProjectViewProjectNode" />
@@ -525,12 +558,12 @@
       <workItem from="1598544969575" duration="86944000" />
       <workItem from="1599054778030" duration="57754000" />
       <workItem from="1599423466410" duration="40767000" />
-      <workItem from="1599667566554" duration="52588000" />
+      <workItem from="1599667566554" duration="56172000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="238053000" />
+    <option name="totallyTimeSpent" value="241637000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1417" extended-state="6" />
@@ -601,31 +634,6 @@
     <SUITE FILE_PATH="coverage/tahedu_react@Development__tahedu_react.rcov" NAME="Development: tahedu-react Coverage Results" MODIFIED="1600160268574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tahedu-react" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/alert.jsx" />
-    <entry file="file://$PROJECT_DIR$/node_modules/react-toastify/dist/components/ToastContainer.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/react-toastify/dist/core/toast.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/toast.jsx">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20200908144945_add_team_to_desks_users.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
@@ -841,13 +849,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="109" column="1" lean-forward="true" selection-start-line="109" selection-start-column="1" selection-end-line="109" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/axios/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="284">
@@ -859,49 +860,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="7" column="72" selection-start-line="7" selection-start-column="72" selection-end-line="7" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://c5990767-1199-4336-b0b6-dbe2d9e9d9e4/database/rails_react_example_development/schema/public/table/reservations">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="5c600459-47eb-4a03-8764-ffe6cdc05658">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/userReservations.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="26" lean-forward="true" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/DesksApp.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/desk_items.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="68" column="30" lean-forward="true" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/desks_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="25" column="18" lean-forward="true" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -919,27 +877,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/home.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="59" selection-start-line="1" selection-start-column="59" selection-end-line="1" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/devise/registrations/new.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="33" lean-forward="true" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/devise/sessions/new.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/shared/_sidebar.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
@@ -947,10 +884,116 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/home.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="29" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
+          <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/devise/sessions/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/devise/registrations/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/homepage.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="57" column="14" selection-start-line="57" selection-start-column="14" selection-end-line="57" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://c5990767-1199-4336-b0b6-dbe2d9e9d9e4/database/rails_react_example_development/schema/public/table/reservations">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="5c600459-47eb-4a03-8764-ffe6cdc05658">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/desks_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="25" column="18" lean-forward="true" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/toast.jsx">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/TodoItems.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/TodoItem.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="921">
+          <caret line="128" column="30" lean-forward="true" selection-start-line="128" selection-start-column="30" selection-end-line="128" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/desk_items.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="99" column="59" lean-forward="true" selection-start-line="99" selection-start-column="59" selection-end-line="99" selection-end-column="59" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/DesksApp.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="35" lean-forward="true" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/createReservation.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="19" column="47" lean-forward="true" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/userReservations.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="36" column="50" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

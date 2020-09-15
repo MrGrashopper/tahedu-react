@@ -59,10 +59,7 @@ class CreateReservation extends React.Component{
     render(){
         return(
             <div className="text-right">
-                <Button variant="primary" onClick={() => this.handleModalShowHide()} >
-                    Platz reservieren
-                </Button>
-
+                <Button variant="primary" onClick={() => this.handleModalShowHide()} > Platz reservieren</Button>
                 <Modal show={this.state.showHide} size="lg">
                     <Modal.Header closeButton onClick={() => this.handleModalShowHide()}>
                         <Modal.Title>Modal heading</Modal.Title>
@@ -80,9 +77,7 @@ class CreateReservation extends React.Component{
                                         ref={this.reservationRef}
                                         custom>
                                     {this.state.freedesks.map(freedesk => (
-                                        <option
-                                            key={freedesk.id}
-                                        >{freedesk.id}</option>
+                                        <option>{freedesk.id}</option>
                                     ))}
                                     </Form.Control>
                                 </Form.Group>
