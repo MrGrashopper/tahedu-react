@@ -1,0 +1,33 @@
+$pink: #fbefef;
+$black: #212529;
+$purple: #6c63ff;
+$purple-light: #6c63ffe8;
+    
+
+.jumbotron {
+    background-color: $pink !important;
+    height: 450px;
+    overflow: hidden;
+    .jumbo-img {
+        width: 25rem;
+        position: relative;
+        float: right;
+        bottom: 180px;
+        right: 3rem;
+        clear: both;
+        img {
+            width: 130%;
+            height: auto;
+        }
+    }
+}
+
+.jumbo-white {
+    .jumbotron {
+        background-color: white !important;
+    }
+}
+
+.margin-top {
+    margin-top: 3rem;
+}
