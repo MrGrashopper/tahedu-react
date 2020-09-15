@@ -11,7 +11,6 @@ class UserReservations extends Component {
         this.state = {
             userReservations: [],
         };
-        console.log(this.userDateRef)
     }
 
     componentDidMount() {

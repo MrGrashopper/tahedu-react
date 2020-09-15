@@ -74,6 +74,7 @@ class DeskItems extends Component {
             .then(() => {
                 this.setState({resDate: new Date()}), notify("reserviert!");
             })
+            .catch((error)=>console.error(error));
     };
 
 
