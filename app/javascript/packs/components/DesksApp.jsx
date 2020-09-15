@@ -1,8 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import DeskItems from "./desk_items";
+import UserReservations from "./userReservations";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 class DesksApp extends React.Component {
 
@@ -11,12 +15,18 @@ class DesksApp extends React.Component {
             <DeskItems></DeskItems>
         )
     }
+    renderUserReservations = () => {
+        return(
+            <UserReservations></UserReservations>
+        )
+    }
 
     render() {
         return (
-            <div>
-                {this.renderAllDesks()}
-            </div>
+            <Row className="container-fluid">
+                <Col xs={10}>{this.renderAllDesks()}</Col>
+                <Col xs={2}>{this.renderUserReservations()}</Col>
+            </Row>
         )
     }
 }

@@ -12,19 +12,19 @@
   </head>
 
   <body>
-    <div class="">
-      <div class="">
+  <%= render "shared/navigation" %>
+  <% if user_signed_in? %>
+    <%= render "shared/flash" %>
+    <div class="row">
+      <div class="col-sm-2">
         <%= render "shared/sidebar" %>
       </div>
-      <div class="">
-        <%= render "shared/navigation" %>
-        <div class="container">
-          <%= render "shared/flash" %>
-          <div class="container">
-            <%= yield %>
-          </div>
+      <div class="col-sm-10">
+        <div class="container-fluid">
+          <%= yield %>
         </div>
       </div>
     </div>
+  <%end %>
   </body>
 </html>
