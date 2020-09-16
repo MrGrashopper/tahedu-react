@@ -33,23 +33,16 @@ class Api::V1::DesksController < ApplicationController
   end
 
   def create
-    date = params['reservation']['date'][0..9]
-    desk = Desk.find_by(id: params['reservation']['desk_id'].to_i)
-
-    if authorized?
-      begin
-        reservation = Reservation.find_by(date: date, desk_id: desk.id)
-        if reservation.nil?
-        Reservation.create(date: date, desk_id: desk.id, user_id: current_user.id)
-          render :json => @free_desks
-        else
-          render :json => @free_desks
-        end
-      rescue StandardError => e
-        p "#{e}"
-      end
+    desks = Desk.where(team_id: current_user.team_id)
+    desk = desks.find_by(external_id: params[:external_id])
+    if desk.present?
+      redirect_to deskcenter_path, alert: 'Platznummer schon vorhanden'
     else
-      handle_unauthorized
+      Desk.create(
+          external_id: params[:external_id],
+          kind: params[:kind].to_i,
+          team_id: current_user.team_id)
+      redirect_to deskcenter_path, notice: 'Platznummer erstellt'
     end
   end
 

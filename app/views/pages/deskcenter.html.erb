@@ -1,1 +1,45 @@
-<h1>TEST</h1>
+<section class="container-fluid margin-top">
+  <div class="container-fluid row">
+    <div class="col-xl-3 col-md-6 col-sm-12">
+      <div class="card">
+      <div class="card-body">
+        <div class="card-title"><h5>Desk hinzufügen</h5></div>
+        <%= form_with url: api_v1_desks_path(@desk), method: :post do |f| %>
+          <div>
+            <%= f.label "Kategorie", for: :kind, :class => 'p' %>
+            <%= f.select(:kind, @kinds.each {|a| [a]}) %>
+          </div>
+          <div>
+            <%= f.label "Platz-ID", for: :kind, :class => '' %>
+            <%= f.text_field(:external_id) %>
+          </div>
+          <div class=""><%= f.submit 'hinzufügen', :class => 'margin-top float-right btn btn-primary' %></div>
+        <% end %>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container-fluid margin-top">
+  <div class="container-fluid">
+    <h3>Desks</h3>
+  </div>
+  <div class="container-fluid row">
+    <% @desks.each do |desk|%>
+      <div class="col-xl-3 col-md-6 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-9"><h5 class="card-title" ><%= desk.kind %>-Desk</h5></div>
+              <div class="col-sm-3"></div>
+            </div>
+            <p class="card-text">Platz-ID: <%= desk.id %></p>
+            <a href="#" class="btn btn-danger">löschen</a>
+          </div>
+        </div>
+      </div>
+    <%end %>
+  </div>
+</section>
+

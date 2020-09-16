@@ -49,6 +49,7 @@ class DeskItems extends Component {
             .then(response => {
                 this.setState({desks: response.data}),
                     notify("Datum aktualisiert!");
+                    console.log(response)
             })
     }
 
@@ -62,16 +63,17 @@ class DeskItems extends Component {
     createReservation(id){
         setAxiosHeaders()
         axios
-            .post('/api/v1/desks', {
+            .post('/api/v1/reservations', {
                 reservation: {
                     date: this.state.resDate,
                     desk_id: id
                 }
             })
-            .then(()=>{
-                this.setState({resDate: new Date()}),
-                notify("reserviert!");
-                console.log("works!!!")
+            .then((response)=>{
+                if(response.status == 201) {
+                    notify("Reserviert!");
+                    console.log(response)
+                }
             })
             .catch((error)=>console.error(error));
     };
@@ -99,7 +101,7 @@ class DeskItems extends Component {
                                         <div className="col-sm-9"><h5 className="card-title" >{desk.kind}-Desk</h5></div>
                                         <div className="col-sm-3"><img src={MyImage} alt="..." className="thumbnail"></img></div>
                                     </div>
-                                    <p className="card-text">Platznummer: {desk.id}</p>
+                                    <p className="card-text">Platz-ID: {desk.external_id}</p>
                                     <a href="#" className="btn btn-primary" onClick={() => this.createReservation(desk.id)} ref={this.reservationRef}>reservieren</a>
                                 </div>
                             </div>
