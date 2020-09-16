@@ -132,6 +132,12 @@ $purple-light: #6c63ffe8;
   }
 }
 
+.btn-danger {
+  color: white !important;
+  &:visited {
+    color: white !important;
+  }
+}
 
 .margin-bottom {
   margin-bottom: 30px;

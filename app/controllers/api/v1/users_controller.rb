@@ -28,10 +28,22 @@ class Api::V1::UsersController < ApplicationController
       current_user.avatar.attach params[:avatar]
       user = User.find_by(id: current_user.id)
       user.update(avatar_url: url_for(user.avatar))
-
-      redirect_to edit_user_path
+      redirect_to edit_user_path, notice: 'gespeichert'
+    elsif params[:team_id].to_i == 1
+      team_id = Digest::SHA1.hexdigest([Time.now, rand].join)
+      user = User.find_by(id: current_user.id)
+      user.update(team_id: team_id)
+      redirect_to edit_user_path, notice: 'gespeichert'
+    elsif params[:join_team].present?
+      find_team = User.find_by(team_id: params[:join_team])
+      if find_team.present?
+        user = User.find_by(id: current_user.id)
+        user.update(team_id: params[:join_team])
+        redirect_to edit_user_path, notice: 'gespeichert'
+      else
+        redirect_to edit_user_path, alert: 'Team nicht gefunden'
+      end
     end
-
   end
 
   def destroy
