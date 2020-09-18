@@ -24,6 +24,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
+    # VERBESSERN!!!!!
     if params[:avatar].present?
       current_user.avatar.attach params[:avatar]
       user = User.find_by(id: current_user.id)
