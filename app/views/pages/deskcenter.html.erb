@@ -1,6 +1,6 @@
 <section class="container-fluid margin-top">
   <div class="container-fluid row">
-    <div class="col-xl-3 col-md-6 col-sm-12">
+    <div class="col-xl-6 col-md-6 col-sm-12">
       <div class="card">
       <div class="card-body">
         <div class="card-title"><h5>Desk hinzufügen</h5></div>
@@ -12,6 +12,14 @@
           <div>
             <%= f.label "Platz-ID", for: :kind, :class => '' %>
             <%= f.text_field(:external_id) %>
+          </div>
+          <div>
+            <%= f.label "Sicherheitsabstand gewährleistet? ", for: :enough_distance, :class => 'p' %>
+            <%= f.check_box(:enough_distance) %>
+          </div>
+          <div>
+            <%= f.label "Anmerkungen", for: :kind, :class => '' %>
+            <%= f.text_area(:notes) %>
           </div>
           <div class=""><%= f.submit 'hinzufügen', :class => 'margin-top float-right btn btn-primary' %></div>
         <% end %>
@@ -34,7 +42,7 @@
               <div class="col-sm-9"><h5 class="card-title" ><%= desk.kind %>-Desk</h5></div>
               <div class="col-sm-3"></div>
             </div>
-            <p class="card-text">Platz-ID: <%= desk.id %></p>
+            <p class="card-text">Platz-ID: <%= desk.external_id %></p>
             <a href="#" class="btn btn-danger">löschen</a>
           </div>
         </div>

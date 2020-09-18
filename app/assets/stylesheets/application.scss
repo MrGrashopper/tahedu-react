@@ -188,7 +188,9 @@ $purple-light: #6c63ffe8;
   }
 }
 
-
+.emoji {
+  font-size: 1.1rem;
+}
 
 
 
@@ -204,7 +206,7 @@ $purple-light: #6c63ffe8;
   font-weight: bold;
 }
 .toast-message {
-  font-size: 1rem;
+  font-size: 1.1rem;
   display: block;
   position: fixed;
   z-index: 9999;
@@ -212,6 +214,7 @@ $purple-light: #6c63ffe8;
   word-wrap: break-word;
   span {
   // color: white !important;
+
   }
 }
 
@@ -254,7 +257,6 @@ $purple-light: #6c63ffe8;
   padding: 15px 15px 15px 30px;
   width: 250px;
   right: 20px;
-  font-size: 20px;
   background-color: white;
   background-position: 15px center;
   background-repeat: no-repeat;
@@ -267,7 +269,6 @@ $purple-light: #6c63ffe8;
   -webkit-box-shadow: 0 0 12px #999999;
   -o-box-shadow: 0 0 12px $pink;
   color: #FFFFFF !important;
-
 }
 
 .toast {

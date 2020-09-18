@@ -96,8 +96,13 @@ class DeskItems extends Component {
                                         <div className="col-sm-9"><h5 className="card-title" >{desk.kind}-Desk</h5></div>
                                         <div className="col-sm-3"><img src={MyImage} alt="..." className="thumbnail"></img></div>
                                     </div>
-                                    <p className="card-text">Platz-ID: {desk.external_id}</p>
-                                    <a href="#" className="btn btn-primary" onClick={() => this.createReservation(desk.id)}>reservieren</a>
+                                    <span>Platz-ID: {desk.external_id}</span>
+                                    <br/>
+                                    <span>Sicherheitsabstand:</span>
+                                    <span className="emoji"> {desk.enough_distance? `👍` : `👎`}</span>
+                                    <div className="margin-top float-right">
+                                        <a href="#" className="btn btn-primary" onClick={() => this.createReservation(desk.id)}>reservieren</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

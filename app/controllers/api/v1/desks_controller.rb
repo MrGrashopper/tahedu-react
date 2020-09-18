@@ -42,7 +42,10 @@ class Api::V1::DesksController < ApplicationController
       Desk.create(
           external_id: params[:external_id],
           kind: params[:kind].to_i,
-          team_id: current_user.team_id)
+          team_id: current_user.team_id,
+          enough_distance: params[:external_id],
+          notes: params[:notes])
+
       redirect_to deskcenter_path, notice: 'Platznummer erstellt'
     end
   end

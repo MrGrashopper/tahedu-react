@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_16_132714) do
+ActiveRecord::Schema.define(version: 2020_09_18_123520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 2020_09_16_132714) do
     t.integer "kind", default: 1
     t.string "team_id"
     t.string "external_id"
+    t.boolean "enough_distance", default: false
+    t.text "notes"
   end
 
   create_table "reservations", force: :cascade do |t|

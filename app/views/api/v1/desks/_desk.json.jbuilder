@@ -1,1 +1,1 @@
-json.extract! desk, :id, :kind, :external_id
+json.extract! desk, :id, :kind, :external_id, :enough_distance, :notes
