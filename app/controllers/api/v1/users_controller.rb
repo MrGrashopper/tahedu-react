@@ -39,10 +39,12 @@ class Api::V1::UsersController < ApplicationController
       if find_team.present?
         user = User.find_by(id: current_user.id)
         user.update(team_id: params[:join_team])
-        redirect_to edit_user_path, notice: 'gespeichert'
+        redirect_to edit_user_path, notice: '🚀 Gespeichert'
       else
-        redirect_to edit_user_path, alert: 'Team nicht gefunden'
+        redirect_to edit_user_path, notice: '😭 Team nicht gefunden'
       end
+    else
+      redirect_to edit_user_path, notice: '🚀 Gespeichert'
     end
   end
 

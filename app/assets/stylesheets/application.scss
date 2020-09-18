@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
 $pink: #fbefef;
 $light-grey: #e9ecef;
 $dark-pink: #eadfdf;
@@ -21,10 +22,17 @@ $dark-green: #84bfaa;
 $purple: #6c63ff;
 $purple-light: #6c63ffe8;
 
+
 .sidebar {
   top: 85px;
 }
+
 .navbar{
+  position: fixed !important;
+  top: 0;
+  width: 100%;
+  overflow: hidden !important;
+  z-index: 1;
   .logo {
     a {
       font-size: 26px;
@@ -146,6 +154,9 @@ $purple-light: #6c63ffe8;
 .margin-top-zero {
   margin-top: 0;
 }
+.margin-xl {
+  margin-top: 150px;
+}
 
 .react-datepicker__input-container {
   input {
@@ -177,3 +188,144 @@ $purple-light: #6c63ffe8;
   }
 }
 
+
+
+
+
+////////// Toast
+
+//.toast {
+//  opacity: 1 !important;
+//  border: 2px solid $pink !important;
+//  border-radius: 1px;
+//  box-shadow: 0 1px 10px 0 rgba(0,0,0,.1), 0 2px 15px 0 rgba(0,0,0,.05);
+//}
+.toast-title {
+  font-weight: bold;
+}
+.toast-message {
+  font-size: 1rem;
+  display: block;
+  position: fixed;
+  z-index: 9999;
+  color: rgba(0, 0, 0, 0.5) !important;
+  word-wrap: break-word;
+  span {
+  // color: white !important;
+  }
+}
+
+.toast-message a,
+.toast-message label{
+  color: white !important;
+}
+.toast-message a:hover {
+  color: white !important;
+  text-decoration: none;
+}
+
+.toast-top-left {
+  top: 120px;
+  left: 1000px;
+}
+
+.toast-bottom-right {
+  right: 12px;
+  bottom: 12px;
+}
+
+.toast-bottom-left {
+  left: 12px;
+  bottom: 12px;
+}
+
+#toast-container  {
+  position: fixed;
+  z-index: 9999;
+}
+
+#toast-container > div {
+  opacity: 1;
+  position: fixed;
+  z-index: 9999;
+  top: 60px;
+  height: 56px !important;
+  margin: 0 0 6px;
+  padding: 15px 15px 15px 30px;
+  width: 250px;
+  right: 20px;
+  font-size: 20px;
+  background-color: white;
+  background-position: 15px center;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 12px $pink !important;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border: 2px solid $pink;
+  border-radius: 3px;
+  -moz-box-shadow: 0 0 12px #999999;
+  -webkit-box-shadow: 0 0 12px #999999;
+  -o-box-shadow: 0 0 12px $pink;
+  color: #FFFFFF !important;
+
+}
+
+.toast {
+  background-color: #030303;
+}
+
+.toast-success{
+  background-color: #81BE9D;
+}
+
+.toast-error{
+  background-color: #FC6E6D;
+}
+
+.toast-info{
+  background-color: #4407F1;
+}
+
+.toast-warning{
+  background-color: #FDB12A;
+}
+.toast-top-right {
+  top: 12px;
+  right: 12px;
+}
+
+#toast-container > :hover {
+  -moz-box-shadow: 0 0 12px #000000;
+  -webkit-box-shadow: 0 0 12px #000000;
+  -o-box-shadow: 0 0 12px #000000;
+  box-shadow: 0 0 12px #000000;
+  filter: alpha(opacity=100);
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  opacity: 1;
+  cursor: pointer;
+}
+
+#toast-container > .toast-info {
+  color: white !important;
+  background-size: 10%;
+
+}
+
+#toast-container > .toast-error {
+  color: white !important;
+  background-size: 10%;
+
+}
+
+#toast-container > .toast-success {
+  color: white !important;
+  background-size: 10%;
+
+}
+
+#toast-container > .toast-warning {
+  color: white !important;
+  background-size: 10%;
+
+
+}

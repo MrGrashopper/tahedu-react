@@ -26,6 +26,9 @@
     "react-flash-message": "^1.0.3",
     "react-icons": "^3.11.0",
     "react-toastify": "^6.0.8",
+    "toastify-js": "^1.9.1",
+    "toastr": "^2.1.4",
+    "toastr2": "^3.0.0-alpha.15",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",

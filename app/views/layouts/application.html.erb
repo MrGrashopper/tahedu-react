@@ -8,12 +8,12 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application' %>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
-
   <body>
+  <%= render :partial => 'shared/flash', :flash => flash %>
   <%= render "shared/navigation" %>
-  <%= render "shared/flash" %>
 
   <% if user_signed_in? %>
     <div class="container-fluid row">
@@ -21,7 +21,7 @@
         <%= render "shared/sidebar" %>
       </div>
       <div class="col-sm-10">
-        <div class="container-fluid margin-top">
+        <div class="container-fluid margin-xl">
           <%= yield %>
         </div>
       </div>
@@ -33,6 +33,5 @@
     </div>
   </div>
   <% end %>
-
   </body>
 </html>

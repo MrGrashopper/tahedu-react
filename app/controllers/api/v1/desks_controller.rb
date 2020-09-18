@@ -12,6 +12,7 @@ class Api::V1::DesksController < ApplicationController
        res_arr = []
        res_desks.select {|desk| desk.reservations.map {|res| res_arr << desk if res.date == date}}
        @desks = desks - res_arr.uniq
+
     else
        date = DateTime.now.strftime("%Y-%m-%d")
        res_desks = desks.includes(:reservations)

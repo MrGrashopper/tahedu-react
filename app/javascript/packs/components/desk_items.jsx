@@ -9,6 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const notify = (message) => toast(message);
+const toastMessage = (message) => toastr.success(message);
 
 class DeskItems extends Component {
     constructor(props) {
@@ -35,6 +36,7 @@ class DeskItems extends Component {
                 this.setState({
                     desks: response.data
                 });
+                toastMessage('🦄 aktualisiert')
             })
     }
 
@@ -48,8 +50,7 @@ class DeskItems extends Component {
             })
             .then(response => {
                 this.setState({desks: response.data}),
-                    notify("Datum aktualisiert!");
-                    console.log(response)
+                    toastMessage('🗓 Datum aktualisiert')
             })
     }
 
@@ -69,12 +70,6 @@ class DeskItems extends Component {
                     desk_id: id
                 }
             })
-            .then((response)=>{
-                if(response.status == 201) {
-                    notify("Reserviert!");
-                    console.log(response)
-                }
-            })
             .catch((error)=>console.error(error));
     };
 
@@ -82,7 +77,7 @@ class DeskItems extends Component {
     render() {
         return (
             <div className="margin-top-xl">
-                <ToastContainer />
+                <ToastContainer hideProgressBar/>
                 <div className="row">
                     <div className="col-sm-12 margin-bottom">
                         <Button variant="secondary" className=""  type="submit" onClick={this.handleFilter.bind(this)}>anzeigen</Button>{' '}
@@ -94,7 +89,7 @@ class DeskItems extends Component {
                 </div>
                 <div className="row">
                     {this.state.desks.map(desk => (
-                        <div className="col-xl-3 col-md-6 col-sm-12" key={desk.id}>
+                        <div className="col-xl-4 col-md-6 col-sm-12" key={desk.id}>
                             <div className="card">
                                 <div className="card-body">
                                     <div className="row">
@@ -102,7 +97,7 @@ class DeskItems extends Component {
                                         <div className="col-sm-3"><img src={MyImage} alt="..." className="thumbnail"></img></div>
                                     </div>
                                     <p className="card-text">Platz-ID: {desk.external_id}</p>
-                                    <a href="#" className="btn btn-primary" onClick={() => this.createReservation(desk.id)} ref={this.reservationRef}>reservieren</a>
+                                    <a href="#" className="btn btn-primary" onClick={() => this.createReservation(desk.id)}>reservieren</a>
                                 </div>
                             </div>
                         </div>
