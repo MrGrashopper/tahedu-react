@@ -1,10 +1,16 @@
-<% flash.each do |key, value| %>
-    <div class="container">
-        <div class="alert <%= key == 'notice' ? 'alert-primary' : 'alert-danger' %>" role="alert">
-            <%= value %>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>            
-        </div>
-    </div>
-<% end %>
+<div id='flash'>
+  <script>
+      <% if flash[:notice] %>
+      var $toastContent = $('<span><%= flash[:notice] %></span>');
+      toastr.success($toastContent)
+      <% end %>
+      <% if flash[:info] %>
+      var $toastContent = $('<span><%= flash[:info] %></span>');
+      toastr.info($toastContent)
+      <% end %>
+      <% if flash[:danger] %>
+      var $toastContent = $('<span><%= flash[:danger] %></span>');
+      toastr.error($toastContent)
+      <% end %>
+  </script>
+</div>

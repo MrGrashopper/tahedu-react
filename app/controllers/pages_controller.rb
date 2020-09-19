@@ -9,5 +9,7 @@ class PagesController < ApplicationController
     end
 
     def deskcenter
+        @kinds = Desk.kinds
+        @desks = Desk.where(team_id: current_user.team_id)
     end
 end

@@ -1,12 +1,26 @@
 <div class="container row">
   <div class="avatar-bg">
-    <%= image_tag @user.avatar %>
+    <%= image_tag @user.avatar if @user.avatar.attached?%>
   </div>
   <div class="col-sm-12">
     <%= form_with url: api_v1_user_path(@user), method: :put do |f| %>
       <h3><%= @user.email %></h3>
-      <%= f.file_field :avatar %>
-      <%= f.submit 'speichern', :class => 'btn btn-primary' %>
+      <% if @user.team_id.present? %>
+        <h5> Team-ID: <%= @user.team_id %></h5>
+      <%end %>
+        Gib hier deine Team-ID ein um einem Team beizutreten
+        <%= f.text_field :join_team %>
+        <div>
+          oder neue Team-ID generieren um Mitarbeiter in dein Team einzuladen
+          <%= f.check_box :team_id %>
+        </div>
+
+      <div class="margin-top">
+        <%= f.file_field :avatar %>
+      </div>
+      <div class="margin-top">
+        <%= f.submit 'speichern', :class => 'btn btn-primary' %>
+      </div>
     <% end %>
   </div>
 

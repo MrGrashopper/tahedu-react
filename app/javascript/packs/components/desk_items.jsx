@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 import MyImage from "../../../assets/images/workspace.png";
 import axios from "axios";
 import setAxiosHeaders from "./AxiosHeaders";
-import Form from 'react-bootstrap/Form'
 import DatePicker from "react-datepicker";
 import Button from 'react-bootstrap/Button'
 import "react-datepicker/dist/react-datepicker.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-toast.configure()
 const notify = (message) => toast(message);
+const toastMessage = (message) => toastr.success(message);
 
 class DeskItems extends Component {
     constructor(props) {
@@ -49,10 +48,8 @@ class DeskItems extends Component {
                 },
             })
             .then(response => {
-                this.setState({
-                    desks: response.data
-                }),
-                    notify("Datum aktualisiert!");
+                this.setState({desks: response.data}),
+                    notify('🗓 Datum aktualisiert')
             })
     }
 
@@ -63,27 +60,31 @@ class DeskItems extends Component {
     };
 
 
-    createReservation(id){
+    async createReservation(id){
         setAxiosHeaders()
-        axios
-            .post('/api/v1/desks', {
+         axios
+            .post('/api/v1/reservations', {
                 reservation: {
                     date: this.state.resDate,
                     desk_id: id
                 }
             })
-            .then(()=>{
-                this.setState({resDate: new Date()});
-                notify("reserviert!");
-            })
+             .then(response => {
+                 this.setState({desks: this.state.desks}),
+                 notify(' 🎉 Reserviert!')
+                 let desk = document.getElementById(id)
+                 desk.style.display = "none";
+             })
             .catch((error)=>console.error(error));
+        event.preventDefault();
     };
+
 
 
     render() {
         return (
             <div className="margin-top-xl">
-                <ToastContainer />
+                <ToastContainer/>
                 <div className="row">
                     <div className="col-sm-12 margin-bottom">
                         <Button variant="secondary" className=""  type="submit" onClick={this.handleFilter.bind(this)}>anzeigen</Button>{' '}
@@ -95,15 +96,28 @@ class DeskItems extends Component {
                 </div>
                 <div className="row">
                     {this.state.desks.map(desk => (
-                        <div className="col-xl-3 col-md-6 col-sm-12" key={desk.id}>
+                        <div className="col-xl-4 col-md-6 col-sm-12" key={desk.id} id={desk.id}>
                             <div className="card">
                                 <div className="card-body">
                                     <div className="row">
                                         <div className="col-sm-9"><h5 className="card-title" >{desk.kind}-Desk</h5></div>
                                         <div className="col-sm-3"><img src={MyImage} alt="..." className="thumbnail"></img></div>
                                     </div>
-                                    <p className="card-text">Platznummer: {desk.id}</p>
-                                    <a href="#" className="btn btn-primary" onClick={() => this.createReservation(desk.id)} ref={this.reservationRef}>reservieren</a>
+                                    <span>Platz-ID: {desk.external_id}</span>
+                                    <br/>
+                                    <span>Sicherheitsabstand:</span>
+                                    <span className="emoji"> {desk.enough_distance? `👍` : `👎`}</span>
+                                    <div className="margin-top float-right">
+                                        <a href="#" className="btn btn-primary" onClick={() =>
+                                            this.createReservation(desk.id)}
+                                        >reservieren</a>
+
+
+{/*                                        <a href="#" className="btn btn-primary" onClick={(e) =>
+                                            e.stopPropagation(
+                                                this.createReservation(desk.id))}
+                                        >reservieren</a>*/}
+                                    </div>
                                 </div>
                             </div>
                         </div>
