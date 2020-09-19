@@ -36,7 +36,6 @@ class DeskItems extends Component {
                 this.setState({
                     desks: response.data
                 });
-                toastMessage('🦄 aktualisiert')
             })
     }
 
@@ -50,7 +49,7 @@ class DeskItems extends Component {
             })
             .then(response => {
                 this.setState({desks: response.data}),
-                    toastMessage('🗓 Datum aktualisiert')
+                    notify('🗓 Datum aktualisiert')
             })
     }
 
@@ -61,23 +60,31 @@ class DeskItems extends Component {
     };
 
 
-    createReservation(id){
+    async createReservation(id){
         setAxiosHeaders()
-        axios
+         axios
             .post('/api/v1/reservations', {
                 reservation: {
                     date: this.state.resDate,
                     desk_id: id
                 }
             })
+             .then(response => {
+                 this.setState({desks: this.state.desks}),
+                 notify(' 🎉 Reserviert!')
+                 let desk = document.getElementById(id)
+                 desk.style.display = "none";
+             })
             .catch((error)=>console.error(error));
+        event.preventDefault();
     };
+
 
 
     render() {
         return (
             <div className="margin-top-xl">
-                <ToastContainer hideProgressBar/>
+                <ToastContainer/>
                 <div className="row">
                     <div className="col-sm-12 margin-bottom">
                         <Button variant="secondary" className=""  type="submit" onClick={this.handleFilter.bind(this)}>anzeigen</Button>{' '}
@@ -89,7 +96,7 @@ class DeskItems extends Component {
                 </div>
                 <div className="row">
                     {this.state.desks.map(desk => (
-                        <div className="col-xl-4 col-md-6 col-sm-12" key={desk.id}>
+                        <div className="col-xl-4 col-md-6 col-sm-12" key={desk.id} id={desk.id}>
                             <div className="card">
                                 <div className="card-body">
                                     <div className="row">
@@ -101,7 +108,15 @@ class DeskItems extends Component {
                                     <span>Sicherheitsabstand:</span>
                                     <span className="emoji"> {desk.enough_distance? `👍` : `👎`}</span>
                                     <div className="margin-top float-right">
-                                        <a href="#" className="btn btn-primary" onClick={() => this.createReservation(desk.id)}>reservieren</a>
+                                        <a href="#" className="btn btn-primary" onClick={() =>
+                                            this.createReservation(desk.id)}
+                                        >reservieren</a>
+
+
+{/*                                        <a href="#" className="btn btn-primary" onClick={(e) =>
+                                            e.stopPropagation(
+                                                this.createReservation(desk.id))}
+                                        >reservieren</a>*/}
                                     </div>
                                 </div>
                             </div>
