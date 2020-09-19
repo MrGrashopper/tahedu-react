@@ -108,15 +108,7 @@ class DeskItems extends Component {
                                     <span>Sicherheitsabstand:</span>
                                     <span className="emoji"> {desk.enough_distance? `👍` : `👎`}</span>
                                     <div className="margin-top float-right">
-                                        <a href="#" className="btn btn-primary" onClick={() =>
-                                            this.createReservation(desk.id)}
-                                        >reservieren</a>
-
-
-{/*                                        <a href="#" className="btn btn-primary" onClick={(e) =>
-                                            e.stopPropagation(
-                                                this.createReservation(desk.id))}
-                                        >reservieren</a>*/}
+                                        <a href="#" className="btn btn-primary" onClick={() => this.createReservation(desk.id)}>reservieren</a>
                                     </div>
                                 </div>
                             </div>

@@ -15,6 +15,7 @@
  */
 
 $pink: #fbefef;
+$light-pink: #fbefef17;
 $light-grey: #e9ecef;
 $dark-pink: #eadfdf;
 $green: #79AF9C;
@@ -22,9 +23,12 @@ $dark-green: #84bfaa;
 $purple: #6c63ff;
 $purple-light: #6c63ffe8;
 
+body {
+  background-color: $light-pink !important;
+}
 
 .sidebar {
-  top: 85px;
+  top: 87px;
   width: 200px;
 }
 
@@ -110,34 +114,22 @@ $purple-light: #6c63ffe8;
 }
 
 // Buttons
-.outline-info{
-  border-color: $green !important;
-  &:visited {
-    color: $green !important;
-    &:hover {
-      color: white !important;
-      border-color: $green !important;
-      background: $green !important;
-    }
-  }
+.btn {
+  border-radius: 20px!important;
 }
 
+
 .btn-primary {
-  color: white !important;
   border-color: $purple !important;
-  background: $purple !important;
+  color: $purple !important;
+  background-color: transparent !important;
+  &:visited {
+    color: $purple !important;
+  }
   &:hover {
     color: white !important;
-    border-color: $purple-light !important;
-    background: $purple-light !important;
-  }
-  &:visited {
-    color: white !important;
-    &:hover {
-      color: white !important;
-      border-color: $purple-light !important;
-      background: $purple-light !important;
-    }
+    border-color: $purple !important;
+    background-color: $purple !important;
   }
 }
 
@@ -157,6 +149,10 @@ $purple-light: #6c63ffe8;
 }
 .margin-xl {
   margin-top: 150px;
+}
+
+.margin-mid {
+  margin-top: 5rem;
 }
 
 .react-datepicker__input-container {
