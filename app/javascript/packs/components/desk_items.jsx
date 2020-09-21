@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button'
 import "react-datepicker/dist/react-datepicker.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Form from 'react-bootstrap/Form'
 
 const notify = (message) => toast(message);
 const toastMessage = (message) => toastr.success(message);
@@ -16,12 +17,14 @@ class DeskItems extends Component {
         super(props)
         this.state = {
             desks: [],
-            resDate: new Date()
+            resDate: new Date(),
+            filter: []
         };
         this.handleFilter = this.handleFilter.bind(this)
         this.reservationRef = React.createRef()
         this.userDateRef = React.createRef();
-
+        this.kinds = this.kinds.bind(this)
+        this.filterKinds = this.filterKinds.bind(this)
     }
 
 
@@ -33,9 +36,35 @@ class DeskItems extends Component {
                 },
             })
             .then(response => {
-                this.setState({
-                    desks: response.data
-                });
+                this.setState({desks: response.data}),
+                this.kinds()
+            })
+    }
+
+    kinds() {
+        let filterOptions = ["Alle"]
+        {this.state.desks.map(desk => (
+            filterOptions.push(desk.kind)
+        ))}
+        let filter =  Array.from(new Set(filterOptions))
+        this.setState({
+            filter: filter
+        })
+    }
+
+    filterKinds(event){
+        let filter = event.target.value
+        setAxiosHeaders()
+        axios
+            .get('/api/v1/desks/', {
+                params: {
+                    date:  this.state.resDate,
+                    filter:  filter,
+                },
+            })
+            .then(response => {
+                this.setState({desks: response.data}),
+                    notify('🦄 Filter aktualisiert')
             })
     }
 
@@ -92,7 +121,21 @@ class DeskItems extends Component {
                     </div>
                 </div>
                 <div className="row container margin-bottom">
-                    <h3>Freie Desks buchen</h3>
+                    <div className="col-sm-3">
+                        <h3>Freie Desks buchen</h3>
+                    </div>
+                    <div className="col-sm-2">
+                        <Form>
+                            <Form.Group controlId="exampleForm.SelectCustom">
+                                <Form.Control as="select"  onChange={this.filterKinds} value={this.state.value}>
+                                    {this.state.filter.map(filter => (
+                                        <option key={filter}>{filter}</option>
+                                    ))}
+                                </Form.Control>
+                            </Form.Group>
+                        </Form>
+                    </div>
+
                 </div>
                 <div className="row">
                     {this.state.desks.map(desk => (
