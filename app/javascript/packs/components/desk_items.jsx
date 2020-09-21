@@ -69,15 +69,21 @@ class DeskItems extends Component {
     }
 
     handleFilter() {
+
         setAxiosHeaders()
         axios
             .get('/api/v1/desks/', {
                 params: {
                     date:  this.state.resDate,
+                    filter: "Alle"
                 },
             })
             .then(response => {
-                this.setState({desks: response.data}),
+                let filter = document.getElementById("Filter")
+                filter.value = "Alle"
+                this.setState({
+                    desks: response.data,
+                }),
                     notify('🗓 Datum aktualisiert')
             })
     }
@@ -113,7 +119,7 @@ class DeskItems extends Component {
     render() {
         return (
             <div className="margin-top-xl">
-                <ToastContainer/>
+                <ToastContainer />
                 <div className="row">
                     <div className="col-sm-12 margin-bottom">
                         <Button variant="secondary" className=""  type="submit" onClick={this.handleFilter.bind(this)}>anzeigen</Button>{' '}
@@ -126,8 +132,8 @@ class DeskItems extends Component {
                     </div>
                     <div className="col-sm-2">
                         <Form>
-                            <Form.Group controlId="exampleForm.SelectCustom">
-                                <Form.Control as="select"  onChange={this.filterKinds} value={this.state.value}>
+                            <Form.Group>
+                                <Form.Control id="Filter" as="select"  onChange={this.filterKinds} value={this.state.value}>
                                     {this.state.filter.map(filter => (
                                         <option key={filter}>{filter}</option>
                                     ))}
