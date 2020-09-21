@@ -21,7 +21,7 @@ class DesksApp extends React.Component {
 
     render() {
         return (
-            <Row className="container-fluid">
+            <Row className="">
                 <Col lg={10}>{this.renderAllDesks()}</Col>
                 <Col lg={2}>{this.renderUserReservations()}</Col>
             </Row>

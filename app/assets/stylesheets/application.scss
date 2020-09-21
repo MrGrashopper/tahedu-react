@@ -15,6 +15,7 @@
  */
 
 $pink: #fbefef;
+$light-pink: #fbefef17;
 $light-grey: #e9ecef;
 $dark-pink: #eadfdf;
 $green: #79AF9C;
@@ -22,9 +23,12 @@ $dark-green: #84bfaa;
 $purple: #6c63ff;
 $purple-light: #6c63ffe8;
 
+body {
+  background-color: $light-pink !important;
+}
 
 .sidebar {
-  top: 85px;
+  top: 87px;
   width: 200px;
 }
 
@@ -110,34 +114,22 @@ $purple-light: #6c63ffe8;
 }
 
 // Buttons
-.outline-info{
-  border-color: $green !important;
-  &:visited {
-    color: $green !important;
-    &:hover {
-      color: white !important;
-      border-color: $green !important;
-      background: $green !important;
-    }
-  }
+.btn {
+  border-radius: 20px!important;
 }
 
+
 .btn-primary {
-  color: white !important;
   border-color: $purple !important;
-  background: $purple !important;
+  color: $purple !important;
+  background-color: transparent !important;
+  &:visited {
+    color: $purple !important;
+  }
   &:hover {
     color: white !important;
-    border-color: $purple-light !important;
-    background: $purple-light !important;
-  }
-  &:visited {
-    color: white !important;
-    &:hover {
-      color: white !important;
-      border-color: $purple-light !important;
-      background: $purple-light !important;
-    }
+    border-color: $purple !important;
+    background-color: $purple !important;
   }
 }
 
@@ -157,6 +149,10 @@ $purple-light: #6c63ffe8;
 }
 .margin-xl {
   margin-top: 150px;
+}
+
+.margin-mid {
+  margin-top: 5rem;
 }
 
 .react-datepicker__input-container {
@@ -193,9 +189,12 @@ $purple-light: #6c63ffe8;
   font-size: 1.1rem;
 }
 
+.Toastify__toast-body {
+  margin: auto 15px !important;
+}
 
 
-////////// Toast
+  ////////// Toast
 
 //.toast {
 //  opacity: 1 !important;
@@ -253,18 +252,18 @@ $purple-light: #6c63ffe8;
   position: fixed;
   z-index: 9999;
   top: 60px;
-  height: 56px !important;
+  height: 64px !important;
   margin: 0 0 6px;
-  padding: 15px 15px 15px 30px;
+  padding: 20px 15px 15px 30px;
   width: 250px;
   right: 20px;
   background-color: white;
   background-position: 15px center;
   background-repeat: no-repeat;
-  box-shadow: 0 0 12px $pink !important;
+  box-shadow: 0 1px 10px 0 rgba(0,0,0,.1), 0 2px 15px 0 rgba(0,0,0,.05) !important;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
-  border: 2px solid $pink;
+  border: none;
   border-radius: 3px;
   -moz-box-shadow: 0 0 12px #999999;
   -webkit-box-shadow: 0 0 12px #999999;
