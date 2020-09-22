@@ -31,9 +31,9 @@ class UserReservations extends Component {
 
     render() {
         return (
-            <div className="container-fluid">
-                <div className="row"><h5 className="margin-top-zero margin-bottom " >Heute im Office</h5></div>
-                <div className="row">
+            <div className="">
+                <div className="row"><h5 className="margin-bottom" >Heute im Office</h5></div>
+                <div className="row ">
                     {this.state.userReservations.map(user => (
                         <div className="col-xs-1" key={user.id}>
                             <div className="">

@@ -6,7 +6,7 @@ require('@rails/ujs').start()
 require('turbolinks').start()
 require('@rails/activestorage').start()
 require('channels')
-
+require('jquery')
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
@@ -18,20 +18,37 @@ require('./components/UsersApp')
 require('./components/DesksApp')
 require('bootstrap')
 import 'bootstrap/dist/css/bootstrap'
-// import Toastify from 'toastify-js'
-//
-// document.addEventListener("turbolinks:load", () => {
-//     $(".closeToastify").on("click", function(){
-//         var x = document.getElementById("Toastify");
-//         x.style.display = "none";
-//     });
-// })
 
 
+
+document.addEventListener("turbolinks:load", () => {
+
+    // Sidebar
+    var button = document.querySelector('#Sidebar-toggler');
+    var menu = document.querySelector('#Sidebar');
+    button.addEventListener('click', function (event) {
+            if (menu.style.display == "") {
+                menu.style.display = "block";
+            } else {
+                menu.style.display = "";
+            }
+        }
+    );
+
+    var closeButton = document.querySelector('#Close-btn');
+    var SidebarMenu = document.querySelector('#Sidebar');
+    closeButton.addEventListener('click', function (event) {
+            if (SidebarMenu.style.display == "") {
+                SidebarMenu.style.display = "block";
+            } else {
+                SidebarMenu.style.display = "";
+            }
+        }
+    );
 
 
 // Toastr
-document.addEventListener("turbolinks:load", () => {
+
 
 
 (function (define) {

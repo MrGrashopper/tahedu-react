@@ -13,6 +13,8 @@
  *= require_tree .
  *= require_self
  */
+$small: 576px;
+$medium: 991px;
 
 $pink: #fbefef;
 $light-pink: #fbefef17;
@@ -27,9 +29,64 @@ body {
   background-color: $light-pink !important;
 }
 
-.sidebar {
-  top: 87px;
-  width: 200px;
+.navbar-toggler {
+  position: absolute !important;
+  z-index: 2000 !important;
+  top: 15px !important;
+  left: 25px !important;
+}
+
+.container-custom {
+  width: 100%;
+  padding-right: 4rem;
+  padding-left: 4rem;
+  margin-right: auto;
+  margin-left: auto;
+  @media (max-width: $small) {
+    padding-right: 0rem;
+    padding-left: 0rem;
+    margin-right: 0rem;
+    margin-left: 1rem;
+  }
+}
+
+.navbar-nav {
+  .btn {
+    font-size: 12px;
+  }
+  @media (max-width: $medium) {
+
+      a {
+        text-align: center !important;
+      }
+  }
+}
+
+.user-bar {
+  position: fixed;
+  left: -64px;
+  height: 100vh;
+  margin-top: -9.4rem;
+
+  @media (max-width: $medium) {
+    left: 0;
+    height: 20vh;
+    margin-bottom: 3rem;
+    margin-top: -2.4rem;
+    border-radius: 20px;
+  }
+}
+
+.margin-userbar {
+  margin: 9rem 2rem 4rem 2rem;
+
+  @media (max-width: $medium) {
+    margin: 2rem 2rem 4rem 2rem;
+  }
+}
+
+.navbar-toggler {
+  margin-top: 10px;
 }
 
 .navbar{
@@ -43,8 +100,19 @@ body {
       font-size: 26px;
     }
   }
+
+
+  #navbarNav {
+    .nav-item {
+      text-align: right;
+    }
+  }
   .navbar-brand {
     padding: 1rem;
+    font-size: 28px;
+    @media (max-width: $medium) {
+      margin-right: -1rem;
+    }
   }
   a {
     &:hover {
@@ -333,3 +401,5 @@ body {
 
 
 }
+
+
