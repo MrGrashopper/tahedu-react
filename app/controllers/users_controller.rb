@@ -10,18 +10,18 @@ class UsersController < ApplicationController
 
   def update
     user = User.find(current_user.id)
-    t=3
 
   end
 
   def edit
     @user = User.find(params[:id])
+    @users = User.where(team_id: current_user.team_id)
     t=3
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:email_address, :password, :avatar)
+    params.require(:user).permit(:email_address, :password, :avatar, :supervisor)
   end
 end

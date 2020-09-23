@@ -19,7 +19,11 @@ $medium: 991px;
     display: none;
   }
 }
-
+#Hide-Sidebar {
+  .sidebar {
+    display: none;
+  }
+}
 .sidebar {
   display: block;
   width: 15%;

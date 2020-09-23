@@ -8,13 +8,16 @@
       <% if @user.team_id.present? %>
         <h5> Team-ID: <%= @user.team_id %></h5>
       <%end %>
-        Gib hier deine Team-ID ein um einem Team beizutreten
+        Gib hier eine Team-ID ein um einem Team beizutreten
         <%= f.text_field :join_team %>
         <div>
-          oder neue Team-ID generieren um Mitarbeiter in dein Team einzuladen
+          oder neue Team-ID generieren um Mitarbeiter in dein Team einzuladen (Bisherige angelegte Desks sind nicht mehr verfügbar)
           <%= f.check_box :team_id %>
         </div>
-
+      <div class="margin-top">
+        Erweiterte Rechte? (Desks kreieren, Benutzer verwalten etc.)
+        <%= f.check_box :supervisor %>
+      </div>
       <div class="margin-top">
         <%= f.file_field :avatar %>
       </div>
@@ -23,5 +26,4 @@
       </div>
     <% end %>
   </div>
-
 </div>
