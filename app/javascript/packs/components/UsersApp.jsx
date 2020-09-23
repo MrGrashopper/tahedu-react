@@ -22,15 +22,13 @@ class UsersApp extends React.Component {
         return(
             <div className="row">
                 {this.state.users.map(user => (
-                    <div className="col-sm">
+                    <div className="col-sm-3">
                         <div className="card">
                             <div className="card-body">
                                 <div className="row">
-                                    <div className="col-9"><h5 className="card-title" key={user}>{user.first_name} {user.last_name}</h5></div>
-                                    <div className="col-3"><img src={MyImage} alt="..." className="thumbnail"></img></div>
+                                    <div className="col-sm-10"><h5 className="card-title" key={user}>{user.email}</h5></div>
+                                    <img src={user.avatar_url} alt="..." className="thumbnail" disabled style={{ pointerEvents: 'none' }}></img>
                                 </div>
-                                <p className="card-text" key={user}>{user.skills}</p>
-                                <a href="#" className="btn btn-primary">Go somewhere</a>
                             </div>
                         </div>
                     </div>

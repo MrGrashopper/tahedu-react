@@ -6,17 +6,17 @@
     <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
       <%= link_to "Tahed:o:", root_path, class: "navbar-brand"%>
     <div class="w-100 text-right">
+      <div class="" id="myNavbar">
+        <ul class="navbar-nav ml-auto ">
+          <% if user_signed_in? %>
+            <li><%= link_to('Account', edit_user_path(current_user) , class: "nav-link")%></li>
+            <li><%= link_to('Logout', destroy_user_session_path, method: :delete, class: "nav-link") %></li>
+          <% else %>
+            <li><%= link_to "Registrieren", new_user_session_path, class: "nav-link" %></li>
+            <li><%= link_to('Login', new_user_session_path, class: "nav-link") %>  </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
-  </div>
-  <div class="" id="myNavbar">
-    <ul class="navbar-nav ml-auto ">
-      <% if user_signed_in? %>
-        <li><%= link_to('Account', edit_user_path(current_user) , class: "nav-link")%></li>
-        <li><%= link_to('Logout', destroy_user_session_path, method: :delete, class: "nav-link") %></li>
-      <% else %>
-        <li><%= link_to "Registrieren", new_user_session_path, class: "nav-link" %></li>
-        <li><%= link_to('Login', new_user_session_path, class: "nav-link") %>  </li>
-      <% end %>
-    </ul>
   </div>
 </nav>
