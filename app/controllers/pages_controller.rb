@@ -4,12 +4,16 @@ class PagesController < ApplicationController
 
     def home
     end
-    
+
     def my_todo_items
     end
 
     def deskcenter
-        @kinds = Desk.kinds
-        @desks = Desk.where(team_id: current_user.team_id)
+        if !current_user.supervisor
+            redirect_to root_path, notice: 'Nicht berechtigt'
+        else
+            @kinds = Desk.kinds
+            @desks = Desk.where(team_id: current_user.team_id)
+        end
     end
 end

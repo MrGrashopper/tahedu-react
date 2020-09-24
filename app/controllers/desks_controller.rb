@@ -22,7 +22,6 @@ class DesksController < ApplicationController
   end
 
   def deskcenter
-
   end
 
   # POST /desks
