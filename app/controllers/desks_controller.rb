@@ -22,7 +22,6 @@ class DesksController < ApplicationController
   end
 
   def deskcenter
-
   end
 
   # POST /desks
@@ -60,7 +59,7 @@ class DesksController < ApplicationController
   def destroy
     @desk.destroy
     respond_to do |format|
-      format.html { redirect_to desks_url, notice: 'Desk was successfully destroyed.' }
+      format.html { redirect_to deskcenter_path, notice: 'Desk gelöscht' }
       format.json { head :no_content }
     end
   end
