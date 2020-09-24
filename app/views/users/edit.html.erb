@@ -1,4 +1,4 @@
-<div class="container row">
+<div class="row">
   <%= form_with url: api_v1_user_path(@user), method: :put do |f| %>
   <div class="card">
     <div class="card-body">
@@ -10,6 +10,9 @@
         </div>
         <div class="col-sm-8 margin-top">
           <h5><b><%= @user.email %></b></h5>
+          <% if @user.supervisor%>
+            <h6>Du bist Supervisor</h6>
+          <% end %>
           <% if @user.team_id.present? %>
             <p>Team-ID: <%= @user.team_id %></p>
           <%else %>
