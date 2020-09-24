@@ -31,11 +31,13 @@ class Api::V1::UsersController < ApplicationController
     join_team = User.find_by(team_id: params[:join_team])&.team_id if params[:join_team].length > 1
     team_id = join_team.present? ? join_team : team_id
     team_id = params[:team_id].to_i == 1 ?  Digest::SHA1.hexdigest([Time.now, rand].join)[0...15] : team_id
+    supervisor = params[:supervisor].to_i == 1 ?  true : false
 
     begin
       user.update(
         avatar_url: avatar,
         team_id: team_id,
+        supervisor: supervisor
       )
       if join_team.present? && User.find_by(team_id: params[:join_team]) && params[:join_team].length > 1
         redirect_to edit_user_path, notice: '🚀 Team beigetreten'

@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @users = User.where(team_id: current_user.team_id)
+    @supervisors = @users.where(supervisor: true)
     t=3
   end
 

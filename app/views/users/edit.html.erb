@@ -1,29 +1,52 @@
 <div class="container row">
-  <div class="avatar-bg">
-    <%= image_tag @user.avatar if @user.avatar.attached?%>
-  </div>
-  <div class="col-sm-12">
-    <%= form_with url: api_v1_user_path(@user), method: :put do |f| %>
-      <h3><%= @user.email %></h3>
-      <% if @user.team_id.present? %>
-        <h5> Team-ID: <%= @user.team_id %></h5>
-      <%end %>
-        Gib hier eine Team-ID ein um einem Team beizutreten
-        <%= f.text_field :join_team %>
-        <div>
-          oder neue Team-ID generieren um Mitarbeiter in dein Team einzuladen (Bisherige angelegte Desks sind nicht mehr verfügbar)
-          <%= f.check_box :team_id %>
+  <%= form_with url: api_v1_user_path(@user), method: :put do |f| %>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="avatar-bg">
+            <%= image_tag @user.avatar if @user.avatar.attached?%>
+          </div>
         </div>
-      <div class="margin-top">
-        Erweiterte Rechte? (Desks kreieren, Benutzer verwalten etc.)
-        <%= f.check_box :supervisor %>
+        <div class="col-sm-8 margin-top">
+          <h5><b><%= @user.email %></b></h5>
+          <% if @user.team_id.present? %>
+            <p>Team-ID: <%= @user.team_id %></p>
+          <%else %>
+            <p class="red-text">Du musst noch einem Team beitreten </br> oder eine neue Team-ID erstellen</p>
+          <%end %>
+        </div>
       </div>
-      <div class="margin-top">
-        <%= f.file_field :avatar %>
+      <div class="col-sm-12 margin-top">
+          <div class="margin-bottom">
+            <h6 class="margin-bottom purple-text" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              Neue Team-ID
+            </h6>
+            <div class="border padding collapse " id="collapseExample">
+              <div>
+                <p>Team beizutreten <%= f.text_field :join_team, placeholder: 'Team-ID' %></p>
+
+                <div>
+                  <p>Oder neue Team-ID generieren <%= f.check_box :team_id %></p>
+                  <p>(Bisherige angelegte Desks sind nicht mehr verfügbar)</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <%if !@supervisors.present? %>
+            <div class="margin-bottom">
+              <p>Erweiterte Rechte? (Desks, Benutzer usw. verwalten) <%= f.check_box :supervisor %></p>
+            </div>
+          <%end %>
+          <div class="margin-bottom">
+            <p>Profilbild: <%= f.file_field :avatar %></p>
+          </div>
+          <div class="margin-top">
+            <%= f.submit 'speichern', :class => 'btn btn-primary' %>
+          </div>
+        <% end %>
       </div>
-      <div class="margin-top">
-        <%= f.submit 'speichern', :class => 'btn btn-primary' %>
-      </div>
-    <% end %>
+    </div>
   </div>
 </div>
