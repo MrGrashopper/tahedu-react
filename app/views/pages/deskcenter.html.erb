@@ -11,7 +11,7 @@
           </div>
           <div>
             <%= f.label "Platz-ID", for: :kind, :class => '' %>
-            <%= f.text_field(:external_id) %>
+            <%= f.text_field(:external_id, placeholder: 'z.B. Tisch-01') %>
           </div>
           <div>
             <%= f.label "Sicherheitsabstand gewährleistet? ", for: :enough_distance, :class => 'p' %>
@@ -19,7 +19,7 @@
           </div>
           <div>
             <%= f.label "Anmerkungen", for: :kind, :class => '' %>
-            <%= f.text_area(:notes) %>
+            <%= f.text_field(:notes, placeholder: 'z.B. 3. OG, Raum 1') %>
           </div>
           <div class=""><%= f.submit 'hinzufügen', :class => 'margin-top float-right btn btn-primary' %></div>
         <% end %>
@@ -36,17 +36,21 @@
   <div class="container-fluid row">
     <% @desks.each do |desk|%>
       <div class="col-xl-3 col-md-6 col-sm-12">
-        <div class="card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-9"><h5 class="card-title" ><%= desk.kind %>-Desk</h5></div>
-              <div class="col-sm-3"></div>
+        <%= form_with url: desk_path(desk), method: :delete do |f| %>
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-9"><h5 class="card-title" ><%= desk.kind %>-Desk</h5></div>
+                <div class="col-sm-3"></div>
+              </div>
+              <p class="card-text">Platz-ID: <%= desk.external_id %></p>
+              <p class="card-text">Sicherheitsabstand: <%= desk.enough_distance ? '👍' : '👎' %></p>
+              <p class="card-text">Anmerkungen: <%= desk.notes ? desk.notes : 'Keine' %></p>
+              <%= f.submit 'löschen', :class => 'btn btn-danger' %>
             </div>
-            <p class="card-text">Platz-ID: <%= desk.external_id %></p>
-            <a href="#" class="btn btn-danger">löschen</a>
           </div>
         </div>
-      </div>
+      <% end %>
     <%end %>
   </div>
 </section>
