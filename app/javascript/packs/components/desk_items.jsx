@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import MyImage from "../../../assets/images/workspace.png";
+import Basic from "../../../assets/images/Basic.png";
+import IT from "../../../assets/images/IT.png";
+import Meeting from "../../../assets/images/Meeting.png";
+import Design from "../../../assets/images/Design.png";
 import axios from "axios";
 import setAxiosHeaders from "./AxiosHeaders";
 import DatePicker from "react-datepicker";
@@ -121,6 +124,23 @@ class DeskItems extends Component {
         event.preventDefault();
     };
 
+    setImage = kind => {
+        if(kind == 'Basic') {
+            return Basic
+        }
+        else if(kind == 'IT') {
+            return IT
+            }
+        else if(kind == 'Meeting') {
+            return Meeting
+        }
+        else if(kind == 'Design') {
+            return Design
+        }
+        else {
+            return Basic
+        }
+    }
 
 
     render() {
@@ -157,7 +177,9 @@ class DeskItems extends Component {
                                 <div className="card-body">
                                     <div className="row">
                                         <div className="col-sm-9"><h5 className="card-title" >{desk.kind}-Desk</h5></div>
-                                        <div className="col-sm-3"><img src={MyImage} alt="..." className="thumbnail"></img></div>
+                                        <div className="col-sm-3">
+                                            <img  src={this.setImage(desk.kind)} alt="..." className="thumbnail"></img>
+                                        </div>
                                     </div>
                                     <span>Platz-ID: {desk.external_id}</span>
                                     <br/>

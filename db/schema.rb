@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_23_091154) do
+ActiveRecord::Schema.define(version: 2020_09_24_122703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_091154) do
     t.string "external_id"
     t.boolean "enough_distance", default: false
     t.text "notes"
+    t.string "image_url", default: "../../../assets/images/Basic.png"
   end
 
   create_table "reservations", force: :cascade do |t|

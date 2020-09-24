@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Modal from 'react-bootstrap/Modal'
-import MyImage from "../../../assets/images/workspace.png";
+import MyImage from "../../../assets/images/Basic.png";
 import axios from "axios";
 import setAxiosHeaders from "./AxiosHeaders";
 import Form from 'react-bootstrap/Form'
