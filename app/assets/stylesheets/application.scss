@@ -24,6 +24,12 @@ $green: #79AF9C;
 $dark-green: #84bfaa;
 $purple: #6c63ff;
 $purple-light: #6c63ffe8;
+.purple-text {
+  color: $purple !important;
+}
+.red-text {
+  color: red !important;
+}
 
 body {
   background-color: $light-pink !important;
@@ -102,6 +108,9 @@ body {
   padding: 10px;
 }
 
+.padding {
+  padding: 15px;
+}
 // Bootstrap
 .progress, .btn-info {
   height: 2.35rem !important;
@@ -222,8 +231,6 @@ body {
 }
 
 .avatar-bg {
-  width: 200px;
-  height: 200px;
   border-radius: 50%;
   overflow: hidden;
   img {

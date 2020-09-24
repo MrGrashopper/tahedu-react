@@ -25,27 +25,29 @@ class Api::V1::UsersController < ApplicationController
 
   def update
     # VERBESSERN!!!!!
-    if params[:avatar].present?
-      current_user.avatar.attach params[:avatar]
-      user = User.find_by(id: current_user.id)
-      user.update(avatar_url: url_for(user.avatar))
-      redirect_to edit_user_path, notice: 'gespeichert'
-    elsif params[:team_id].to_i == 1
-      team_id = Digest::SHA1.hexdigest([Time.now, rand].join)
-      user = User.find_by(id: current_user.id)
-      user.update(team_id: team_id)
-      redirect_to edit_user_path, notice: 'gespeichert'
-    elsif params[:join_team].present?
-      find_team = User.find_by(team_id: params[:join_team])
-      if find_team.present?
-        user = User.find_by(id: current_user.id)
-        user.update(team_id: params[:join_team])
-        redirect_to edit_user_path, notice: '🚀 Gespeichert'
-      else
+    user = User.find_by(id: current_user.id)
+    team_id = current_user.team_id
+    avatar = params[:avatar].present? ? params[:avatar] : current_user.avatar_url
+    join_team = User.find_by(team_id: params[:join_team])&.team_id if params[:join_team].length > 1
+    team_id = join_team.present? ? join_team : team_id
+    team_id = params[:team_id].to_i == 1 ?  Digest::SHA1.hexdigest([Time.now, rand].join)[0...15] : team_id
+    supervisor = params[:supervisor].to_i == 1 ?  true : false
+
+    begin
+      user.update(
+        avatar_url: avatar,
+        team_id: team_id,
+        supervisor: supervisor
+      )
+      if join_team.present? && User.find_by(team_id: params[:join_team]) && params[:join_team].length > 1
+        redirect_to edit_user_path, notice: '🚀 Team beigetreten'
+      elsif join_team.nil? && params[:join_team].length > 1
         redirect_to edit_user_path, notice: '😭 Team nicht gefunden'
+      else
+        redirect_to edit_user_path, notice: '🚀 Gespeichert'
       end
-    else
-      redirect_to edit_user_path, notice: '🚀 Gespeichert'
+    rescue
+      redirect_to edit_user_path, notice: '😭 Etwas ist schief gelaufen'
     end
   end
 

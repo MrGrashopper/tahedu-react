@@ -19,11 +19,15 @@ $medium: 991px;
     display: none;
   }
 }
-
+#Hide-Sidebar {
+  .sidebar {
+    display: none;
+  }
+}
 .sidebar {
   display: block;
   width: 15%;
-  padding: 3rem;
+  padding: 1rem;
   position: fixed;
   bottom: 0;
   left: 0;

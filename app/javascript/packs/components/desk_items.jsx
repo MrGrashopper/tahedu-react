@@ -69,7 +69,6 @@ class DeskItems extends Component {
     }
 
     handleFilter() {
-
         setAxiosHeaders()
         axios
             .get('/api/v1/desks/', {
@@ -79,12 +78,20 @@ class DeskItems extends Component {
                 },
             })
             .then(response => {
-                let filter = document.getElementById("Filter")
-                filter.value = "Alle"
                 this.setState({
                     desks: response.data,
+                })
+                let filterOptions = ["Alle"]
+                {this.state.desks.map(desk => (
+                    filterOptions.push(desk.kind)
+                ))}
+                let label = document.getElementById("Filter")
+                let filter =  Array.from(new Set(filterOptions))
+                this.setState({
+                    filter: filter
                 }),
-                    notify('🗓 Datum aktualisiert')
+                label.value = "Alle"
+                notify('🗓 Datum aktualisiert')
             })
     }
 
