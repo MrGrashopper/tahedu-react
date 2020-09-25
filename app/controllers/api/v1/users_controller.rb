@@ -4,14 +4,14 @@ class Api::V1::UsersController < ApplicationController
   def index
     if params[:user_res]
       date = params[:user_res][0..9]
-      x =  User.where(team_id: current_user.team_id).with_attached_avatar
+      x =  User.where(team_id: current_user.team_id)&.with_attached_avatar
       y = x.left_joins(:reservations).where(reservations: {date: date }).uniq
       @users = y
-      render json: @users.map { |user| user.as_json.merge({ avatar: url_for(user&.avatar) })}
+      render json: @users.map { |user| user.as_json.merge({ avatar: url_for(user.avatar)}) }
 
     else
-      @users = User.where(team_id: current_user.team_id).with_attached_avatar
-      render json: @users.map { |user| user.as_json.merge({ avatar: url_for(user&.avatar) })}
+      @users = User.where(team_id: current_user.team_id)&.with_attached_avatar
+      render json: @users.map { |user| user.as_json.merge({ avatar: url_for(user.avatar) }) }
     end
   end
 
@@ -30,7 +30,6 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    # VERBESSERN!!!!!
     user = User.find_by(id: current_user.id)
     team_id = current_user.team_id
     avatar = params[:avatar]
@@ -46,6 +45,7 @@ class Api::V1::UsersController < ApplicationController
         supervisor: supervisor,
       )
       user.update(avatar: avatar) if avatar
+
       if join_team.present? && User.find_by(team_id: params[:join_team]) && params[:join_team].length > 1
         redirect_to edit_user_path, notice: '🚀 Team beigetreten'
       elsif join_team.nil? && params[:join_team].length > 1
