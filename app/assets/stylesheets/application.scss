@@ -35,6 +35,13 @@ body {
   background-color: $light-pink !important;
 }
 
+a {
+  &:hover {
+    background-color: transparent;
+    text-decoration: none !important;
+  }
+}
+
 .navbar-toggler {
   position: absolute !important;
   z-index: 2000 !important;

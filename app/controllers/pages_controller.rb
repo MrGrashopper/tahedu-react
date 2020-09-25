@@ -13,7 +13,7 @@ class PagesController < ApplicationController
             redirect_to root_path, notice: 'Nicht berechtigt'
         else
             @kinds = Desk.kinds
-            @desks = Desk.where(team_id: current_user.team_id)
+            @desks = Desk.where(team_id: current_user.team_id).order(id: :asc)
         end
     end
 end
