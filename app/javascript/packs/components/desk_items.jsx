@@ -13,7 +13,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import Form from 'react-bootstrap/Form'
 
 const notify = (message) => toast(message);
-const toastMessage = (message) => toastr.success(message);
 
 class DeskItems extends Component {
     constructor(props) {

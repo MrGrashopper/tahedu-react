@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       resources :todo_items, only: [:index, :show, :create, :update, :destroy]
       resources :desks, only: [:index, :show, :create, :update, :destroy, :search, :freedesks]
       resources :reservations, only: [:index, :create, :update, :destroy]
+      resource :supervisors, only: [:index, :create, :update, :destroy]
     end
   end
 

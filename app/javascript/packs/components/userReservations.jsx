@@ -3,6 +3,8 @@ import axios from "axios";
 import setAxiosHeaders from "./AxiosHeaders";
 import Tooltip from 'react-bootstrap/Tooltip'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Avatar from "../../../assets/images/img_avatar.png";
+
 
 
 class UserReservations extends Component {
@@ -27,6 +29,14 @@ class UserReservations extends Component {
                 });
             })
     }
+    setAvatar = avatar => {
+        if(typeof avatar != "undefined") {
+            return avatar
+        }
+        else {
+            return Avatar
+        }
+    }
 
 
     render() {
@@ -41,7 +51,7 @@ class UserReservations extends Component {
                                     <div className="">
                                         <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{user.email}</Tooltip>}>
                                           <span className="d-inline-block">
-                                            <img src={user.avatar} alt="..." className="thumbnail" disabled style={{ pointerEvents: 'none' }}></img>
+                                            <img src={this.setAvatar(user.avatar)} alt="..." className="thumbnail" disabled style={{ pointerEvents: 'none' }}></img>
                                           </span>
                                         </OverlayTrigger>
                                     </div>

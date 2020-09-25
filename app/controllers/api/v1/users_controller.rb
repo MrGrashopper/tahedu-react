@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :avatar, :userres]
+  before_action :set_user, only: [:show, :create, :edit, :update, :destroy, :avatar, :userres]
   def index
     if params[:user_res]
       date = params[:user_res][0..9]
@@ -8,8 +8,10 @@ class Api::V1::UsersController < ApplicationController
       y = x.left_joins(:reservations).where(reservations: {date: date }).uniq
       @users = y
       render json: @users.map { |user| user.as_json.merge({ avatar: url_for(user&.avatar) })}
+
     else
-      @users = User.where(team_id: current_user.team_id)
+      @users = User.where(team_id: current_user.team_id).with_attached_avatar
+      render json: @users.map { |user| user.as_json.merge({ avatar: url_for(user&.avatar) })}
     end
   end
 
@@ -21,6 +23,10 @@ class Api::V1::UsersController < ApplicationController
     else
       handle_unauthorized
     end
+  end
+
+  def create
+
   end
 
   def update
