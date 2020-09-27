@@ -33,17 +33,20 @@ class Api::V1::UsersController < ApplicationController
     user = User.find_by(id: current_user.id)
     team_id = current_user.team_id
     avatar = params[:avatar]
-    join_team = User.find_by(team_id: params[:join_team])&.team_id if params[:join_team].length > 1
-    team_id = join_team.present? ? join_team : team_id
+    #join_team = User.find_by(team_id: params[:join_team])&.team_id if params[:join_team]&.length > 1
+    #team_id = join_team.present? ? join_team : team_id
     team_id = params[:team_id].to_i == 1 ?  Digest::SHA1.hexdigest([Time.now, rand].join)[0...15] : team_id
-    supervisor = params[:supervisor].to_i == 1 ?  true : current_user.supervisor
+    supervisor = params[:supervisor].to_i == 1 ?  true : false
+    company = params["team-name"]
 
     begin
       user.update(
         avatar_url: avatar,
         team_id: team_id,
       )
+
       user.update(avatar: avatar) if avatar
+
       if supervisor
         sv = Supervisor.find_by(user_id: current_user.id, team_id: team_id)
         if sv
@@ -53,12 +56,15 @@ class Api::V1::UsersController < ApplicationController
         end
       end
 
-      if join_team.present? && User.find_by(team_id: params[:join_team]) && params[:join_team].length > 1
-        redirect_to edit_user_path, notice: '🚀 Team beigetreten'
-      elsif join_team.nil? && params[:join_team].length > 1
-        redirect_to edit_user_path, notice: '😭 Team nicht gefunden'
-      else
-        redirect_to edit_user_path, notice: '🚀 Gespeichert'
+      if params[:team_id].to_i == 1 && company.present?
+        company_exists = CompanyAccount.find_by(title: company).present?
+        if !company_exists
+          current_user.update(team_id: team_id)
+          CompanyAccount.create(team_id: team_id, title: company)
+          redirect_to edit_user_path, notice: '🚀 Team erstellt'
+        else
+          redirect_to edit_user_path, notice: '😭 Team existiert bereits'
+        end
       end
     rescue
       redirect_to edit_user_path, notice: '😭 Etwas ist schief gelaufen'

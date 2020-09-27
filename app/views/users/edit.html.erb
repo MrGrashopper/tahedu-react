@@ -13,25 +13,24 @@
           <% if current_user.supervisor.present? %>
             <h6>Du bist Supervisor</h6>
           <% end %>
-          <% if @user.team_id.present? %>
-            <p>Team-ID: <%= @user.team_id %></p>
+          <% if @company.present? %>
+            <p>Team-ID: <%= @company.title %></p>
           <%else %>
-            <p class="red-text">Du musst noch einem Team beitreten </br> oder eine neue Team-ID erstellen</p>
+            <p class="red-text">Du musst noch einem Team beitreten </br> oder ein neues Teamerstellen</p>
           <%end %>
         </div>
       </div>
       <div class="col-sm-12 margin-top">
           <div class="margin-bottom">
             <h6 class="margin-bottom purple-text" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-              Neue Team-ID
+              Neues Team
             </h6>
             <div class="border padding collapse " id="collapseExample">
               <div>
-                <p>Team beizutreten <%= f.text_field :join_team, placeholder: 'Team-ID' %></p>
-
+<!--                <p>Team beizutreten <%#= f.text_field :join_team, placeholder: 'Team-ID' %></p>-->
                 <div>
-                  <p>Oder neue Team-ID generieren <%= f.check_box :team_id %></p>
-                  <p>(Bisherige angelegte Desks sind nicht mehr verfügbar)</p>
+                  <p>Bist du dir sicher? <%= f.check_box :team_id %></p>
+                  <p><%= f.text_field 'team-name', placeholder: 'Team-Name' %></p>
 
                 </div>
               </div>

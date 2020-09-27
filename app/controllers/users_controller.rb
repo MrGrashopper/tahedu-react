@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @users = User.where(team_id: current_user.team_id)
+    @company = CompanyAccount.find_by(team_id: current_user.team_id)
   end
 
   private

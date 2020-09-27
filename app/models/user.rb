@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable
 
   belongs_to :supervisor
+  belongs_to :company_account
   has_many :supervisor
   has_many :todo_items, dependent: :destroy
   has_many :skills, dependent: :destroy
