@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_25_125116) do
+ActiveRecord::Schema.define(version: 2020_09_27_141202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,15 @@ ActiveRecord::Schema.define(version: 2020_09_25_125116) do
     t.index ["user_id"], name: "index_skills_on_user_id"
   end
 
+  create_table "supervisors", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "team_id"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_supervisors_on_user_id"
+  end
+
   create_table "todo_items", force: :cascade do |t|
     t.string "title"
     t.bigint "user_id", null: false
@@ -100,7 +109,6 @@ ActiveRecord::Schema.define(version: 2020_09_25_125116) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "team_id"
     t.text "avatar_url"
-    t.boolean "supervisor", default: false
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
@@ -113,5 +121,6 @@ ActiveRecord::Schema.define(version: 2020_09_25_125116) do
   add_foreign_key "reservations", "desks"
   add_foreign_key "reservations", "users"
   add_foreign_key "skills", "users"
+  add_foreign_key "supervisors", "users"
   add_foreign_key "todo_items", "users"
 end

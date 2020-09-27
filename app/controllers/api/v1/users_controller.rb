@@ -11,7 +11,7 @@ class Api::V1::UsersController < ApplicationController
 
     else
       @users = User.where(team_id: current_user.team_id)&.with_attached_avatar
-      render json: @users.map { |user| user.as_json.merge({ avatar: url_for(user.avatar) }) }
+      render json: @users.map { |user| user.as_json.merge({ avatar: url_for(user.avatar), supervisor: user.supervisor }) }
     end
   end
 
@@ -42,9 +42,16 @@ class Api::V1::UsersController < ApplicationController
       user.update(
         avatar_url: avatar,
         team_id: team_id,
-        supervisor: supervisor,
       )
       user.update(avatar: avatar) if avatar
+      if supervisor
+        sv = Supervisor.find_by(user_id: current_user.id, team_id: team_id)
+        if sv
+          sv.update(user_id: current_user.id, team_id: team_id, email: current_user.email)
+        else
+          Supervisor.create(user_id: current_user.id, team_id: team_id, email: current_user.email)
+        end
+      end
 
       if join_team.present? && User.find_by(team_id: params[:join_team]) && params[:join_team].length > 1
         redirect_to edit_user_path, notice: '🚀 Team beigetreten'
@@ -64,6 +71,10 @@ class Api::V1::UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def is_supervisor?
+    Supervisor.find_by(user_id: current_user.id).present?
   end
 
   def authorized?

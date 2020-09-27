@@ -10,7 +10,7 @@
         </div>
         <div class="col-sm-8 margin-top">
           <h5><b><%= @user.email %></b></h5>
-          <% if @user.supervisor%>
+          <% if current_user.supervisor.present? %>
             <h6>Du bist Supervisor</h6>
           <% end %>
           <% if @user.team_id.present? %>
@@ -37,7 +37,7 @@
               </div>
             </div>
           </div>
-          <%if !@supervisors.present? %>
+          <%if !current_user.supervisor.present? && Supervisor.find_by(team_id: current_user.team_id).nil?%>
             <div class="margin-bottom">
               <p>Erweiterte Rechte? (Desks, Benutzer usw. verwalten) <%= f.check_box :supervisor %></p>
             </div>

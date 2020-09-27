@@ -3,6 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable
 
+  belongs_to :supervisor
+  has_many :supervisor
   has_many :todo_items, dependent: :destroy
   has_many :skills, dependent: :destroy
   has_many :reservations, dependent: :destroy
@@ -15,5 +17,4 @@ class User < ApplicationRecord
       self.avatar.attach(io: File.open(Rails.root.join("app", "assets", "images", "img_avatar.png")), filename: 'img_avatar.png' , content_type: "image/png")
     end
   end
-
 end
