@@ -13,8 +13,8 @@
           <% if current_user.supervisor.present? %>
             <h6>Du bist Supervisor</h6>
           <% end %>
-          <% if @company.present? %>
-            <p>Team-ID: <%= @company.title %></p>
+          <% if @user_team_ids.present? %>
+            <%= f.select('switch-team', @user_team_ids.each {|a| a}) %>
           <%else %>
             <p class="red-text">Du musst noch einem Team beitreten </br> oder ein neues Teamerstellen</p>
           <%end %>
@@ -27,7 +27,6 @@
             </h6>
             <div class="border padding collapse " id="collapseExample">
               <div>
-<!--                <p>Team beizutreten <%#= f.text_field :join_team, placeholder: 'Team-ID' %></p>-->
                 <div>
                   <p>Bist du dir sicher? <%= f.check_box :team_id %></p>
                   <p><%= f.text_field 'team-name', placeholder: 'Team-Name' %></p>

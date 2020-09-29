@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_27_182002) do
+ActiveRecord::Schema.define(version: 2020_09_29_152344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,16 @@ ActiveRecord::Schema.define(version: 2020_09_27_182002) do
     t.float "progress"
     t.string "period", default: "Zeitraum angeben"
     t.index ["user_id"], name: "index_todo_items_on_user_id"
+  end
+
+  create_table "user_team_ids", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "team_id"
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "confirmed", default: false
+    t.index ["user_id"], name: "index_user_team_ids_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

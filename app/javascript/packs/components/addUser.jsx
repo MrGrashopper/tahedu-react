@@ -4,7 +4,9 @@ import setAxiosHeaders from "./AxiosHeaders";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import Form from 'react-bootstrap/Form'
+import {toast, ToastContainer} from "react-toastify";
 
+const notify = (message) => toast(message);
 class AddUser extends Component {
     constructor(props) {
         super(props)
@@ -12,16 +14,36 @@ class AddUser extends Component {
             addUser: [],
         };
     }
+
+    async addEmail(){
+        let user = document.getElementById('AddEmail').value
+        setAxiosHeaders()
+        axios
+            .post('/api/v1/add_users', {
+                add_user: user
+            })
+            .then(response => {
+                console.log(response.data),
+                    this.setState({users: response.data})
+                    if(response.data == 400) {notify(' 🎉 Benutzer schon vorhanden')}
+                    else if(response.data == 404) {notify(' 🎉 Benutzer nicht gefunden')}
+                    else {notify(' 🎉 Benutzer hinzugefügt')}
+            })
+            .catch((error)=>console.error(error));
+
+    };
+
     render() {
         return (
             <Form>
+                <ToastContainer />
                 <div className="row margin-bottom">
                     <div className="col-xl-12 col-md-12 col-sm-12">
-                        <Form.Group controlId="formBasicEmail">
+                        <Form.Group controlId="AddEmail">
                             <Form.Label>Mitgied hinzufügen</Form.Label>
                             <div className="row">
-                                <div className="col-xl-4 col-md-8 col-sm-12"><Form.Control type="email" placeholder="Enter email" /></div>
-                                <div className="col-xl-3 col-md-4 col-sm-12"><a className="btn btn-primary" type="submit">Hinzufügen</a></div>
+                                <div className="col-xl-4 col-md-8 col-sm-12"><Form.Control type="email" placeholder="Enter email"/></div>
+                                <div className="col-xl-3 col-md-4 col-sm-12"><a className="btn btn-primary" type="submit" onClick={() => this.addEmail()}>Hinzufügen</a></div>
                             </div>
                             <Form.Text className="text-muted">
                                 Nur registrierte Nutzer können ins Team hinzugefügt werden

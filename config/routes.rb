@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :desks, only: [:index, :show, :create, :update, :destroy, :search, :freedesks]
       resources :reservations, only: [:index, :create, :update, :destroy]
       resource :supervisors, only: [:index, :create, :update, :destroy]
+      resource :add_users, only: [:index, :create, :update, :destroy]
     end
   end
 

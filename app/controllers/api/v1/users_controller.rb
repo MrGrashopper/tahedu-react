@@ -33,11 +33,10 @@ class Api::V1::UsersController < ApplicationController
     user = User.find_by(id: current_user.id)
     team_id = current_user.team_id
     avatar = params[:avatar]
-    #join_team = User.find_by(team_id: params[:join_team])&.team_id if params[:join_team]&.length > 1
-    #team_id = join_team.present? ? join_team : team_id
     team_id = params[:team_id].to_i == 1 ?  Digest::SHA1.hexdigest([Time.now, rand].join)[0...15] : team_id
     supervisor = params[:supervisor].to_i == 1 ?  true : false
     company = params["team-name"]
+    current_company = CompanyAccount.find_by(team_id: current_user.team_id)
 
     begin
       user.update(
@@ -69,6 +68,12 @@ class Api::V1::UsersController < ApplicationController
     rescue
       redirect_to edit_user_path, notice: '😭 Etwas ist schief gelaufen'
     end
+
+    if params['switch-team'] != current_company.title
+      team_id = CompanyAccount.find_by(title: params['switch-team']).team_id
+      current_user.update(team_id: team_id)
+    end
+
   end
 
   def destroy
