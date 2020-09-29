@@ -4,14 +4,22 @@ class Api::V1::UsersController < ApplicationController
   def index
     if params[:user_res]
       date = params[:user_res][0..9]
-      x =  User.where(team_id: current_user.team_id)&.with_attached_avatar
-      y = x.left_joins(:reservations).where(reservations: {date: date }).uniq
+      team = UserTeamId.where(team_id: current_user.team_id)
+      team_ids = []
+      team.each{|member| team_ids << member.user_id}
+      users = User.where(id: team_ids)&.with_attached_avatar
+      y = users.left_joins(:reservations).where(reservations: {date: date }).uniq
       @users = y
       render json: @users.map { |user| user.as_json.merge({ avatar: url_for(user.avatar)}) }
 
     else
-      @users = User.where(team_id: current_user.team_id)&.with_attached_avatar
-      render json: @users.map { |user| user.as_json.merge({ avatar: url_for(user.avatar), supervisor: user.supervisor }) }
+      team = UserTeamId.where(team_id: current_user.team_id)
+      team_ids = []
+      team.each{|member| team_ids << member.user_id}
+      users = User.where(id: team_ids)&.with_attached_avatar
+      x = users.map { |user| user.as_json.merge({ avatar: url_for(user.avatar),  supervisor: Supervisor.find_by(user_id: user['id'], team_id: current_user.team_id).nil? ? false : true }) }
+      @users = x
+      render json: @users
     end
   end
 
@@ -60,6 +68,7 @@ class Api::V1::UsersController < ApplicationController
         if !company_exists
           current_user.update(team_id: team_id)
           CompanyAccount.create(team_id: team_id, title: company)
+          UserTeamId.create(user_id: current_user.id, team_id: team_id, title: company, confirmed: true)
           redirect_to edit_user_path, notice: '🚀 Team erstellt'
         else
           redirect_to edit_user_path, notice: '😭 Team existiert bereits'
@@ -69,7 +78,7 @@ class Api::V1::UsersController < ApplicationController
       redirect_to edit_user_path, notice: '😭 Etwas ist schief gelaufen'
     end
 
-    if params['switch-team'] != current_company.title
+    if params['switch-team'] && params['switch-team'] != current_company.title
       team_id = CompanyAccount.find_by(title: params['switch-team']).team_id
       current_user.update(team_id: team_id)
     end

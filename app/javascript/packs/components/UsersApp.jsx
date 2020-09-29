@@ -83,8 +83,8 @@ class UsersApp extends React.Component {
                                 </div>
                                 <div className="row">
                                     <div  className="col-xl-12 col-md-12 col-sm-12">
-                                        <p>{user.supervisor.length == 1 ? `Supervisor` : `Mitglied`}</p>
-                                        <div>{user.supervisor.length == 1?
+                                        <p>{user.supervisor == true ? `Supervisor` : `Mitglied`}</p>
+                                        <div>{user.supervisor == true ?
                                             <a className="btn btn-danger"  type="submit"  onClick={() => this.deleteSupervisor(user.id)}>Erweiterte Rechte entfernen</a> :
                                             <a className="btn btn-primary"  type="submit"  onClick={() => this.setSupervisor(user.id)}>Erweiterte Rechte vergeben </a>}
                                         </div>

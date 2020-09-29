@@ -13,8 +13,13 @@ class Api::V1::SupervisorsController < ApplicationController
         else
           Supervisor.create(user_id: user.id, team_id: user.team_id, email: user.email)
         end
-        @users = User.where(team_id: user.team_id).with_attached_avatar
-        render json: @users.map { |user| user.as_json.merge({ avatar: url_for(user&.avatar), supervisor: user.supervisor })}
+        team = UserTeamId.where(team_id: current_user.team_id)
+        team_ids = []
+        team.each{|member| team_ids << member.user_id}
+        users = User.where(id: team_ids)&.with_attached_avatar
+        x = users.map { |user| user.as_json.merge({ avatar: url_for(user.avatar),  supervisor: Supervisor.find_by(user_id: user['id'], team_id: current_user.team_id).nil? ? false : true }) }
+        @users = x
+        render json: @users
       else
         render json: 404
       end
@@ -29,8 +34,13 @@ class Api::V1::SupervisorsController < ApplicationController
       sv = Supervisor.find_by(user_id: user.id, team_id: user.team_id)
       if user && sv
         sv.delete
-        @users = User.where(team_id: user.team_id).with_attached_avatar
-        render json: @users.map { |user| user.as_json.merge({ avatar: url_for(user&.avatar), supervisor: user.supervisor })}
+        team = UserTeamId.where(team_id: current_user.team_id)
+        team_ids = []
+        team.each{|member| team_ids << member.user_id}
+        users = User.where(id: team_ids)&.with_attached_avatar
+        x = users.map { |user| user.as_json.merge({ avatar: url_for(user.avatar),  supervisor: Supervisor.find_by(user_id: user['id'], team_id: current_user.team_id).nil? ? false : true }) }
+        @users = x
+        render json: @users
       else
         render json: 404
       end

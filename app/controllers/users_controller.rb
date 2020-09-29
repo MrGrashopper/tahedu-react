@@ -16,8 +16,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = User.where(team_id: current_user.team_id)
     @company = CompanyAccount.find_by(team_id: current_user.team_id)
-    user_team_ids = UserTeamId.where(user_id: current_user.id)
+    user_team_ids = UserTeamId.where(user_id: current_user.id, confirmed: true)
     @user_team_ids = user_team_ids.map {|team| team.title}
+    @unconfirmed_team_ids =  UserTeamId.where(user_id: current_user.id, confirmed: false)
   end
 
   private

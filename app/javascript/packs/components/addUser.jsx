@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form'
 import {toast, ToastContainer} from "react-toastify";
 
 const notify = (message) => toast(message);
+
 class AddUser extends Component {
     constructor(props) {
         super(props)
@@ -27,7 +28,7 @@ class AddUser extends Component {
                     this.setState({users: response.data})
                     if(response.data == 400) {notify(' 🎉 Benutzer schon vorhanden')}
                     else if(response.data == 404) {notify(' 🎉 Benutzer nicht gefunden')}
-                    else {notify(' 🎉 Benutzer hinzugefügt')}
+                    else {notify(' 🎉 Benutzer eingeladen')}
             })
             .catch((error)=>console.error(error));
 
