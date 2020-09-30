@@ -19,4 +19,6 @@ class User < ApplicationRecord
       self.avatar.attach(io: File.open(Rails.root.join("app", "assets", "images", "img_avatar.png")), filename: 'img_avatar.png' , content_type: "image/png")
     end
   end
+
+
 end

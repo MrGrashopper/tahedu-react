@@ -74,6 +74,11 @@ class Api::V1::UsersController < ApplicationController
           redirect_to edit_user_path, notice: '😭 Team existiert bereits'
         end
       end
+
+      if params['switch-team'] != current_company
+        switch_team = CompanyAccount.find_by(title: params['switch-team']).team_id
+        current_user.update(team_id: switch_team)
+      end
     rescue
       redirect_to edit_user_path, notice: '😭 Etwas ist schief gelaufen'
     end
@@ -82,7 +87,7 @@ class Api::V1::UsersController < ApplicationController
       team_id = CompanyAccount.find_by(title: params['switch-team']).team_id
       current_user.update(team_id: team_id)
     end
-
+    redirect_to edit_user_path, notice: '🚀 Gespeichert'
   end
 
   def destroy

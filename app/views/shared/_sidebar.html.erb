@@ -6,7 +6,7 @@
     <ul class="nav flex-column">
         <li class="nav-item"><div class="nav-link"><%= link_to "Desk Buchen", root_path %></div></li>
         <li class="nav-item"><a class="nav-link" href="#"> Reservierungen</a></li>
-        <% if current_user.supervisor %>
+        <% if @supervisor %>
           <li class="nav-item"><div class="nav-link"><%= link_to "Desks verwalten", deskcenter_path %></div></li>
           <li class="nav-item"><div class="nav-link"><%= link_to('Benutzer', users_path,class: "")%></div></li>
         <% end %>

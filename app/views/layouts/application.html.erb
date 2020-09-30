@@ -15,6 +15,7 @@
   <%= render :partial => 'shared/flash', :flash => flash %>
   <%= render "shared/navigation" %>
   <% if user_signed_in? %>
+    <% @supervisor = Supervisor.find_by(user_id: current_user.id, team_id: current_user.team_id) %>
     <div class="container-fluid row">
       <div class="col-sm-0 col-md-2 col-xl-2">
         <%= render "shared/sidebar" %>
