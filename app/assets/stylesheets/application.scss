@@ -18,13 +18,15 @@ $medium: 991px;
 $large: 1200px;
 
 $pink: #fbefef;
-$light-pink: #fbefef17;
-$light-grey: #e9ecef;
+$light-pink: rgba(251, 239, 239, 0.03);
+$light-grey: #eff2f5;
 $dark-pink: #eadfdf;
 $green: #79AF9C;
 $dark-green: #84bfaa;
 $purple: #6c63ff;
 $purple-light: #6c63ffe8;
+$shadow: 0 1px 5px 0 rgba(0,0,0,.1), 0 2px 5px 0 rgba(0,0,0,.05);
+
 .purple-text {
   color: $purple !important;
 }
@@ -169,7 +171,8 @@ a {
 .card {
   margin-bottom: 30px;
   border-radius: 20px !important;
-  border: 1px soild $light-grey !important;
+  border: none !important;
+  box-shadow: $shadow !important;
   @media (max-width: $medium) {
     h5 {
       font-size: 1.5rem;
@@ -328,7 +331,7 @@ a {
   background-color: white;
   background-position: 15px center;
   background-repeat: no-repeat;
-  box-shadow: 0 1px 10px 0 rgba(0,0,0,.1), 0 2px 15px 0 rgba(0,0,0,.05) !important;
+  box-shadow: $shadow !important;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border: none;

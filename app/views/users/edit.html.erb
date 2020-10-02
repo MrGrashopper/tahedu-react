@@ -1,26 +1,22 @@
 <% if @unconfirmed_team_ids.present? %>
-  <div class="margin-bottom">
-    <h5>Team-Einladungen</h5>
+    <div class="margin-bottom"><h5>Team-Einladungen</h5></div>
     <div class="row margin-top">
-    <% @unconfirmed_team_ids.each do |team| %>
-      <div class="col-sm-2">
-        <div class="">
-          <div class="row">
-            <div class="col-sm-6">
-              <h6><%= team.title %></h6>
-              <% end %>
-            </div>
-            <div class="col-sm-3">
-              <h6 class="purple-text">annehmen</h6>
-            </div>
-            <div class="col-sm-3">
-              <h6 class="red-text">ablehnen</h6>
-            </div>
-            </div>
+      <% @unconfirmed_team_ids.each do |team| %>
+        <div class="col-sm-6 col-md-6 col-xl-6">
+          <div class="">
+              <div class="row">
+                <div class="col-sm-6 col-md-6 col-xl-4"><h6><%= team.title %></h6></div>
+                <%= form_with url: api_v1_join_teams_path(team.team_id), method: :post do |ff| %>
+                  <div class="col-sm-6 col-md-3 col-xl-2"><%= ff.submit 'speichern', :class => 'btn purple-text' %></div>
+                <% end %>
+                <%= form_with url: api_v1_join_teams_path(team.team_id), method: :delete do |ff| %>
+                  <div class="col-sm-6 col-md-3 col-xl-2"><%= ff.submit 'ablehnen', :class => 'btn red-text' %></div>
+                <% end %>
+              </div>
           </div>
         </div>
       </div>
-    </div>
+  <% end %>
 <% end %>
 
 <div class="row">
@@ -60,7 +56,7 @@
               </div>
             </div>
           </div>
-          <%if Supervisor.find_by(team_id: current_user.team_id).nil?%>
+          <%if @selected_team.present? && Supervisor.find_by(team_id: current_user.team_id).nil?%>
             <div class="margin-bottom">
               <p>Erweiterte Rechte? (Desks, Benutzer usw. verwalten) <%= f.check_box :supervisor %></p>
             </div>

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resources :reservations, only: [:index, :create, :update, :destroy]
       resource :supervisors, only: [:index, :create, :update, :destroy]
       resource :add_users, only: [:index, :create, :update, :destroy]
+      resource :join_teams, only: [:index, :create, :update, :destroy]
     end
   end
 
