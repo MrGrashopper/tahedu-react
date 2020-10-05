@@ -6,6 +6,7 @@ class Api::V1::JoinTeamsController < ApplicationController
     user_team = UserTeamId.find_by(user_id: @user.id, team_id: team_id)
     begin
       user_team.update(confirmed: true)
+      @user.update(team_id: team_id) if @user.team_id.nil?
       redirect_to edit_user_path(@user), notice: '🚀 Team beigetreten'
 
     rescue

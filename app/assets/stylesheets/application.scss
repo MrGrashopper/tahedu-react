@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
 $small: 576px;
 $medium: 991px;
 $large: 1200px;
@@ -26,6 +27,16 @@ $dark-green: #84bfaa;
 $purple: #6c63ff;
 $purple-light: #6c63ffe8;
 $shadow: 0 1px 5px 0 rgba(0,0,0,.1), 0 2px 5px 0 rgba(0,0,0,.05);
+
+#delete-button {
+  margin-left: 5px;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+}
 
 .purple-text {
   color: $purple !important;

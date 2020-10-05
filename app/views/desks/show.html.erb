@@ -1,4 +1,28 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_desk_path(@desk) %> |
-<%= link_to 'Back', desks_path %>
+<div class="container row">
+  <div class="col-xl-6 col-md-6 col-sm-12">
+    <div class="card">
+      <div class="card-body">
+        <h5><%= @desk.external_id %> bearbeiten</h5>
+        <%= form_with url: desk_path(@desk), method: :put, class: '' do |f| %>
+          <div>
+            <%= f.label "Kategorie", for: :kind, :class => 'p' %>
+            <%= f.select(:kind, @kinds.each {|a| [a]}, {include_blank: @desk.kind}) %>
+          </div>
+          <div>
+            <%= f.label "Platz-ID", for: :kind, :class => '' %>
+            <%= f.text_field(:external_id, placeholder: @desk.external_id) %>
+          </div>
+          <div>
+            <%= f.label "Sicherheitsabstand gewährleistet? ", for: :enough_distance, :class => 'p' %>
+            <%= f.check_box(:enough_distance, checked: @desk.enough_distance) %>
+          </div>
+          <div>
+            <%= f.label "Anmerkungen", for: :kind, :class => '' %>
+            <%= f.text_field(:notes, placeholder: @desk.notes) %>
+          </div>
+          <div class=""><%= f.submit 'speichern', :class => 'margin-top float-right btn btn-primary' %></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

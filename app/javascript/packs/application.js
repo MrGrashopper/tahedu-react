@@ -18,6 +18,7 @@ require('./components/UsersApp')
 require('./components/DesksApp')
 require('bootstrap')
 import 'bootstrap/dist/css/bootstrap'
+import "@fortawesome/fontawesome-free/js/all";
 
 
 
