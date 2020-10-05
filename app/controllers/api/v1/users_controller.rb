@@ -41,9 +41,7 @@ class Api::V1::UsersController < ApplicationController
     user = User.find_by(id: current_user.id)
     team_id = current_user.team_id
     avatar = params[:avatar]
-    team_id = params[:team_id].to_i == 1 ?  Digest::SHA1.hexdigest([Time.now, rand].join)[0...15] : team_id
     supervisor = params[:supervisor].to_i == 1 ?  true : false
-    company = params["team-name"]
     current_company = CompanyAccount.find_by(team_id: current_user.team_id)
 
     begin
@@ -63,18 +61,6 @@ class Api::V1::UsersController < ApplicationController
         end
       end
 
-      if params[:team_id].to_i == 1 && company.present?
-        company_exists = CompanyAccount.find_by(title: company).present?
-        if !company_exists
-          current_user.update(team_id: team_id)
-          CompanyAccount.create(team_id: team_id, title: company)
-          UserTeamId.create(user_id: current_user.id, team_id: team_id, title: company, confirmed: true)
-          redirect_to edit_user_path, notice: '🚀 Team erstellt'
-        else
-          redirect_to edit_user_path, notice: '😭 Team existiert bereits'
-        end
-      end
-
       if params['switch-team'] != current_company
         switch_team = CompanyAccount.find_by(title: params['switch-team']).team_id
         current_user.update(team_id: switch_team)
@@ -83,11 +69,12 @@ class Api::V1::UsersController < ApplicationController
       redirect_to edit_user_path, notice: '😭 Etwas ist schief gelaufen'
     end
 
+
     if params['switch-team'] && params['switch-team'] != current_company.title
       team_id = CompanyAccount.find_by(title: params['switch-team']).team_id
       current_user.update(team_id: team_id)
     end
-    redirect_to edit_user_path, notice: '🚀 Gespeichert'
+    redirect_to edit_user_path(current_user.id), notice: '🚀 Gespeichert'
   end
 
   def destroy
