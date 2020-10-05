@@ -13,11 +13,12 @@ class User < ApplicationRecord
   has_one_attached :avatar
   after_commit :add_default_avatar, on: [:create, :update]
 
+
   private
+
   def add_default_avatar
     unless avatar.attached?
       self.avatar.attach(io: File.open(Rails.root.join("app", "assets", "images", "img_avatar.png")), filename: 'img_avatar.png' , content_type: "image/png")
     end
   end
-
 end

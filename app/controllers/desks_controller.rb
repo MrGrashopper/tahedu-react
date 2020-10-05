@@ -4,6 +4,9 @@ class DesksController < ApplicationController
   # GET /desks
   # GET /desks.json
   def index
+    if current_user.team_id.nil?
+      redirect_to edit_user_path(current_user.id)
+    end
     @desks = Desk.all
   end
 

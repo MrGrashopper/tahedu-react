@@ -1,5 +1,5 @@
 
-<% if user_signed_in? %>
+<% if user_signed_in? && !current_user.team_id.nil? %>
 <nav id="Sidebar" class="bg-dark sidebar">
   <div class="sidebar-sticky">
     <div id="Close-btn" class="close-btn">X</div>

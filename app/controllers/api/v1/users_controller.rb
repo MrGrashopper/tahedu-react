@@ -1,6 +1,7 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_user, only: [:show, :create, :edit, :update, :destroy, :avatar, :userres]
+  before_action :authenticate_user!, only: [:show, :edit, :update, :destroy, :avatar, :userres]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :avatar, :userres]
+
   def index
     if params[:user_res]
       date = params[:user_res][0..9]
@@ -80,6 +81,7 @@ class Api::V1::UsersController < ApplicationController
   def destroy
   end
   private
+
 
   def set_user
     @user = User.find(params[:id])

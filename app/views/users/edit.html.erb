@@ -56,7 +56,7 @@
           <% if @user_team_ids.present? %>
             <%= f.select('switch-team', @user_team_ids.each {|a| a}, selected: @selected_team) %>
           <%else %>
-            <p class="red-text">Du musst noch einem Team beitreten </br> oder ein neues Teamerstellen</p>
+            <p class="red-text">Du musst noch einem Team beitreten (Ein Supervisor muss dich einladen) </br> Oder erstelle oben ein neues Team</p>
           <%end %>
         </div>
       </div>

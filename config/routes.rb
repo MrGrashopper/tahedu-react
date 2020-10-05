@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :show, :create, :update, :destroy] do
         get :avatar, on: :member
       end
-      resources :todo_items, only: [:index, :show, :create, :update, :destroy]
+      #resources :todo_items, only: [:index, :show, :create, :update, :destroy]
       resources :desks, only: [:index, :show, :create, :update, :destroy, :search, :freedesks]
       resources :reservations, only: [:index, :create, :update, :destroy]
       resource :supervisors, only: [:index, :create, :update, :destroy]

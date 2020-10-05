@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  REGEX_PATTERN = /^(.+)@(.+)$/
 
   def index
 
@@ -6,6 +7,22 @@ class UsersController < ApplicationController
 
   def show
 
+  end
+
+  def new_user_sign_up
+    email = params[:email]
+    password = params[:password]
+    password_confirmation = params[:password_confirmation]
+    if is_email_valid? email
+      if password == password_confirmation
+        User.create(email: email, password: password)
+        redirect_to root_path, notice: '🚀 Check deine E-Mails!'
+      else
+        redirect_to new_user_registration_path, notice: 'Passwort stimmt nicht überein'
+      end
+    else
+      redirect_to new_user_registration_path, notice: 'E-mail nicht korrekt'
+    end
   end
 
   def update
@@ -23,6 +40,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def is_email_valid? email
+    email =~REGEX_PATTERN
+  end
 
   def user_params
     params.require(:user).permit(:email_address, :password, :avatar, :supervisor)
