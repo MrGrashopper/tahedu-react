@@ -6,10 +6,20 @@ class Api::V1::SupervisorsController < ApplicationController
   def create
     if authorized?
       user = User.find_by(id: params[:supervisor][:id])
-      @users = User.where(team_id: current_user.team_id).with_attached_avatar
       if user
-        user.update(supervisor: true)
-        render json: @users.map { |user| user.as_json.merge({ avatar: url_for(user&.avatar) })}
+        sv = Supervisor.find_by(user_id: user.id, team_id: user.team_id)
+        if sv
+          sv.update(user_id: user.id, team_id: team_id, email: user.email)
+        else
+          Supervisor.create(user_id: user.id, team_id: user.team_id, email: user.email)
+        end
+        team = UserTeamId.where(team_id: current_user.team_id)
+        team_ids = []
+        team.each{|member| team_ids << member.user_id}
+        users = User.where(id: team_ids)&.with_attached_avatar
+        x = users.map { |user| user.as_json.merge({ avatar: url_for(user.avatar),  supervisor: Supervisor.find_by(user_id: user['id'], team_id: current_user.team_id).nil? ? false : true }) }
+        @users = x
+        render json: @users
       else
         render json: 404
       end
@@ -21,15 +31,19 @@ class Api::V1::SupervisorsController < ApplicationController
   def destroy
     if authorized?
       user = User.find_by(id: params[:id])
-      @users = User.where(team_id: current_user.team_id).with_attached_avatar
-      if user
-        user.update(supervisor: false)
-        render json: @users.map { |user| user.as_json.merge({ avatar: url_for(user&.avatar) })}
+      sv = Supervisor.find_by(user_id: user.id, team_id: user.team_id)
+      if user && sv
+        sv.delete
+        team = UserTeamId.where(team_id: current_user.team_id)
+        team_ids = []
+        team.each{|member| team_ids << member.user_id}
+        users = User.where(id: team_ids)&.with_attached_avatar
+        x = users.map { |user| user.as_json.merge({ avatar: url_for(user.avatar),  supervisor: Supervisor.find_by(user_id: user['id'], team_id: current_user.team_id).nil? ? false : true }) }
+        @users = x
+        render json: @users
       else
         render json: 404
       end
-    else
-      handle_unauthorized
     end
   end
 

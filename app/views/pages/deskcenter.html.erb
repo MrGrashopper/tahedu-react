@@ -36,9 +36,18 @@
   <div class="container-fluid row">
     <% @desks.each do |desk|%>
       <div class="col-xl-3 col-md-6 col-sm-12">
-        <%= form_with url: desk_path(desk), method: :delete do |f| %>
           <div class="card">
             <div class="card-body">
+              <div class="text-right">
+                  <span><%= link_to desk_path(desk.id), class: "purple-text " do %><i class="far fa-edit"></i><% end %></span>
+                  <span>
+                    <%= form_with url: desk_path(desk), method: :delete, class: 'd-inline' do |f| %>
+                      <%= button_tag type: 'submit', class: "red-text", id: "delete-button" do %>
+                        <i class="far fa-trash-alt"></i>
+                      <% end %>
+                    <% end %>
+                  </span>
+              </div>
               <div class="row">
                 <div class="col-sm-9"><h5 class="card-title" ><%= desk.kind %>-Desk</h5></div>
                 <div class="col-sm-3"></div>
@@ -46,11 +55,9 @@
               <p class="card-text">Platz-ID: <%= desk.external_id %></p>
               <p class="card-text">Sicherheitsabstand: <%= desk.enough_distance ? '👍' : '👎' %></p>
               <p class="card-text">Anmerkungen: <%= desk.notes ? desk.notes : 'Keine' %></p>
-              <%= f.submit 'löschen', :class => 'btn btn-danger' %>
             </div>
           </div>
         </div>
-      <% end %>
     <%end %>
   </div>
 </section>

@@ -1,3 +1,43 @@
+<% if @unconfirmed_team_ids.present? %>
+    <div class="margin-bottom"><h5>Team-Einladungen</h5></div>
+    <div class="row margin-top">
+      <% @unconfirmed_team_ids.each do |team| %>
+        <div class="col-sm-6 col-md-6 col-xl-6">
+          <div class="">
+              <div class="row">
+                <div class="col-sm-6 col-md-6 col-xl-4"><h6><%= team.title %></h6></div>
+                <%= form_with url: api_v1_join_teams_path(team.team_id), method: :post do |ff| %>
+                  <div class="col-sm-6 col-md-3 col-xl-2"><%= ff.submit 'annehmen', :class => 'btn purple-text' %></div>
+                <% end %>
+                <%= form_with url: api_v1_join_teams_path(team.team_id), method: :delete do |ff| %>
+                  <div class="col-sm-6 col-md-3 col-xl-2"><%= ff.submit 'ablehnen', :class => 'btn red-text' %></div>
+                <% end %>
+              </div>
+          </div>
+        </div>
+      </div>
+  <% end %>
+<% end %>
+
+<div class="row">
+  <div class="margin-bottom">
+    <h6 class="margin-bottom purple-text" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+      Neues Team
+    </h6>
+    <div class="border padding collapse " id="collapseExample">
+      <div>
+        <div>
+          <%= form_with url: api_v1_add_companies_path(@user), method: :post do |fff| %>
+            <p>Bist du dir sicher? <%= fff.check_box :team_id %></p>
+            <p><%= fff.text_field 'team-name', placeholder: 'Team-Name' %></p>
+            <%= fff.submit 'Team erstellen', :class => 'btn btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <%= form_with url: api_v1_user_path(@user), method: :put do |f| %>
   <div class="card">
@@ -10,34 +50,18 @@
         </div>
         <div class="col-sm-8 margin-top">
           <h5><b><%= @user.email %></b></h5>
-          <% if @user.supervisor%>
+          <% if @supervisor %>
             <h6>Du bist Supervisor</h6>
           <% end %>
-          <% if @user.team_id.present? %>
-            <p>Team-ID: <%= @user.team_id %></p>
+          <% if @user_team_ids.present? %>
+            <%= f.select('switch-team', @user_team_ids.each {|a| a}, selected: @selected_team) %>
           <%else %>
-            <p class="red-text">Du musst noch einem Team beitreten </br> oder eine neue Team-ID erstellen</p>
+            <p class="red-text">Du musst noch einem Team beitreten (Ein Supervisor muss dich einladen) </br> Oder erstelle oben ein neues Team</p>
           <%end %>
         </div>
       </div>
       <div class="col-sm-12 margin-top">
-          <div class="margin-bottom">
-            <h6 class="margin-bottom purple-text" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-              Neue Team-ID
-            </h6>
-            <div class="border padding collapse " id="collapseExample">
-              <div>
-                <p>Team beizutreten <%= f.text_field :join_team, placeholder: 'Team-ID' %></p>
-
-                <div>
-                  <p>Oder neue Team-ID generieren <%= f.check_box :team_id %></p>
-                  <p>(Bisherige angelegte Desks sind nicht mehr verfügbar)</p>
-
-                </div>
-              </div>
-            </div>
-          </div>
-          <%if !@supervisors.present? %>
+          <%if @selected_team.present? && Supervisor.find_by(team_id: current_user.team_id).nil?%>
             <div class="margin-bottom">
               <p>Erweiterte Rechte? (Desks, Benutzer usw. verwalten) <%= f.check_box :supervisor %></p>
             </div>

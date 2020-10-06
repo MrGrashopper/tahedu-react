@@ -2,11 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 import setAxiosHeaders from './AxiosHeaders'
+import AddUser from "./addUser";
 import MyImage from '/Users/danielmikolai/tahedu-react/app/assets/images/img_avatar.png'
 import Avatar from "../../../assets/images/img_avatar.png";
 import Button from 'react-bootstrap/Button'
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import DeskItems from "./desk_items";
 
 const notify = (message) => toast(message);
 class UsersApp extends React.Component {
@@ -25,7 +27,6 @@ class UsersApp extends React.Component {
             .get('/api/v1/users')
             .then(response => {
                 this.setState({ users: response.data });
-
             })
     }
 
@@ -45,6 +46,7 @@ class UsersApp extends React.Component {
                 id: user
             })
             .then(response => {
+                console.log(response.data),
                 this.setState({users: response.data}),
                     notify(' 🎉 Erweiterte Rechte autorisiert')
             })
@@ -67,25 +69,25 @@ class UsersApp extends React.Component {
             .catch((error)=>console.error(error));
 
     };
-
     renderAllUsers = () => {
         return(
             <div className="row">
                 <ToastContainer />
                 {this.state.users.map(user => (
-                    <div className="col-xl-4 col-md-6 col-sm-12" key={user.email}>
+                    <div className="col-xl-3 col-md-6 col-sm-12" key={user.email}>
                         <div className="card">
                             <div className="card-body">
                                 <div className="row">
                                     <div className="col-sm-10"><h5 className="card-title" >{user.email}</h5></div>
-                                    <img src={this.setAvatar(user.avatar)} alt="..." className="thumbnail" disabled style={{ pointerEvents: 'none' }}></img>
+                                    <div className="col-sm-2"><img src={this.setAvatar(user.avatar)} alt="..." className="thumbnail" disabled style={{ pointerEvents: 'none' }}></img></div>
                                 </div>
                                 <div className="row">
                                     <div  className="col-xl-12 col-md-12 col-sm-12">
-                                        <p>{user.supervisor? `Supervisor` : `Mitglied`}</p>
-                                        <div>{user.supervisor?
-                                            <a className="red-text"  type="submit"  onClick={() => this.deleteSupervisor(user.id)}>Erweiterte Rechte entfernen</a> :
-                                            <a className="purple-text"  type="submit"  onClick={() => this.setSupervisor(user.id)}>Erweiterte Rechte vergeben </a>}</div>
+                                        <p>{user.supervisor == true ? `Supervisor` : `Mitglied`}</p>
+                                        <div>{user.supervisor == true ?
+                                            <a className="btn btn-danger"  type="submit"  onClick={() => this.deleteSupervisor(user.id)}>Erweiterte Rechte entfernen</a> :
+                                            <a className="btn btn-primary"  type="submit"  onClick={() => this.setSupervisor(user.id)}>Erweiterte Rechte vergeben </a>}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -94,11 +96,17 @@ class UsersApp extends React.Component {
                     ))}
             </div>
         )
-    }
+    };
+    renderAddUser = () => {
+        return(
+            <AddUser></AddUser>
+        )
+    };
 
     render() {
-        return (
+        return(
             <div>
+                {this.renderAddUser()}
                 {this.renderAllUsers()}
             </div>
         )

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_25_125116) do
+ActiveRecord::Schema.define(version: 2020_09_29_152344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,13 @@ ActiveRecord::Schema.define(version: 2020_09_25_125116) do
   end
 
   create_table "add_description_to_todo_items", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "company_accounts", force: :cascade do |t|
+    t.string "title"
+    t.string "team_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -77,6 +84,15 @@ ActiveRecord::Schema.define(version: 2020_09_25_125116) do
     t.index ["user_id"], name: "index_skills_on_user_id"
   end
 
+  create_table "supervisors", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "team_id"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_supervisors_on_user_id"
+  end
+
   create_table "todo_items", force: :cascade do |t|
     t.string "title"
     t.bigint "user_id", null: false
@@ -90,6 +106,16 @@ ActiveRecord::Schema.define(version: 2020_09_25_125116) do
     t.index ["user_id"], name: "index_todo_items_on_user_id"
   end
 
+  create_table "user_team_ids", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "team_id"
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "confirmed", default: false
+    t.index ["user_id"], name: "index_user_team_ids_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -100,7 +126,6 @@ ActiveRecord::Schema.define(version: 2020_09_25_125116) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "team_id"
     t.text "avatar_url"
-    t.boolean "supervisor", default: false
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
@@ -113,5 +138,6 @@ ActiveRecord::Schema.define(version: 2020_09_25_125116) do
   add_foreign_key "reservations", "desks"
   add_foreign_key "reservations", "users"
   add_foreign_key "skills", "users"
+  add_foreign_key "supervisors", "users"
   add_foreign_key "todo_items", "users"
 end

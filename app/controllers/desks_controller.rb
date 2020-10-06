@@ -1,15 +1,19 @@
 class DesksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_desk, only: [:show, :edit, :update, :destroy, :deskcenter]
-
   # GET /desks
   # GET /desks.json
   def index
+    if current_user.team_id.nil?
+      redirect_to edit_user_path(current_user.id)
+    end
     @desks = Desk.all
   end
 
   # GET /desks/1
   # GET /desks/1.json
   def show
+    @kinds = Desk.kinds.except(@desk.kind)
   end
 
   # GET /desks/new
@@ -43,14 +47,17 @@ class DesksController < ApplicationController
   # PATCH/PUT /desks/1
   # PATCH/PUT /desks/1.json
   def update
-    respond_to do |format|
-      if @desk.update(desk_params)
-        format.html { redirect_to @desk, notice: 'Desk was successfully updated.' }
-        format.json { render :show, status: :ok, location: @desk }
-      else
-        format.html { render :edit }
-        format.json { render json: @desk.errors, status: :unprocessable_entity }
-      end
+    kind = params[:kind].present? ? params[:kind].to_i : @desk.kind
+    external_id = params[:external_id].present? ? params[:external_id] : @desk.external_id
+    enough_distance = params[:enough_distance].to_i == 1 ? true : false
+    notes = params[:notes].present? ? params[:notes] : @desk.notes
+
+    begin
+      @desk.update(kind: kind, external_id: external_id, enough_distance: enough_distance, notes: notes)
+      redirect_to deskcenter_path, notice: '🚀 Gespeichert'
+    rescue StandardError, LoadError => e
+      puts "#{e}"
+      redirect_to desk_path(@desk.id), notice: 'Etwas ist schief gelaufen!'
     end
   end
 
