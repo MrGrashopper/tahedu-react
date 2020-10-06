@@ -11,6 +11,7 @@ class Api::V1::AddUsersController < ApplicationController
         render json: 400
       else
         UserTeamId.create(user_id: user.id, title: company.title, team_id: team_id)
+        UserMailer.welcome_email(user, company).deliver_now
         render json: users
       end
     else

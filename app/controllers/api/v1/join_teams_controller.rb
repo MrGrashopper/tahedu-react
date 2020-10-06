@@ -10,7 +10,7 @@ class Api::V1::JoinTeamsController < ApplicationController
       redirect_to edit_user_path(@user), notice: '🚀 Team beigetreten'
 
     rescue
-      redirect_to edit_user_path(@user), notice: 'Etwas ist schief gelaufen'
+      redirect_to edit_user_path(@user, user_team), notice: 'Etwas ist schief gelaufen'
     end
   end
 
