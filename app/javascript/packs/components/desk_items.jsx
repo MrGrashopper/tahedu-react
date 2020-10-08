@@ -11,6 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Form from 'react-bootstrap/Form'
+import Search from 'react-search'
 
 const notify = (message) => toast(message);
 
@@ -20,7 +21,8 @@ class DeskItems extends Component {
         this.state = {
             desks: [],
             resDate: new Date(),
-            filter: []
+            filter: [],
+            repos: []
         };
         this.handleFilter = this.handleFilter.bind(this)
         this.reservationRef = React.createRef()
@@ -44,7 +46,7 @@ class DeskItems extends Component {
     }
 
     kinds() {
-        let filterOptions = ["Alle"]
+        let filterOptions = ["Alle Typen"]
         {this.state.desks.map(desk => (
             filterOptions.push(desk.kind)
         ))}
@@ -76,14 +78,15 @@ class DeskItems extends Component {
             .get('/api/v1/desks/', {
                 params: {
                     date:  this.state.resDate,
-                    filter: "Alle"
+                    filter: "Alle Typen"
                 },
             })
             .then(response => {
                 this.setState({
                     desks: response.data,
+                    repos: []
                 })
-                let filterOptions = ["Alle"]
+                let filterOptions = ["Alle Typen"]
                 {this.state.desks.map(desk => (
                     filterOptions.push(desk.kind)
                 ))}
@@ -92,7 +95,9 @@ class DeskItems extends Component {
                 this.setState({
                     filter: filter
                 }),
-                label.value = "Alle"
+                label.value = "Alle Typen"
+                let list = document.getElementsByClassName("sc-htpNat cqaNcS");
+                for (var item of list) {item.style.display = "none";}
                 notify('🗓 Datum aktualisiert')
             })
     }
@@ -141,22 +146,36 @@ class DeskItems extends Component {
         }
     }
 
+    getItemsAsync(searchValue, cb) {
+        let items = this.state.desks.map( (res, i) => { return { id: i, value: res.external_id } })
+        this.setState({ repos: items })
+        cb(searchValue)
+    }
+
+    FilterItems(items) {
+        axios
+            .get('/api/v1/desks/', {
+                params: {
+                    date:  this.state.resDate,
+                    items:  items,
+                },
+            })
+            .then(response => {
+                this.setState({desks: response.data})
+            })
+    }
+
 
     render() {
         return (
             <div className="margin-top-xl">
                 <ToastContainer />
-                <div className="row col-sm-12">
-                    <div className="col-sm-12 margin-bottom">
+                <div className="row col-sm-12 margin-bottom">
+                    <div className="col-sm-6 col-md-6 col-xl-6">
                         <Button variant="secondary" className=""  type="submit" onClick={this.handleFilter.bind(this)}>anzeigen</Button>{' '}
                         <DatePicker className="btn btn-light" dateFormat="dd/MM/yyyy" selected={this.state.resDate} onChange={this.handleChangeDate} ref={this.userDateRef}/>
                     </div>
-                </div>
-                <div className="row container margin-bottom">
-                    <div className="col-sm-8 col-md-6 col-xl-3">
-                        <h3>Freie Desks buchen</h3>
-                    </div>
-                    <div className="col-sm-4 col-md-2">
+                    <div className="col-sm-4 col-md-3 col-xl-3">
                         <Form>
                             <Form.Group>
                                 <Form.Control id="Filter" as="select"  onChange={this.filterKinds} value={this.state.value}>
@@ -168,8 +187,19 @@ class DeskItems extends Component {
                         </Form>
                     </div>
 
+                    <div className="col-sm-8 col-md-3 col-xl-3">
+                        <div id="Search-items">
+                            <Search items={this.state.repos}
+                                    placeholder='Platz-ID suchen'
+                                    maxSelected={3}
+                                    multiple={true}
+                                    getItemsAsync={this.getItemsAsync.bind(this)}
+                                    onItemsChanged={this.FilterItems.bind(this)} />
+                        </div>
+                    </div>
                 </div>
-                <div className="row">
+
+                <div className="row margin-top col-sm-12 col-md-12 col-xl-12">
                     {this.state.desks.map(desk => (
                         <div className="col-xl-3 col-md-6 col-sm-12" key={desk.id} id={desk.id}>
                             <div className="card">
