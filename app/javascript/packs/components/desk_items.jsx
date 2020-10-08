@@ -170,12 +170,12 @@ class DeskItems extends Component {
         return (
             <div className="margin-top-xl">
                 <ToastContainer />
-                <div className="row col-sm-12 margin-bottom">
-                    <div className="col-sm-6 col-md-6 col-xl-6">
+                <div className="row margin-bottom">
+                    <div className="col-sm-12 col-md-7 col-xl-7">
                         <Button variant="secondary" className=""  type="submit" onClick={this.handleFilter.bind(this)}>anzeigen</Button>{' '}
                         <DatePicker className="btn btn-light" dateFormat="dd/MM/yyyy" selected={this.state.resDate} onChange={this.handleChangeDate} ref={this.userDateRef}/>
                     </div>
-                    <div className="col-sm-4 col-md-3 col-xl-3">
+                    <div id="Filter-kinds" className="col-sm-12 col-md-3 col-xl-2">
                         <Form>
                             <Form.Group>
                                 <Form.Control id="Filter" as="select"  onChange={this.filterKinds} value={this.state.value}>
@@ -199,7 +199,7 @@ class DeskItems extends Component {
                     </div>
                 </div>
 
-                <div className="row margin-top col-sm-12 col-md-12 col-xl-12">
+                <div className="row margin-top">
                     {this.state.desks.map(desk => (
                         <div className="col-xl-3 col-md-6 col-sm-12" key={desk.id} id={desk.id}>
                             <div className="card">

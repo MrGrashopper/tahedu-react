@@ -200,6 +200,12 @@ a {
   border-radius: 20px!important;
 }
 
+#Filter-kinds {
+  .form-control {
+    border: none !important;
+  }
+}
+
 #Search-items {
   #search-input {
     font-size: 1rem;
@@ -211,6 +217,11 @@ a {
   }
   input {
     font-size: 1rem;
+  }
+  li {
+    span {
+      font-size: 1rem;
+    }
   }
 }
 
