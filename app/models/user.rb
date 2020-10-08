@@ -1,7 +1,9 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable,
+         :confirmable
 
   belongs_to :supervisor, optional: true
   has_many :supervisor
@@ -12,9 +14,14 @@ class User < ApplicationRecord
   has_many :reservations, dependent: :destroy
   has_one_attached :avatar
   after_commit :add_default_avatar, on: [:create, :update]
-
+  after_create :send_confirmation_email
 
   private
+
+  def send_confirmation_email
+    @user = User.find_by(email: email)
+    @user.send_confirmation_instructions
+  end
 
   def add_default_avatar
     unless avatar.attached?

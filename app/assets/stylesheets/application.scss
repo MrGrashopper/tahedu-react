@@ -183,7 +183,8 @@ a {
   margin-bottom: 30px;
   border-radius: 20px !important;
   border: none !important;
-  box-shadow: $shadow !important;
+  background: #fafafa;
+  box-shadow:  20px 20px 60px #ececec, -20px -20px 60px #ffffff;
   @media (max-width: $medium) {
     h5 {
       font-size: 1.5rem;

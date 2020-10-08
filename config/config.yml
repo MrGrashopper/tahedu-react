@@ -1,0 +1,4 @@
+development:
+  server_name: localhost:3003
+production:
+  server_name: tahedo.com

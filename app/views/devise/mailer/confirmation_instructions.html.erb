@@ -1,5 +1,5 @@
-<p>Welcome <%= @email %>!</p>
+<p>Willkommen <%= @email %> bei Tahed:o:!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>Um deinen Account zu verifizieren klicke unten auf den Link</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<h5><%= link_to 'hier Account verifizieren', confirmation_url(@resource, confirmation_token: @token) %></h5>

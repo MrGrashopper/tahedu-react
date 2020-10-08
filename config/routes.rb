@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'api/v1/userres'
 
   resources :users do
+    get :confirm_email, on: :member
     get :index, on: :collection
     get :show, on: :member
     get :edit, on: :member
