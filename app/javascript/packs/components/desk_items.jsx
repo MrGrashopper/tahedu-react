@@ -93,11 +93,12 @@ class DeskItems extends Component {
                 let label = document.getElementById("Filter")
                 let filter =  Array.from(new Set(filterOptions))
                 this.setState({
-                    filter: filter
+                    filter: filter,
                 }),
                 label.value = "Alle Typen"
-                let list = document.getElementsByClassName("sc-htpNat cqaNcS");
-                for (var item of list) {item.style.display = "none";}
+                let list = document.getElementsByClassName("sc-bxivhb iRISHI");
+                let span = list[0].getElementsByTagName("span");
+                span[0].innerHTML = "Platz-ID suchen"
                 notify('🗓 Datum aktualisiert')
             })
     }
@@ -191,8 +192,9 @@ class DeskItems extends Component {
                         <div id="Search-items">
                             <Search items={this.state.repos}
                                     placeholder='Platz-ID suchen'
-                                    maxSelected={3}
-                                    multiple={true}
+                                    maxSelected={1}
+                                    multiple={false}
+                                    autoComplete={false}
                                     getItemsAsync={this.getItemsAsync.bind(this)}
                                     onItemsChanged={this.FilterItems.bind(this)} />
                         </div>
