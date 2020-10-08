@@ -3,7 +3,7 @@
     <div class="col-xl-6 col-md-6 col-sm-12">
       <div class="card">
       <div class="card-body">
-        <div class="card-title"><h5>Desk hinzufügen</h5></div>
+        <div class="card-title"><h5>Desk erstellen</h5></div>
         <%= form_with url: api_v1_desks_path(@desk), method: :post do |f| %>
           <div>
             <%= f.label "Kategorie", for: :kind, :class => 'p' %>
@@ -21,7 +21,7 @@
             <%= f.label "Anmerkungen", for: :kind, :class => '' %>
             <%= f.text_field(:notes, placeholder: 'z.B. 3. OG, Raum 1') %>
           </div>
-          <div class=""><%= f.submit 'hinzufügen', :class => 'margin-top float-right btn btn-primary' %></div>
+          <div class=""><%= f.submit 'erstellen', :class => 'margin-top float-right btn btn-primary' %></div>
         <% end %>
       </div>
       </div>

@@ -200,6 +200,19 @@ a {
   border-radius: 20px!important;
 }
 
+#Search-items {
+  #search-input {
+    font-size: 1rem;
+    border-bottom: 1px solid $purple !important;
+    padding: 10px 0;
+  }
+  .cqaNcS {
+    padding: 0 !important;
+  }
+  input {
+    font-size: 1rem;
+  }
+}
 
 .btn-primary {
   border-color: $purple !important;
