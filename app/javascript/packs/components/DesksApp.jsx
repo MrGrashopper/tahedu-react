@@ -22,8 +22,8 @@ class DesksApp extends React.Component {
     render() {
         return (
             <Row>
-                <Col lg={10}>{this.renderAllDesks()}</Col>
-                <Col lg={2} className="">{this.renderUserReservations()}</Col>
+                <Col lg={10} sm={12}>{this.renderAllDesks()}</Col>
+                <Col lg={2} sm={12} className="">{this.renderUserReservations()}</Col>
             </Row>
         )
     }

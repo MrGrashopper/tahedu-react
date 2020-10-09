@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :desks, only: [:index, :show, :create, :update, :destroy, :search, :freedesks]
   get "/pages/deskcenter", as: 'deskcenter'
+  get "/pages/reservations", as: 'reservations'
 
 
   devise_for :users

@@ -12,6 +12,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Form from 'react-bootstrap/Form'
 import Search from 'react-search'
+import moment from "moment-timezone";
 
 const notify = (message) => toast(message);
 
@@ -20,7 +21,7 @@ class DeskItems extends Component {
         super(props)
         this.state = {
             desks: [],
-            resDate: new Date(),
+            resDate: new Date(moment.tz("Europe/Berlin")),
             filter: [],
             repos: []
         };
@@ -93,11 +94,12 @@ class DeskItems extends Component {
                 let label = document.getElementById("Filter")
                 let filter =  Array.from(new Set(filterOptions))
                 this.setState({
-                    filter: filter
+                    filter: filter,
                 }),
                 label.value = "Alle Typen"
-                let list = document.getElementsByClassName("sc-htpNat cqaNcS");
-                for (var item of list) {item.style.display = "none";}
+                let list = document.getElementsByClassName("sc-bxivhb iRISHI");
+                let span = list[0].getElementsByTagName("span");
+                span[0].innerHTML = "Platz-ID suchen"
                 notify('🗓 Datum aktualisiert')
             })
     }
@@ -170,12 +172,12 @@ class DeskItems extends Component {
         return (
             <div className="margin-top-xl">
                 <ToastContainer />
-                <div className="row col-sm-12 margin-bottom">
-                    <div className="col-sm-6 col-md-6 col-xl-6">
+                <div className="row margin-bottom">
+                    <div className="col-sm-12 col-md-7 col-xl-7">
                         <Button variant="secondary" className=""  type="submit" onClick={this.handleFilter.bind(this)}>anzeigen</Button>{' '}
                         <DatePicker className="btn btn-light" dateFormat="dd/MM/yyyy" selected={this.state.resDate} onChange={this.handleChangeDate} ref={this.userDateRef}/>
                     </div>
-                    <div className="col-sm-4 col-md-3 col-xl-3">
+                    <div id="Filter-kinds" className="col-sm-12 col-md-3 col-xl-2">
                         <Form>
                             <Form.Group>
                                 <Form.Control id="Filter" as="select"  onChange={this.filterKinds} value={this.state.value}>
@@ -191,15 +193,16 @@ class DeskItems extends Component {
                         <div id="Search-items">
                             <Search items={this.state.repos}
                                     placeholder='Platz-ID suchen'
-                                    maxSelected={3}
-                                    multiple={true}
+                                    maxSelected={1}
+                                    multiple={false}
+                                    autoComplete={false}
                                     getItemsAsync={this.getItemsAsync.bind(this)}
                                     onItemsChanged={this.FilterItems.bind(this)} />
                         </div>
                     </div>
                 </div>
 
-                <div className="row margin-top col-sm-12 col-md-12 col-xl-12">
+                <div className="row margin-top">
                     {this.state.desks.map(desk => (
                         <div className="col-xl-3 col-md-6 col-sm-12" key={desk.id} id={desk.id}>
                             <div className="card">
