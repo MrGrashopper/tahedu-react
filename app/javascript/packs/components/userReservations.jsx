@@ -4,6 +4,7 @@ import setAxiosHeaders from "./AxiosHeaders";
 import Tooltip from 'react-bootstrap/Tooltip'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Avatar from "../../../assets/images/img_avatar.png";
+import moment from "moment-timezone";
 
 
 
@@ -20,7 +21,7 @@ class UserReservations extends Component {
         axios
             .get('/api/v1/users', {
                 params: {
-                    user_res: new Date(),
+                    user_res: new Date(moment.tz("Europe/Berlin")),
                 },
             })
             .then(response => {

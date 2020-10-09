@@ -12,6 +12,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Form from 'react-bootstrap/Form'
 import Search from 'react-search'
+import moment from "moment-timezone";
 
 const notify = (message) => toast(message);
 
@@ -20,7 +21,7 @@ class DeskItems extends Component {
         super(props)
         this.state = {
             desks: [],
-            resDate: new Date(),
+            resDate: new Date(moment.tz("Europe/Berlin")),
             filter: [],
             repos: []
         };
