@@ -16,7 +16,7 @@
           <td>
             <% if res.date >= DateTime.now.strftime("%Y-%m-%d") %>
               <%= form_with url: api_v1_reservation_path(res), data: { confirm: "Willst du wirklich stornieren?" }, method: :delete do |f| %>
-                <%= f.submit 'stornieren', :class => 'btn btn-danger' %>
+                <%= f.submit 'stornieren', :class => 'btn btn-alert' %>
               <%end %>
               <% else %>
                 <p>nicht mehr stornierbar</p>

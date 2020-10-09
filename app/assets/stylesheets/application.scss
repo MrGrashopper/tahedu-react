@@ -241,6 +241,20 @@ a {
   }
 }
 
+.btn-alert {
+  border-color: red !important;
+  color: red !important;
+  background-color: transparent !important;
+  &:visited {
+    color: red !important;
+  }
+  &:hover {
+    color: white !important;
+    border-color: red !important;
+    background-color: red !important;
+  }
+}
+
 .btn-danger {
   color: white !important;
   &:visited {

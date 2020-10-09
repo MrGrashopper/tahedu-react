@@ -175,7 +175,12 @@ class DeskItems extends Component {
                 <div className="row margin-bottom">
                     <div className="col-sm-12 col-md-7 col-xl-7">
                         <Button variant="secondary" className=""  type="submit" onClick={this.handleFilter.bind(this)}>anzeigen</Button>{' '}
-                        <DatePicker className="btn btn-light" dateFormat="dd/MM/yyyy" selected={this.state.resDate} onChange={this.handleChangeDate} ref={this.userDateRef}/>
+                        <DatePicker
+                            className="btn btn-light"
+                            dateFormat="dd/MM/yyyy" selected={this.state.resDate}
+                            minDate={moment().toDate()}
+                            onChange={this.handleChangeDate}
+                            ref={this.userDateRef}/>
                     </div>
                     <div id="Filter-kinds" className="col-sm-12 col-md-3 col-xl-2">
                         <Form>
