@@ -50,7 +50,7 @@ class UserReservations extends Component {
                             <div className="">
                                 <div className="">
                                     <div className="">
-                                        <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{user.email}</Tooltip>}>
+                                        <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{user.user_name}</Tooltip>}>
                                           <span className="d-inline-block">
                                             <img src={this.setAvatar(user.avatar)} alt="..." className="thumbnail" disabled style={{ pointerEvents: 'none' }}></img>
                                           </span>

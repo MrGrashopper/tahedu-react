@@ -73,7 +73,11 @@ class Api::V1::UsersController < ApplicationController
 
 
   def set_user
-    @user = User.find(params[:id])
+    if @user = User.friendly.find(params[:id]).present?
+      @user = User.friendly.find(params[:id])
+    else
+      @user = User.find(params[:id])
+    end
   end
 
   def is_supervisor?

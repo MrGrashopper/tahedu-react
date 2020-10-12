@@ -12,6 +12,11 @@
         </div>
 
         <div class="form-group">
+          <%= f.label 'Benutzername' %><br />
+          <%= f.text_field :user_name, autofocus: true, required: true, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
           <%= f.label :password %>
           <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> characters minimum)</em>

@@ -5,6 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
+  extend FriendlyId
+  friendly_id :user_name, use: :slugged
+
   belongs_to :supervisor, optional: true
   has_many :supervisor
   has_many :user_team_ids
@@ -16,6 +19,7 @@ class User < ApplicationRecord
   validate :avatar_validation
   after_commit :add_default_avatar, on: [:create, :update]
   after_create :send_confirmation_email
+
 
   private
 

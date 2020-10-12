@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update]
+  before_action :authorized?, only: [:show, :edit, :update]
   REGEX_PATTERN = /^(.+)@(.+)$/
 
   def index
@@ -6,7 +8,10 @@ class UsersController < ApplicationController
   end
 
   def show
-
+    @reservations = Reservation.where(user_id: current_user.id, team_id: current_user.team_id).order(date: :desc)
+    if @reservations.nil?
+      redirect_to root_path, notice: 'Keine Buchungen'
+    end
   end
 
   def new_user_sign_up
@@ -30,7 +35,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
     @users = User.where(team_id: current_user.team_id)
     @company = CompanyAccount.find_by(team_id: current_user.team_id)
     user_team_ids = UserTeamId.where(user_id: current_user.id, confirmed: true)
@@ -40,6 +44,18 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def set_user
+    if @user = User.friendly.find_by(user_name: params[:id]).present?
+      @user = User.friendly.find_by(user_name: params[:id])
+    else
+      @user = User.find(params[:id])
+    end
+  end
+
+  def authorized?
+    current_user.present? && (current_user.user_name == params[:id])
+  end
 
   def is_email_valid? email
     email =~REGEX_PATTERN

@@ -78,18 +78,18 @@ class UsersApp extends React.Component {
                         <div className="card">
                             <div className="card-body">
                                 <div className="row">
-                                    <div className="col-sm-10"><h5 className="card-title" >{user.email}</h5></div>
+                                    <div className="col-sm-10">
+                                        <h6 className="card-title">{user.email}</h6>
+                                        <p>{user.user_name}{user.supervisor == true ? ` (Supervisor)` : ` (Benutzer)`}</p>
+                                    </div>
                                     <div className="col-sm-2"><img src={this.setAvatar(user.avatar)} alt="..." className="thumbnail" disabled style={{ pointerEvents: 'none' }}></img></div>
                                 </div>
-                                <div className="row">
-                                    <div  className="col-xl-12 col-md-12 col-sm-12">
-                                        <p>{user.supervisor == true ? `Supervisor` : `Benutzer`}</p>
-                                        <div>{user.supervisor == true ?
-                                            <a className="btn btn-alert"  type="submit"  onClick={() => this.deleteSupervisor(user.id)}>Erweiterte Rechte entfernen</a> :
-                                            <a className="btn btn-primary"  type="submit"  onClick={() => this.setSupervisor(user.id)}>Erweiterte Rechte vergeben </a>}
-                                        </div>
-                                    </div>
+                                <div className="small-text margin-bottom">
+                                    {user.supervisor == true ?
+                                        <a className="red-text"  type="submit"  onClick={() => this.deleteSupervisor(user.id)}>Rechte beschränken</a> :
+                                        <a className="purple-text"  type="submit"  onClick={() => this.setSupervisor(user.id)}>Rechte erweitern </a> }
                                 </div>
+                                <div className="center"><a className="small-text btn btn-primary" href={"pages/reservations/?email=" + user.email}>Buchungen ansehen</a></div>
                             </div>
                         </div>
                     </div>

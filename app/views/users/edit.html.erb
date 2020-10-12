@@ -1,8 +1,6 @@
 <div class="row container-fluid">
   <div class="col-sm-12 col-md-8 col-xl-8">
     <%= form_with url: api_v1_user_path(@user), method: :put do |f| %>
-    <div class="card">
-      <div class="card-body">
         <div class="row">
           <div class="col-sm-4">
             <div class="avatar-bg">
@@ -10,15 +8,20 @@
             </div>
           </div>
           <div class="col-sm-8 margin-top">
-            <h5><b><%= @user.email %></b></h5>
+            <% if @user.user_name %>
+              <h6><%= @user.user_name %></h6>
+            <% end %>
+            <span><%= @user.email %></span>
             <% if @supervisor %>
               <h6>Du bist Supervisor</h6>
             <% end %>
-            <% if @user_team_ids.present? %>
-              <%= f.select('switch-team', @user_team_ids.each {|a| a}, selected: @selected_team) %>
-            <%else %>
-              <p class="red-text">Du musst noch einem Team beitreten (Ein Supervisor muss dich einladen) </br> Oder erstelle unten ein neues Team</p>
-            <%end %>
+            <div class="margin-top">
+              <% if @user_team_ids.present? %>
+                <%= f.select('switch-team', @user_team_ids.each {|a| a}, selected: @selected_team) %>
+              <%else %>
+                <p class="red-text">Du musst noch einem Team beitreten (Ein Supervisor muss dich einladen) </br> Oder erstelle unten ein neues Team</p>
+              <%end %>
+            </div>
           </div>
         </div>
         <div class="col-sm-12 margin-top">
@@ -35,8 +38,6 @@
             </div>
           <% end %>
         </div>
-      </div>
-    </div>
   </div>
 
 
