@@ -14,9 +14,9 @@
   <body>
   <%= render :partial => 'shared/flash', :flash => flash %>
   <% if user_signed_in? %>
+    <% @supervisor = Supervisor&.find_by(user_id: current_user.id, team_id: current_user.team_id) %>
     <%= render "shared/navigation" %>
     <%= render "shared/sidebar" %>
-    <% @supervisor = Supervisor&.find_by(user_id: current_user.id, team_id: current_user.team_id) %>
     <div id="main" class="container-fluid">
       <div class="container-fluid">
         <%= yield %>

@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button'
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import DeskItems from "./desk_items";
+import { AiOutlineDelete } from 'react-icons/ai';
 
 const notify = (message) => toast(message);
 class UsersApp extends React.Component {
@@ -79,7 +80,11 @@ class UsersApp extends React.Component {
                             <div className="card-body">
                                 <div className="row">
                                     <div className="col-sm-10">
-                                        <h6 className="card-title">{user.email}</h6>
+                                        <h6 className="card-title">{user.email}
+                                            <span>
+                                                <button><AiOutlineDelete className="red-text icon"/></button>
+                                            </span>
+                                        </h6>
                                         <p>{user.user_name}{user.supervisor == true ? ` (Supervisor)` : ` (Benutzer)`}</p>
                                     </div>
                                     <div className="col-sm-2"><img src={this.setAvatar(user.avatar)} alt="..." className="thumbnail" disabled style={{ pointerEvents: 'none' }}></img></div>

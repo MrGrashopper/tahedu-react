@@ -17,7 +17,7 @@
       <li><%= link_to "Deine Buchungen", user_path(current_user), class: "" %></li></li>
       <% if @supervisor %>
         <li><%= link_to "Desks verwalten", deskcenter_path, class: "" %></li>
-        <li><%= link_to('Benutzer', users_path, class: "") %></li>
+        <li><%= link_to('Benutzer verwalten', users_path, class: "") %></li>
       <% end %>
       <li><%= link_to('Account', edit_user_path(current_user) , class: "") %></li>
       <li><%= link_to('Logout', destroy_user_session_path, method: :delete, class: "") %></li>
