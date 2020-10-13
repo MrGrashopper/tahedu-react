@@ -12,7 +12,14 @@ class Api::V1::AddUsersController < ApplicationController
       else
         UserTeamId.create(user_id: user.id, title: company.title, team_id: team_id)
         UserMailer.welcome_email(user, company).deliver_now
-        render json: users
+
+        team = UserTeamId.where(team_id: team_id)
+        team_ids = []
+        team.each{|member| team_ids << member.user_id}
+        users = User.where(id: team_ids)&.with_attached_avatar
+        x = users.map { |user| user.as_json.merge({ avatar: url_for(user.avatar),  supervisor: Supervisor.find_by(user_id: user['id'], team_id: current_user.team_id).nil? ? false : true }) }
+        @users = x
+        render json: @users
       end
     else
       render json: 404
