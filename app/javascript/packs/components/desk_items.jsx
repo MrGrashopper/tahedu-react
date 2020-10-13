@@ -173,11 +173,17 @@ class DeskItems extends Component {
             <div className="margin-top-xl">
                 <ToastContainer />
                 <div className="row margin-bottom">
-                    <div className="col-sm-12 col-md-7 col-xl-7">
+                    <div className="col-sm-6 col-md-6 col-xl-7">
                         <Button variant="secondary" className=""  type="submit" onClick={this.handleFilter.bind(this)}>anzeigen</Button>{' '}
-                        <DatePicker className="btn btn-light" dateFormat="dd/MM/yyyy" selected={this.state.resDate} onChange={this.handleChangeDate} ref={this.userDateRef}/>
+                        <DatePicker
+                            className="btn btn-light"
+                            dateFormat="dd/MM/yyyy" selected={this.state.resDate}
+                            minDate={moment().toDate()}
+                            onChange={this.handleChangeDate}
+                            ref={this.userDateRef}/>
                     </div>
-                    <div id="Filter-kinds" className="col-sm-12 col-md-3 col-xl-2">
+
+                    <div id="Filter-kinds" className="col-sm-6 col-md-3 col-xl-2">
                         <Form>
                             <Form.Group>
                                 <Form.Control id="Filter" as="select"  onChange={this.filterKinds} value={this.state.value}>
@@ -189,7 +195,7 @@ class DeskItems extends Component {
                         </Form>
                     </div>
 
-                    <div className="col-sm-8 col-md-3 col-xl-3">
+                    <div className="col-sm-6 col-md-3 col-xl-3">
                         <div id="Search-items">
                             <Search items={this.state.repos}
                                     placeholder='Platz-ID suchen'

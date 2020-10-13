@@ -23,7 +23,6 @@ import "@fortawesome/fontawesome-free/js/all";
 
 
 document.addEventListener("turbolinks:load", () => {
-
     // Sidebar
     var button = document.querySelector('#Sidebar-toggler');
     var menu = document.querySelector('#Sidebar');

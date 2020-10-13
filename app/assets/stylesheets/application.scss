@@ -13,6 +13,8 @@
  *= require_tree .
  *= require_self
  */
+$timing: 200ms;
+$timing-function: cubic-bezier(.4,0,.2,1);
 
 $small: 576px;
 $medium: 991px;
@@ -21,6 +23,7 @@ $large: 1200px;
 $pink: #fbefef;
 $light-pink: rgba(251, 239, 239, 0.03);
 $light-grey: #eff2f5;
+$dark-grey: #343a40;
 $dark-pink: #eadfdf;
 $green: #79AF9C;
 $dark-green: #84bfaa;
@@ -43,6 +46,15 @@ button {
 }
 .red-text {
   color: red !important;
+}
+.green-text {
+  color: #0ba75d !important;
+}
+.small-text {
+  font-size: 0.9rem !important;
+}
+.center {
+  text-align: center !important;
 }
 
 body {
@@ -86,16 +98,92 @@ a {
   }
 }
 
+#main {
+  position: absolute;
+  left: 250px;
+  width: 84vw;
+  @media (max-width: $large) {
+    left: 0;
+    width: 100vw;
+    margin-top: 2rem;
+  }
+}
+#user-nav {
+  width: 250px;
+  color: black;
+  position: fixed;
+  z-index: 100;
+  bottom: 0;
+  top: 0;
+  background: $pink;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  transition: right $timing;
+  transition-timing-function: $timing-function;
+  transform: translateX(0px);
+  ul {
+    list-style: none;
+    li {
+      padding: 1rem 0;
+      a {
+        font-size: 1rem;
+        color: $dark-grey;
+        &:hover {
+          color: $purple;
+        }
+      }
+    }
+  }
+  @media (max-width: $large) {
+    width: 0;
+  }
+}
+
+.icon {
+  position: relative;
+  top: -2px;
+  font-size: 1.25rem;
+  margin: 0 0.5rem;
+}
+
+#logo-brand {
+  a {
+    font-size: 1.5rem !important;
+    color: $dark-grey !important;
+    padding: 2.5rem !important;
+  }
+}
+
 .navbar-toggler {
   margin-top: 10px;
 }
 
+#myNavbar {
+  position: relative;
+  .dropdown-menu {
+    right: 0;
+    left: unset;
+  }
+  .dropdown-item {
+    padding: 1rem 1.5rem;
+  }
+}
+
+.navbar-brand {
+  padding-top: 6px;
+  font-size: 2rem !important;
+  padding-left: 5rem;
+  @media (max-width: $medium) {
+    margin-right: -1rem;
+  }
+}
+
 .navbar{
-  position: fixed !important;
   top: 0;
   width: 100%;
-  overflow: hidden !important;
   z-index: 1;
+  padding: 1rem 1.24rem !important;
   .logo {
     a {
       font-size: 26px;
@@ -108,13 +196,7 @@ a {
       text-align: right;
     }
   }
-  .navbar-brand {
-    padding: 1rem;
-    font-size: 28px;
-    @media (max-width: $medium) {
-      margin-right: -1rem;
-    }
-  }
+
   a {
     &:hover {
       background-color: transparent;
@@ -201,8 +283,12 @@ a {
 }
 
 #Filter-kinds {
+  padding: 0 27px 0 10px;
   .form-control {
     border: none !important;
+  }
+  @media (max-width: $small) {
+    padding: 27px 27px 0 10px;
   }
 }
 
@@ -238,6 +324,20 @@ a {
     color: white !important;
     border-color: $purple !important;
     background-color: $purple !important;
+  }
+}
+
+.btn-alert {
+  border-color: red !important;
+  color: red !important;
+  background-color: transparent !important;
+  &:visited {
+    color: red !important;
+  }
+  &:hover {
+    color: white !important;
+    border-color: red !important;
+    background-color: red !important;
   }
 }
 

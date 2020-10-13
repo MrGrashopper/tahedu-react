@@ -13,21 +13,30 @@
   </head>
   <body>
   <%= render :partial => 'shared/flash', :flash => flash %>
-  <%= render "shared/navigation" %>
   <% if user_signed_in? %>
-    <% @supervisor = Supervisor.find_by(user_id: current_user.id, team_id: current_user.team_id) %>
-    <div class="row">
-      <div class="col-sm-0 col-md-2 col-xl-2">
-        <%= render "shared/sidebar" %>
+    <% @supervisor = Supervisor&.find_by(user_id: current_user.id, team_id: current_user.team_id) %>
+    <%= render "shared/navigation" %>
+    <%= render "shared/sidebar" %>
+    <div id="main" class="container-fluid">
+      <div class="container-fluid">
+        <%= yield %>
       </div>
-      <div class="col-sm-12 col-md-10 col-xl-10">
-        <div class="container-fluid margin-xl">
-          <%= yield %>
+    </div>
+
+  <% else %>
+    <div class="d-flex flex-grow-1 bg-pink">
+      <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
+      <%= link_to "Tahed:o:", root_path, class: "navbar-brand"%>
+      <div class="w-100 text-right">
+        <div class="" id="myNavbar">
+          <ul class="navbar-nav ml-auto ">
+            <li><%= link_to "Registrieren", new_user_registration_path, class: "nav-link" %></li>
+            <li><%= link_to('Login', new_user_session_path, class: "nav-link") %>  </li>
+          </ul>
         </div>
       </div>
     </div>
-  <% else %>
-    <div class="margin-mid">
+    <div class="">
     </div>
     <%= yield %>
   <% end %>

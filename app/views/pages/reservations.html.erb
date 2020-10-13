@@ -1,29 +1,23 @@
 <div class="container row">
-  <h5>Reservierungen</h5>
-  <table class="table">
-    <thead>
-    <tr>
-      <th scope="col">Platz-ID</th>
-      <th scope="col">Reserviert am</th>
-      <th scope="col">Aktion</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @reservations.each do |res| %>
+  <div class="col-sm-12 col-md-10 col-xl-6">
+    <h5>Buchungen von <%= @user.user_name %> (<%= @user.email %>)</h5>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Platz-ID</th>
+        <th scope="col">Reserviert am</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @reservations.each do |res| %>
         <tr>
           <td><%= res.name %></td>
           <td><%= res.date %></td>
           <td>
-            <% if res.date >= DateTime.now.strftime("%Y-%m-%d") %>
-              <%= form_with url: api_v1_reservation_path(res), data: { confirm: "Willst du wirklich stornieren?" }, method: :delete do |f| %>
-                <%= f.submit 'stornieren', :class => 'btn btn-danger' %>
-              <%end %>
-              <% else %>
-                <p>nicht mehr stornierbar</p>
-            <% end %>
           </td>
         </tr>
-    <% end %>
-    </tbody>
-  </table>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

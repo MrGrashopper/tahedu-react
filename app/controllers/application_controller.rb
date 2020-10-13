@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:avatar, :email, :password, :password_confirmation,   :current_password)
-  }
+    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:avatar, :email, :password, :password_confirmation, :current_password, :user_name)}
+    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :current_password, :user_name)}
   end
 
 end

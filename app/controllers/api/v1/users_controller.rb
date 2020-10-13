@@ -46,13 +46,6 @@ class Api::V1::UsersController < ApplicationController
     current_company = CompanyAccount.find_by(team_id: current_user.team_id)
 
     begin
-      user.update(
-        avatar_url: avatar,
-        team_id: team_id,
-      )
-
-      user.update(avatar: avatar) if avatar
-
       if supervisor
         sv = Supervisor.find_by(user_id: current_user.id, team_id: team_id)
         if sv
@@ -62,20 +55,16 @@ class Api::V1::UsersController < ApplicationController
         end
       end
 
-      if params['switch-team'] != current_company
-        switch_team = CompanyAccount.find_by(title: params['switch-team']).team_id
-        current_user.update(team_id: switch_team)
+      if params['switch-team'] && params['switch-team'] != current_company.title
+        team_id = CompanyAccount.find_by(title: params['switch-team']).team_id
+        current_user.update(team_id: team_id)
       end
+      user.update(team_id: team_id)
+      user.update(avatar: avatar) if avatar
+      redirect_to edit_user_path(current_user.id), notice: '🚀 Gespeichert'
     rescue
       redirect_to edit_user_path, notice: '😭 Etwas ist schief gelaufen'
     end
-
-
-    if params['switch-team'] && params['switch-team'] != current_company.title
-      team_id = CompanyAccount.find_by(title: params['switch-team']).team_id
-      current_user.update(team_id: team_id)
-    end
-    redirect_to edit_user_path(current_user.id), notice: '🚀 Gespeichert'
   end
 
   def destroy
@@ -84,7 +73,11 @@ class Api::V1::UsersController < ApplicationController
 
 
   def set_user
-    @user = User.find(params[:id])
+    if @user = User.friendly.find(params[:id]).present?
+      @user = User.friendly.find(params[:id])
+    else
+      @user = User.find(params[:id])
+    end
   end
 
   def is_supervisor?

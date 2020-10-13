@@ -18,10 +18,11 @@ class PagesController < ApplicationController
     end
 
   def reservations
-      @reservations = Reservation.where(user_id: current_user.id, team_id: current_user.team_id).order(date: :desc)
-      if @reservations.nil?
-          redirect_to root_path, notice: 'Keine Reservierungen'
+      if !current_user.supervisor
+          redirect_to root_path, notice: 'Nicht berechtigt'
+      else
+          @user = User.find_by(email: params[:email])
+          @reservations = Reservation.where(user_id: @user.id, team_id: current_user.team_id).order(date: :desc)
       end
-      t=3
   end
 end
