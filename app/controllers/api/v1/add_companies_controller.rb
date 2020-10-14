@@ -1,5 +1,6 @@
 class Api::V1::AddCompaniesController < ApplicationController
   before_action :authenticate_user!
+  before_action :authenticate_user!
   def create
     team_id = params[:team_id].to_i == 1 ?  Digest::SHA1.hexdigest([Time.now, rand].join)[0...15] : team_id
     company = params["team-name"]

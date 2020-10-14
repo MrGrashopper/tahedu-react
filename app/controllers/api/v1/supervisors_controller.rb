@@ -1,11 +1,12 @@
 class Api::V1::SupervisorsController < ApplicationController
-
+  before_action :authenticate_user!
   def index
   end
 
   def create
     if authorized?
       user = User.find_by(id: params[:supervisor][:id])
+      team_id = current_user.team_id
       if user
         sv = Supervisor.find_by(user_id: user.id, team_id: user.team_id)
         if sv
@@ -31,7 +32,7 @@ class Api::V1::SupervisorsController < ApplicationController
   def destroy
     if authorized?
       user = User.find_by(id: params[:id])
-      sv = Supervisor.find_by(user_id: user.id, team_id: user.team_id)
+      sv = Supervisor.find_by(user_id: user.id, team_id: current_user.team_id)
       if user && sv
         sv.delete
         team = UserTeamId.where(team_id: current_user.team_id)

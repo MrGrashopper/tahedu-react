@@ -24,11 +24,14 @@ class AddUser extends Component {
                 add_user: user
             })
             .then(response => {
-                console.log(response.data),
-                    this.setState({users: response.data})
                     if(response.data == 400) {notify(' 🎉 Benutzer schon vorhanden')}
                     else if(response.data == 404) {notify(' 🎉 Benutzer nicht gefunden')}
-                    else {notify(' 🎉 Benutzer eingeladen')}
+                    else {
+                        this.props.handleStateChange(response.data);
+                        let input = document.getElementById('AddEmail')
+                        input.value = null
+                        notify(' 🎉 Benutzer eingeladen')
+                    }
             })
             .catch((error)=>console.error(error));
 
