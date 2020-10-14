@@ -8,11 +8,9 @@ import Avatar from "../../../assets/images/img_avatar.png";
 import Button from 'react-bootstrap/Button'
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import DeskItems from "./desk_items";
 import { AiOutlineDelete } from 'react-icons/ai';
 import Modal from 'react-bootstrap/Modal'
 import Form from "react-bootstrap/Form";
-import DatePicker from "react-datepicker";
 
 const notify = (message) => toast(message);
 class UsersApp extends React.Component {
@@ -25,6 +23,12 @@ class UsersApp extends React.Component {
         };
     this.setSupervisor = this.setSupervisor.bind(this)
     this.deleteSupervisor = this.deleteSupervisor.bind(this)
+    this.handleStateChange = this.handleStateChange.bind(this);
+    }
+
+    handleStateChange(value){
+        event.preventDefault();
+        this.setState({ users : value })
     }
 
     componentDidMount() {
@@ -35,6 +39,7 @@ class UsersApp extends React.Component {
                 this.setState({ users: response.data });
             })
     }
+
 
     setAvatar = avatar => {
         if(typeof avatar != "undefined") {
@@ -81,7 +86,6 @@ class UsersApp extends React.Component {
             showHide: !this.state.showHide ,
             removeUser: user.email
         });
-        console.log(user)
     }
 
     removeUserFromTeam(user) {
@@ -156,7 +160,7 @@ class UsersApp extends React.Component {
     };
     renderAddUser = () => {
         return(
-            <AddUser></AddUser>
+            <AddUser handleStateChange = {this.handleStateChange}></AddUser>
         )
     };
 

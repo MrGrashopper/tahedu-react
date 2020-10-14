@@ -1,4 +1,5 @@
 class Api::V1::AddUsersController < ApplicationController
+  before_action :authenticate_user!
   def create
     team_id = current_user.team_id
     user = User.find_by(email: params[:add_user])
@@ -11,7 +12,6 @@ class Api::V1::AddUsersController < ApplicationController
         render json: 400
       else
         UserTeamId.create(user_id: user.id, title: company.title, team_id: team_id)
-        UserMailer.welcome_email(user, company).deliver_now
 
         team = UserTeamId.where(team_id: team_id)
         team_ids = []
@@ -20,6 +20,7 @@ class Api::V1::AddUsersController < ApplicationController
         x = users.map { |user| user.as_json.merge({ avatar: url_for(user.avatar),  supervisor: Supervisor.find_by(user_id: user['id'], team_id: current_user.team_id).nil? ? false : true }) }
         @users = x
         render json: @users
+        UserMailer.welcome_email(user, company).deliver_now
       end
     else
       render json: 404

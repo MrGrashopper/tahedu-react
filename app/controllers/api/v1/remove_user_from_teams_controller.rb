@@ -1,5 +1,5 @@
 class Api::V1::RemoveUserFromTeamsController < ApplicationController
-
+  before_action :authenticate_user!
   def destroy
     team_id = current_user.team_id
     email = params[:email]
