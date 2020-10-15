@@ -1,4 +1,5 @@
 class Api::V1::JoinTeamsController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update]
   before_action :authenticate_user!
   def create
     @user = current_user
@@ -23,6 +24,16 @@ class Api::V1::JoinTeamsController < ApplicationController
       redirect_to edit_user_path(@user), notice: '🚀 Einladung abgelehnt'
     rescue
       redirect_to edit_user_path(@user), notice: 'Etwas ist schief gelaufen'
+    end
+  end
+
+  private
+
+  def set_user
+    if @user = User.friendly.find_by(user_name: params[:id]).present?
+      @user = User.friendly.find_by(user_name: params[:id])
+    else
+      @user = User.find(params[:id])
     end
   end
 end

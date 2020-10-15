@@ -13,6 +13,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import Form from 'react-bootstrap/Form'
 import Search from 'react-search'
 import moment from "moment-timezone";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 
 const notify = (message) => toast(message);
 
@@ -23,10 +26,9 @@ class DeskItems extends Component {
             desks: [],
             resDate: new Date(moment.tz("Europe/Berlin")),
             filter: [],
-            repos: []
+            repos: [],
         };
         this.handleFilter = this.handleFilter.bind(this)
-        this.reservationRef = React.createRef()
         this.userDateRef = React.createRef();
         this.kinds = this.kinds.bind(this)
         this.filterKinds = this.filterKinds.bind(this)
@@ -109,7 +111,6 @@ class DeskItems extends Component {
             resDate: date
         })
     };
-
 
     async createReservation(id){
         setAxiosHeaders()
@@ -210,23 +211,22 @@ class DeskItems extends Component {
 
                 <div className="row margin-top">
                     {this.state.desks.map(desk => (
-                        <div className="col-xl-3 col-md-6 col-sm-12" key={desk.id} id={desk.id}>
+                        <div className="col-xl-4 col-md-6 col-sm-12" key={desk.id} id={desk.id}>
                             <div className="card">
                                 <div className="card-body">
                                     <div className="row">
-                                        <div className="col-sm-9"><h5 className="card-title" >{desk.kind}-Desk</h5></div>
+                                        <div className="col-sm-9">
+                                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Platz-Eigenschaft</Tooltip>}><span className="h5">{desk.kind}</span></OverlayTrigger>
+                                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Sicherheitsabstand zum nächsten Sitzplatz</Tooltip>}><span className="icon margin-bottom"> {desk.enough_distance? `👍` : `👎`}</span></OverlayTrigger>
+                                            <div>Platz-ID: {desk.external_id}</div>
+                                        </div>
                                         <div className="col-sm-3">
                                             <img  src={this.setImage(desk.kind)} alt="..." className="thumbnail"></img>
                                         </div>
                                     </div>
-                                    <span>Platz-ID: {desk.external_id}</span>
-                                    <br/>
-                                    <span>Sicherheitsabstand:</span>
-                                    <span className="emoji"> {desk.enough_distance? `👍` : `👎`}</span>
-                                    <br/>
-                                    <span className="">Anmerkungen: {desk.notes? desk.notes : `Keine`}</span>
-                                    <div className="margin-top float-right">
-                                        <a href="#" className="btn btn-primary" onClick={() => this.createReservation(desk.id)}>reservieren</a>
+                                    <div>{desk.notes? desk.notes : ``}</div>
+                                    <div className="float-right">
+                                        <a href="#" className="btn btn-primary" onClick={() => this.createReservation(desk.id)}>Buchen</a>
                                     </div>
                                 </div>
                             </div>

@@ -39,8 +39,9 @@ class Api::V1::DesksController < ApplicationController
       items.each{|item| external_ids << item["value"]}.compact
       external_ids.each{|id| desks.each{ |desk| searched_desks << desk if desk.external_id == id}}
       @desks = searched_desks.uniq
-      t=3
     end
+
+
   end
 
   def show
