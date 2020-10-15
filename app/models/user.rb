@@ -6,7 +6,7 @@ class User < ApplicationRecord
          :confirmable
 
   extend FriendlyId
-  friendly_id :user_name, use: :slugged
+  friendly_id :external_id, use: :slugged
 
   belongs_to :supervisor, optional: true
   has_many :supervisor
@@ -18,10 +18,22 @@ class User < ApplicationRecord
   has_one_attached :avatar
   validate :avatar_validation
   after_commit :add_default_avatar, on: [:create, :update]
-  after_create :send_confirmation_email
+  after_create :send_confirmation_email, :create_external_id
 
 
   private
+
+  def create_external_id
+    split = email.split('@')
+    email_name = split[0]
+    calc_name = []
+    arr = email_name.chars
+    arr.each {|a| calc_name << a if a != "." }
+    ext_name = calc_name.join("")
+    external_id = ext_name  + "-" +  Digest::SHA1.hexdigest([Time.now, rand].join)[0...6]
+    user = User.find_by(email: email)
+    user.update(external_id: external_id)
+  end
 
   def avatar_validation
     if avatar.attached?

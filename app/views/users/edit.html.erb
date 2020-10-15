@@ -27,7 +27,7 @@
         <div class="col-sm-12 margin-top">
             <%if @selected_team.present? && Supervisor.find_by(team_id: current_user.team_id).nil?%>
               <div class="margin-bottom">
-                <p>Erweiterte Rechte? (Desks, Benutzer usw. verwalten) <%= f.check_box :supervisor %></p>
+                <b>Erweiterte Rechte? (Desks, Benutzer usw. verwalten) <%= f.check_box :supervisor %></b>
               </div>
             <%end %>
             <div class="margin-bottom">

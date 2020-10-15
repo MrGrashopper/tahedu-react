@@ -31,9 +31,9 @@ class Api::V1::ReservationsController < ApplicationController
     reservation = Reservation.find_by(id: params[:id])
     if reservation
       reservation.destroy
-      redirect_to reservations_path, notice: '🚀 Storniert!'
+      redirect_to user_path(current_user), notice: '🚀 Storniert!'
     else
-      redirect_to reservations_path, notice: 'Fehler 3249'
+      redirect_to user_path(current_user), notice: 'Fehler 3249'
     end
   end
 

@@ -13,13 +13,13 @@
   </div>
   <ul class="margin-top">
     <% if user_signed_in? %>
-      <li><%= link_to "Platz Buchen", root_path, class: "" %></li>
-      <li><%= link_to "Deine Buchungen", user_path(current_user), class: "" %></li></li>
+      <li><%= link_to "Platz Buchen", root_path, class: current_class?(root_path) %></li>
+      <li><%= link_to "Deine Buchungen", user_path(current_user), class: current_class?(user_path(current_user)) %></li></li>
       <% if @supervisor %>
-        <li><%= link_to "Desks verwalten", deskcenter_path, class: "" %></li>
-        <li><%= link_to('Benutzer verwalten', users_path, class: "") %></li>
+        <li><%= link_to "Sitzplätze verwalten", deskcenter_path, class: current_class?(deskcenter_path)%></li>
+        <li><%= link_to('Benutzer verwalten', users_path, class: current_class?(users_path)) %></li>
       <% end %>
-      <li><%= link_to('Account', edit_user_path(current_user) , class: "") %></li>
+      <li><%= link_to('Account', edit_user_path(current_user) , class: current_class?(edit_user_path(current_user))) %></li>
       <li><%= link_to('Logout', destroy_user_session_path, method: :delete, class: "") %></li>
     <% end %>
   </ul>

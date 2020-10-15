@@ -28,6 +28,11 @@ class UsersController < ApplicationController
     else
       redirect_to new_user_registration_path, notice: 'E-mail nicht korrekt'
     end
+    users = User.all
+    users.each do |user|
+      x = user.email.split('@')
+      user.update(external_id: x[0] + "-" +  Digest::SHA1.hexdigest([Time.now, rand].join)[0...6])
+    end
   end
 
   def update
@@ -46,8 +51,8 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    if @user = User.friendly.find_by(user_name: params[:id]).present?
-      @user = User.friendly.find_by(user_name: params[:id])
+    if @user = User.friendly.find_by(external_id: params[:id]).present?
+      @user = User.friendly.find_by(external_id: params[:id])
     else
       @user = User.find(params[:id])
     end

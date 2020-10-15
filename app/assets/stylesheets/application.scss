@@ -56,7 +56,11 @@ button {
 .center {
   text-align: center !important;
 }
-
+.card-title {
+  span {
+    font-size: 1.25rem;
+  }
+}
 body {
   background-color: $light-pink !important;
 }
@@ -68,6 +72,12 @@ a {
   }
 }
 
+.progress {
+  width: 100%;
+}
+.progress-bar {
+  background-color: $purple !important;
+}
 .navbar-toggler {
   position: absolute !important;
   z-index: 2000 !important;
@@ -115,7 +125,7 @@ a {
   z-index: 100;
   bottom: 0;
   top: 0;
-  background: $pink;
+  background: $dark-grey;
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -128,7 +138,7 @@ a {
       padding: 1rem 0;
       a {
         font-size: 1rem;
-        color: $dark-grey;
+        color: white;
         &:hover {
           color: $purple;
         }
@@ -144,13 +154,12 @@ a {
   position: relative;
   top: -2px;
   font-size: 1.25rem;
-  margin: 0 0.5rem;
 }
 
 #logo-brand {
   a {
     font-size: 1.5rem !important;
-    color: $dark-grey !important;
+    color: white !important;
     padding: 2.5rem !important;
   }
 }
