@@ -7,14 +7,19 @@
           <thead>
           <tr>
             <th scope="col">Platz-ID</th>
+            <th scope="col">Typ</th>
+            <th scope="col">Info</th>
             <th scope="col">Reserviert am</th>
             <th scope="col">Aktion</th>
           </tr>
           </thead>
           <tbody>
           <% @reservations.each do |res| %>
+              <% desk = Desk.find_by(external_id: res.name) %>
             <tr>
               <td><%= res.name %></td>
+              <td><%= desk.kind %></td>
+              <td><%= desk.notes %></td>
               <td><%= res.date %></td>
               <td>
                 <% if res.date >= DateTime.now.strftime("%Y-%m-%d") %>

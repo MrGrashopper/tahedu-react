@@ -37,7 +37,7 @@ class User < ApplicationRecord
 
   def avatar_validation
     if avatar.attached?
-      if avatar.blob.byte_size > 500000
+      if avatar.blob.byte_size > 600000
         avatar.purge
         errors[:base] << 'Too big'
       elsif !avatar.blob.content_type.starts_with?('image/')

@@ -64,8 +64,8 @@ class UserReservations extends Component {
                     {this.state.userReservations.map(user => (
                         <div key={user.id}>
                             <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{user.user_name}</Tooltip>}>
-                              <span className="d-inline-block">
-                                <img src={this.setAvatar(user.avatar)} alt="..." className="thumbnail" disabled style={{ pointerEvents: 'none' }}></img>
+                              <span className="d-inline-block thumbnail">
+                                <img src={this.setAvatar(user.avatar)} alt="..." className="" disabled style={{ pointerEvents: 'none' }}></img>
                               </span>
                             </OverlayTrigger>
                         </div>
