@@ -17,8 +17,12 @@
             <%= f.check_box(:enough_distance, checked: @desk.enough_distance) %>
           </div>
           <div>
-            <%= f.label "Anmerkungen", for: :kind, :class => '' %>
+            <%= f.label "Info", for: :kind, :class => '' %>
             <%= f.text_field(:notes, placeholder: @desk.notes) %>
+          </div>
+          <div>
+            <%= f.label "Ausstattung", for: :equipment, :class => '' %>
+            <%= f.text_field(:equipment, placeholder: @desk.equipment, :class => 'input-width') %>
           </div>
           <div class=""><%= f.submit 'speichern', :class => 'margin-top float-right btn btn-primary' %></div>
         <% end %>

@@ -1,6 +1,6 @@
-<section class="container-fluid margin-top">
+<section class="container-fluid">
   <div class="container-fluid row">
-    <div class="col-xl-6 col-md-6 col-sm-12">
+    <div class="col-xl-6 col-md-8 col-sm-12">
       <div class="card">
       <div class="card-body">
         <div class="card-title"><h5>Desk erstellen</h5></div>
@@ -18,8 +18,12 @@
             <%= f.check_box(:enough_distance) %>
           </div>
           <div>
-            <%= f.label "Anmerkungen", for: :kind, :class => '' %>
+            <%= f.label "Info", for: :notes, :class => '' %>
             <%= f.text_field(:notes, placeholder: 'z.B. 3. OG, Raum 1') %>
+          </div>
+          <div>
+            <%= f.label "Ausstattung", for: :equipment, :class => '' %>
+            <%= f.text_field(:equipment, placeholder: 'z.B. 2 Monitore, höhenverstellbar, barrierefrei', :class => 'input-width') %>
           </div>
           <div class=""><%= f.submit 'erstellen', :class => 'margin-top float-right btn btn-primary' %></div>
         <% end %>
@@ -54,7 +58,8 @@
               </div>
               <p class="card-text">Platz-ID: <%= desk.external_id %></p>
               <p class="card-text">Sicherheitsabstand: <%= desk.enough_distance ? '👍' : '👎' %></p>
-              <p class="card-text">Anmerkungen: <%= desk.notes ? desk.notes : 'Keine' %></p>
+              <p class="card-text">Info: <%= desk.notes ? desk.notes : 'Keine' %></p>
+              <p class="card-text">Ausstattung: <%= desk.notes ? desk.notes : 'Keine' %></p>
             </div>
           </div>
         </div>

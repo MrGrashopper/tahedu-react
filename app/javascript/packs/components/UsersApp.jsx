@@ -115,7 +115,7 @@ class UsersApp extends React.Component {
                                 <div className="row">
                                     <div className="col-sm-10">
                                         <h6 className="card-title">{user.email}
-                                            <span>
+                                            <span className="space">
                                                 <button><AiOutlineDelete className="red-text icon" onClick={() => this.handleModalShowHideDelete(user)} /></button>
                                             </span>
                                         </h6>

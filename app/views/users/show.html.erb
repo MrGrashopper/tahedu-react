@@ -1,29 +1,35 @@
 <div class="container row">
-  <h5>Buchungen</h5>
-  <table class="table">
-    <thead>
-    <tr>
-      <th scope="col">Platz-ID</th>
-      <th scope="col">Reserviert am</th>
-      <th scope="col">Aktion</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @reservations.each do |res| %>
-      <tr>
-        <td><%= res.name %></td>
-        <td><%= res.date %></td>
-        <td>
-          <% if res.date >= DateTime.now.strftime("%Y-%m-%d") %>
-            <%= form_with url: api_v1_reservation_path(res), data: { confirm: "Willst du wirklich stornieren?" }, method: :delete do |f| %>
-              <%= f.submit 'stornieren', :class => 'btn btn-alert' %>
-            <%end %>
-          <% else %>
-            <p>nicht mehr stornierbar</p>
+  <div class="col-xl-12 col-md-12 col-sm-12">
+    <div class="card">
+      <div class="card-body">
+        <h5>Buchungen</h5>
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Platz-ID</th>
+            <th scope="col">Reserviert am</th>
+            <th scope="col">Aktion</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @reservations.each do |res| %>
+            <tr>
+              <td><%= res.name %></td>
+              <td><%= res.date %></td>
+              <td>
+                <% if res.date >= DateTime.now.strftime("%Y-%m-%d") %>
+                  <%= form_with url: api_v1_reservation_path(res), data: { confirm: "Willst du wirklich stornieren?" }, method: :delete do |f| %>
+                    <%= f.submit 'stornieren', :class => 'btn btn-alert' %>
+                  <%end %>
+                <% else %>
+                  <p>nicht mehr stornierbar</p>
+                <% end %>
+              </td>
+            </tr>
           <% end %>
-        </td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

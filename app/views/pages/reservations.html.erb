@@ -1,23 +1,27 @@
 <div class="container row">
-  <div class="col-sm-12 col-md-10 col-xl-6">
-    <h5>Buchungen von <%= @user.user_name %> (<%= @user.email %>)</h5>
-    <table class="table">
-      <thead>
-      <tr>
-        <th scope="col">Platz-ID</th>
-        <th scope="col">Reserviert am</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @reservations.each do |res| %>
-        <tr>
-          <td><%= res.name %></td>
-          <td><%= res.date %></td>
-          <td>
-          </td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
+  <div class="col-xl-12 col-md-12 col-sm-12">
+    <div class="card">
+      <div class="card-body">
+        <h5>Buchungen von <%= @user.user_name %> (<%= @user.email %>)</h5>
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Platz-ID</th>
+            <th scope="col">Reserviert am</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @reservations.each do |res| %>
+            <tr>
+              <td><%= res.name %></td>
+              <td><%= res.date %></td>
+              <td>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>

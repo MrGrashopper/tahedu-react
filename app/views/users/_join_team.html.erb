@@ -1,0 +1,19 @@
+<% if @unconfirmed_team_ids.present? %>
+  <% @unconfirmed_team_ids.each do |team| %>
+    <div class="row">
+      <div class="col-sm-6 col-md-6 col-xl-6">
+        <h6><%= team.title %></h6>
+      </div>
+      <div class="col-sm-3 col-md-3 col-xl-3">
+        <%= form_with url: api_v1_join_teams_path(team.team_id), method: :post do |ff| %>
+          <%= ff.submit 'annehmen', :class => 'btn purple-text' %>
+        <% end %>
+      </div>
+      <div class="col-sm-3 col-md-3 col-xl-3">
+        <%= form_with url: api_v1_join_teams_path(team.team_id), method: :delete do |ff| %>
+          <%= ff.submit 'ablehnen', :class => 'btn red-text' %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

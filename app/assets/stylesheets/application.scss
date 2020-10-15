@@ -41,6 +41,10 @@ button {
   padding: 0;
 }
 
+input {
+  padding-left: 0.5rem;
+}
+
 .purple-text {
   color: $purple !important;
 }
@@ -286,6 +290,13 @@ a {
   }
 }
 
+.input-width {
+  width: 60%;
+}
+
+.space {
+  margin: 0 0.5rem;
+}
 // Buttons
 .btn {
   border-radius: 20px!important;
