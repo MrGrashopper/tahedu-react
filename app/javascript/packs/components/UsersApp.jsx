@@ -37,7 +37,9 @@ class UsersApp extends React.Component {
     componentDidMount() {
         setAxiosHeaders()
         axios
-            .get('/api/v1/users')
+            .get('/api/v1/users', {
+
+            })
             .then(response => {
                 this.setState({ users: response.data });
             })
@@ -61,19 +63,21 @@ class UsersApp extends React.Component {
             })
             .then(response => {
                 console.log(response.data),
-                this.setState({users: response.data}),
+                this.setState({
+                    users: response.data
+                }),
                     notify(' 🎉 Erweiterte Rechte autorisiert')
             })
             .catch((error)=>console.error(error));
 
     };
 
-    async deleteSupervisor(){
+    async deleteSupervisor(user){
         setAxiosHeaders()
         axios
             .delete('/api/v1/supervisors', {
                 params: {
-                    id: this.state.removeUser
+                    id: user
                 }
             })
             .then(response => {
@@ -130,7 +134,7 @@ class UsersApp extends React.Component {
             <div>
                 <ToastContainer />
                 <div className="row margin-bottom">
-                    <div id="Search-user" className="col-sm-12 col-md-6 col-xl-3">
+                    <div id="Search-user-supervisor" className="col-sm-12 col-md-6 col-xl-3">
                         <Search items={this.state.userRepos}
                                 placeholder='Benutzer suchen'
                                 maxSelected={1}

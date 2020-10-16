@@ -1,5 +1,6 @@
 class Api::V1::AddUsersController < ApplicationController
   before_action :authenticate_user!
+
   def create
     team_id = current_user.team_id
     user = User.find_by(email: params[:add_user])
