@@ -6,6 +6,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Avatar from "../../../assets/images/img_avatar.png";
 import moment from "moment-timezone";
 import ProgressBar from 'react-bootstrap/ProgressBar'
+import Search from "react-search";
 
 
 class UserReservations extends Component {
@@ -13,7 +14,8 @@ class UserReservations extends Component {
         super(props)
         this.state = {
             userReservations: [],
-            percentage: []
+            percentage: [],
+            userRepos: []
         };
     }
 
@@ -55,11 +57,41 @@ class UserReservations extends Component {
             })
     }
 
+    getUsersAsync(searchValue, cb) {
+        let users = this.state.userReservations.map( (user, i) => { return { id: i, value: user.user_name } })
+        this.setState({ userRepos: users })
+        cb(searchValue)
+    }
+
+    FilterUsers(user) {
+        axios
+            .get('/api/v1/users/', {
+                params: {
+                    date: new Date(moment.tz("Europe/Berlin")),
+                    user_search:  JSON.stringify(user),
+                },
+            })
+            .then(response => {
+                this.setState({userReservations: response.data})
+            })
+    }
+
     render() {
         return (
             <div className="">
                 <div className="row col-sm-12 col-md-12 col-lg-12"><h5 className="margin-bottom" >Heute im Office</h5></div>
                 <div className="row col-sm-12 col-md-12 col-lg-12"><ProgressBar className="margin-bottom" now={this.state.percentage} label={`${this.state.percentage}%`} /></div>
+                <div className="">
+                    <div id="Search-user">
+                        <Search items={this.state.userRepos}
+                                placeholder='Benutzer suchen'
+                                maxSelected={1}
+                                multiple={false}
+                                autoComplete={false}
+                                getItemsAsync={this.getUsersAsync.bind(this)}
+                                onItemsChanged={this.FilterUsers.bind(this)} />
+                    </div>
+                </div>
                 <div className="row col-sm-12 col-md-12 col-lg-12" id="User-Reservations">
                     {this.state.userReservations.map(user => (
                         <div key={user.id}>
