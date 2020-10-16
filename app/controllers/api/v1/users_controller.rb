@@ -27,6 +27,18 @@ class Api::V1::UsersController < ApplicationController
       y.map { |user| @users << user.as_json.merge({ avatar: url_for(user.avatar)}) if user.user_name == name[0]}
       render json: @users
 
+    elsif params[:supervisor_search] && params[:supervisor_search]&.length > 2
+      user_json = JSON.parse(params[:supervisor_search])
+      name = []
+      user_json.each{|u|  name << u["value"]}
+      team = UserTeamId.where(team_id: current_user.team_id)
+      team_ids = []
+      team.each{|member| team_ids << member.user_id}
+      users = User.where(id: team_ids)&.with_attached_avatar
+      @users = []
+      users.map { |user| @users << user.as_json.merge({ avatar: url_for(user.avatar)}) if user.user_name == name[0]}
+      render json: @users
+
     else
       date = DateTime.now.strftime("%Y-%m-%d")
       team = UserTeamId.where(team_id: current_user.team_id)
