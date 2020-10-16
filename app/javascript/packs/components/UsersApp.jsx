@@ -11,6 +11,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { AiOutlineDelete } from 'react-icons/ai';
 import Modal from 'react-bootstrap/Modal'
 import Form from "react-bootstrap/Form";
+import Search from "react-search";
+import moment from "moment-timezone";
 
 const notify = (message) => toast(message);
 class UsersApp extends React.Component {
@@ -19,7 +21,8 @@ class UsersApp extends React.Component {
         this.state = {
             showHide : false,
             users: [],
-            removeUser: []
+            removeUser: [],
+            userRepos: []
         };
     this.setSupervisor = this.setSupervisor.bind(this)
     this.deleteSupervisor = this.deleteSupervisor.bind(this)
@@ -34,7 +37,9 @@ class UsersApp extends React.Component {
     componentDidMount() {
         setAxiosHeaders()
         axios
-            .get('/api/v1/users')
+            .get('/api/v1/users', {
+
+            })
             .then(response => {
                 this.setState({ users: response.data });
             })
@@ -58,19 +63,21 @@ class UsersApp extends React.Component {
             })
             .then(response => {
                 console.log(response.data),
-                this.setState({users: response.data}),
+                this.setState({
+                    users: response.data
+                }),
                     notify(' 🎉 Erweiterte Rechte autorisiert')
             })
             .catch((error)=>console.error(error));
 
     };
 
-    async deleteSupervisor(){
+    async deleteSupervisor(user){
         setAxiosHeaders()
         axios
             .delete('/api/v1/supervisors', {
                 params: {
-                    id: this.state.removeUser
+                    id: user
                 }
             })
             .then(response => {
@@ -104,11 +111,41 @@ class UsersApp extends React.Component {
                     .catch((error)=>console.error(error));
     }
 
+    getUsersAsync(searchValue, cb) {
+        let users = this.state.users.map( (user, i) => { return { id: i, value: user.user_name } })
+        this.setState({ userRepos: users })
+        cb(searchValue)
+    }
+
+    FilterUsers(user) {
+        axios
+            .get('/api/v1/users/', {
+                params: {
+                    supervisor_search:  JSON.stringify(user),
+                },
+            })
+            .then(response => {
+                this.setState({users: response.data})
+            })
+    }
+
     renderAllUsers = () => {
         return(
-            <div className="row">
+            <div>
                 <ToastContainer />
-                {this.state.users.map(user => (
+                <div className="row margin-bottom">
+                    <div id="Search-user-supervisor" className="col-sm-12 col-md-6 col-xl-3">
+                        <Search items={this.state.userRepos}
+                                placeholder='Benutzer suchen'
+                                maxSelected={1}
+                                multiple={false}
+                                autoComplete={false}
+                                getItemsAsync={this.getUsersAsync.bind(this)}
+                                onItemsChanged={this.FilterUsers.bind(this)} />
+                    </div>
+                </div>
+                <div className="row">
+                    {this.state.users.map(user => (
                     <div className="col-xl-3 col-md-6 col-sm-12" key={user.email}>
                         <div className="card">
                             <div className="card-body">
@@ -159,6 +196,7 @@ class UsersApp extends React.Component {
                         </div>
                     </div>
                     ))}
+                </div>
             </div>
         )
     };

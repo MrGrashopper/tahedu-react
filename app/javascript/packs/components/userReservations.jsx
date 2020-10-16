@@ -81,16 +81,14 @@ class UserReservations extends Component {
             <div className="">
                 <div className="row col-sm-12 col-md-12 col-lg-12"><h5 className="margin-bottom" >Heute im Office</h5></div>
                 <div className="row col-sm-12 col-md-12 col-lg-12"><ProgressBar className="margin-bottom" now={this.state.percentage} label={`${this.state.percentage}%`} /></div>
-                <div className="">
-                    <div id="Search-user">
-                        <Search items={this.state.userRepos}
-                                placeholder='Benutzer suchen'
-                                maxSelected={1}
-                                multiple={false}
-                                autoComplete={false}
-                                getItemsAsync={this.getUsersAsync.bind(this)}
-                                onItemsChanged={this.FilterUsers.bind(this)} />
-                    </div>
+                <div id="Search-user">
+                    <Search items={this.state.userRepos}
+                            placeholder='Benutzer suchen'
+                            maxSelected={1}
+                            multiple={false}
+                            autoComplete={false}
+                            getItemsAsync={this.getUsersAsync.bind(this)}
+                            onItemsChanged={this.FilterUsers.bind(this)} />
                 </div>
                 <div className="row col-sm-12 col-md-12 col-lg-12" id="User-Reservations">
                     {this.state.userReservations.map(user => (
