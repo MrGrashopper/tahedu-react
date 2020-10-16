@@ -46,7 +46,7 @@ class AddUser extends Component {
                         <Form.Group controlId="AddEmail">
                             <Form.Label>Benutzer hinzufügen</Form.Label>
                             <div className="row">
-                                <div className="col-xl-4 col-md-8 col-sm-12"><Form.Control type="email" placeholder="Enter email"/></div>
+                                <div className="col-xl-4 col-md-8 col-sm-12"><Form.Control type="email" placeholder="E-Mail"/></div>
                                 <div className="col-xl-3 col-md-4 col-sm-12"><a className="btn btn-primary" type="submit" onClick={() => this.addEmail()}>Hinzufügen</a></div>
                             </div>
                             <Form.Text className="text-muted">

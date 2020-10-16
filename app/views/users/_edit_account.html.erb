@@ -1,0 +1,41 @@
+<%= form_with url: api_v1_user_path(@user), method: :put do |f| %>
+  <% @supervisor = Supervisor&.find_by(user_id: current_user.id, team_id: current_user.team_id) %>
+  <div class="row">
+    <div class="col-sm-12 col-md-5 col-xl-4">
+      <div class="avatar-bg margin-bottom">
+        <%= image_tag @user.avatar if @user.avatar.attached?%>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-7 col-xl-8">
+      <div class="margin-bottom">
+        <% if @user.user_name %>
+          <h5><%= @user.user_name %></h5>
+        <% end %>
+        <span><%= @user.email %></span>
+        <% if @supervisor.present? %>
+          <span>(Du bist Supervisor)</span>
+        <% end %>
+      </div>
+      <div class="margin-bottom">
+        <% if @user_team_ids.present? %>
+          <%= f.select('switch-team', @user_team_ids.each {|a| a}, selected: @selected_team) %>
+        <%else %>
+          <p class="red-text">Du musst noch einem Team beitreten (Ein Supervisor muss dich einladen) </br> Oder erstelle unten ein neues Team</p>
+        <%end %>
+      </div>
+      <%if @selected_team.present? && Supervisor.find_by(team_id: current_user.team_id).nil?%>
+        <div class="margin-bottom">
+          <b>Erweiterte Rechte? (Desks, Benutzer usw. verwalten) <%= f.check_box :supervisor %></b>
+        </div>
+      <%end %>
+      <div class="margin-bottom">
+        <p>Profilbild: <%= f.file_field :avatar %></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 margin-top">
+    <div class="margin-top margin-bottom">
+      <%= f.submit 'speichern', :class => 'btn btn-primary' %>
+    </div>
+<% end %>
+</div>

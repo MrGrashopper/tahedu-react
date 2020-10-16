@@ -51,9 +51,10 @@ class DesksController < ApplicationController
     external_id = params[:external_id].present? ? params[:external_id] : @desk.external_id
     enough_distance = params[:enough_distance].to_i == 1 ? true : false
     notes = params[:notes].present? ? params[:notes] : @desk.notes
+    equipment = params[:equipment].present? ? params[:equipment] : @desk.notes
 
     begin
-      @desk.update(kind: kind, external_id: external_id, enough_distance: enough_distance, notes: notes)
+      @desk.update(kind: kind, external_id: external_id, enough_distance: enough_distance, notes: notes, equipment: equipment)
       redirect_to deskcenter_path, notice: '🚀 Gespeichert'
     rescue StandardError, LoadError => e
       puts "#{e}"

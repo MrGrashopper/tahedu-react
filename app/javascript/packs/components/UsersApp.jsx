@@ -115,7 +115,7 @@ class UsersApp extends React.Component {
                                 <div className="row">
                                     <div className="col-sm-10">
                                         <h6 className="card-title">{user.email}
-                                            <span>
+                                            <span className="space">
                                                 <button><AiOutlineDelete className="red-text icon" onClick={() => this.handleModalShowHideDelete(user)} /></button>
                                             </span>
                                         </h6>
@@ -143,7 +143,11 @@ class UsersApp extends React.Component {
                                             </Modal>
                                         <p>{user.user_name}{user.supervisor == true ? ` (Supervisor)` : ` (Benutzer)`}</p>
                                             </div>
-                                        <div className="col-sm-2"><img src={this.setAvatar(user.avatar)} alt="..." className="thumbnail" disabled style={{ pointerEvents: 'none' }}></img></div>
+                                        <div className="col-sm-2">
+                                            <div className="thumbnail">
+                                                <img src={this.setAvatar(user.avatar)} alt="..." className="" disabled style={{ pointerEvents: 'none' }}></img>
+                                            </div>
+                                        </div>
                                     </div>
                                 <div className="small-text margin-bottom">
                                     {user.supervisor == true ?

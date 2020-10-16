@@ -41,6 +41,10 @@ button {
   padding: 0;
 }
 
+input {
+  padding-left: 0.5rem;
+}
+
 .purple-text {
   color: $purple !important;
 }
@@ -228,11 +232,31 @@ a {
   border-radius: 20px !important;
 }
 .thumbnail {
+  width: 50px;
   height: 50px;
   border-radius: 50%;
   float: right;
   clear: both;
-  border: 1px solid $light-grey;
+  overflow: hidden;
+  border-color: transparent;
+  background: $light-grey;
+  img {
+    width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+}
+
+.kind-image {
+  width: 100px;
+  position: relative;
+  height: auto;
+  right: 2rem;
+  img {
+    width: 100%;
+  }
 }
 
 .nav-link {
@@ -286,6 +310,13 @@ a {
   }
 }
 
+.input-width {
+  width: 60%;
+}
+
+.space {
+  margin: 0 0.5rem;
+}
 // Buttons
 .btn {
   border-radius: 20px!important;
@@ -334,6 +365,15 @@ a {
     border-color: $purple !important;
     background-color: $purple !important;
   }
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+.btn-secondary {
+  &:focus {
+    box-shadow: none !important;
+  }
 }
 
 .btn-alert {
@@ -373,10 +413,24 @@ a {
 }
 
 .react-datepicker__input-container {
-  input {
+  input, input {
     width: 120px;
+    border: 1px solid lightgrey;
+    background: $light-grey;
+    border-radius: 20px;
+    padding: 6px 15px;
+    position: relative;
+    top: 2px;
+    box-shadow: none;
+    &:focus {
+      outline: none;
+    }
   }
 }
+.react-datepicker__tab-loop {
+  display: inline-block;
+}
+
 
 // navar
 

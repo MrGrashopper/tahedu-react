@@ -175,13 +175,13 @@ class DeskItems extends Component {
                 <ToastContainer />
                 <div className="row margin-bottom">
                     <div className="col-sm-6 col-md-6 col-xl-7">
-                        <Button variant="secondary" className=""  type="submit" onClick={this.handleFilter.bind(this)}>anzeigen</Button>{' '}
                         <DatePicker
-                            className="btn btn-light"
+                            className=""
                             dateFormat="dd/MM/yyyy" selected={this.state.resDate}
                             minDate={moment().toDate()}
                             onChange={this.handleChangeDate}
                             ref={this.userDateRef}/>
+                        <Button variant="secondary" className="space"  type="submit" onClick={this.handleFilter.bind(this)}>auswählen</Button>{' '}
                     </div>
 
                     <div id="Filter-kinds" className="col-sm-6 col-md-3 col-xl-2">
@@ -216,15 +216,20 @@ class DeskItems extends Component {
                                 <div className="card-body">
                                     <div className="row">
                                         <div className="col-sm-9">
-                                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Platz-Eigenschaft</Tooltip>}><span className="h5">{desk.kind}</span></OverlayTrigger>
-                                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Sicherheitsabstand zum nächsten Sitzplatz</Tooltip>}><span className="icon margin-bottom"> {desk.enough_distance? `👍` : `👎`}</span></OverlayTrigger>
+                                            <div className="margin-bottom">
+                                                <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Platz-Eigenschaft</Tooltip>}><span className="h5">{desk.kind}</span></OverlayTrigger>
+                                                <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Sicherheitsabstand zum nächsten Sitzplatz</Tooltip>}><span className="icon"> {desk.enough_distance? `👍` : `👎`}</span></OverlayTrigger>
+                                            </div>
                                             <div>Platz-ID: {desk.external_id}</div>
                                         </div>
                                         <div className="col-sm-3">
-                                            <img  src={this.setImage(desk.kind)} alt="..." className="thumbnail"></img>
+                                            <div className="kind-image">
+                                                <img  src={this.setImage(desk.kind)} alt="..." ></img>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div>{desk.notes? desk.notes : ``}</div>
+                                    <div>Info: {desk.notes? desk.notes : `Keine Angabe`}</div>
+                                    <div className="margin-bottom">Ausstattung: {desk.equipment? desk.equipment : `Keine Angabe`}</div>
                                     <div className="float-right">
                                         <a href="#" className="btn btn-primary" onClick={() => this.createReservation(desk.id)}>Buchen</a>
                                     </div>
