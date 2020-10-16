@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa0c5746-1a3c-4ab6-986a-bda4ec997604" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/Basic.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/images/Basic.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/Design.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/images/Design.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/IT.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/images/IT.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/Meeting.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/images/Meeting.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/images/img_avatar.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/images/img_avatar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/packs/components/desk_items.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/packs/components/desk_items.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/packs/components/userReservations.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/packs/components/userReservations.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/pages/reservations.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/pages/reservations.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/users/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/packs/components/UsersApp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/packs/components/UsersApp.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/shared/_navigation.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/shared/_navigation.html.erb" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -88,8 +78,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/desk_items.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="183" column="68" lean-forward="true" selection-start-line="183" selection-start-column="68" selection-end-line="183" selection-end-column="68" />
+            <state relative-caret-position="54">
+              <caret line="171" column="14" lean-forward="true" selection-start-line="171" selection-start-column="14" selection-end-line="171" selection-end-column="14" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -98,65 +88,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/userReservations.jsx">
+        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="57" column="14" lean-forward="true" selection-start-line="57" selection-start-column="14" selection-end-line="57" selection-end-column="14" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/user.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="das://c5990767-1199-4336-b0b6-dbe2d9e9d9e4/database/rails_react_example_development/schema/public/table/users">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state projectRestartId="74c39502-ec7b-4343-9d19-4a40d1c9b0e0">
-              <filtering>
-                <filter text="email='test22@test.de'" />
-                <filter text="" />
-              </filtering>
-              <column-attributes>
-                <column name="encrypted_password" position="6" />
-                <column name="reset_password_token" position="7" />
-                <column name="reset_password_sent_at" position="8" />
-                <column name="remember_created_at" position="9" />
-                <column name="created_at" position="10" />
-                <column name="updated_at" position="11" />
-                <column name="team_id" position="12" />
-                <column name="avatar_url" position="13" />
-                <column name="confirmation_token" position="14" />
-                <column name="confirmed_at" position="15" />
-                <column name="confirmation_sent_at" position="16" />
-                <column name="unconfirmed_email" position="17" />
-                <column name="sign_in_count" position="18" />
-                <column name="current_sign_in_at" position="19" />
-                <column name="last_sign_in_at" position="20" />
-                <column name="current_sign_in_ip" position="21" />
-                <column name="last_sign_in_ip" position="22" />
-                <column name="slug" position="4" />
-                <column name="user_name" position="3" />
-                <column name="external_id" position="5" />
-              </column-attributes>
+            <state relative-caret-position="221">
+              <caret line="233" column="7" selection-start-line="233" selection-start-column="1" selection-end-line="233" selection-end-column="7" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.scss">
+        <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/UsersApp.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="417" column="32" selection-start-line="417" selection-start-column="32" selection-end-line="417" selection-end-column="32" />
+            <state relative-caret-position="380">
+              <caret line="148" column="50" lean-forward="true" selection-start-line="148" selection-start-column="50" selection-end-line="148" selection-end-column="50" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -165,10 +112,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>user.update</find>
-      <find>user.create</find>
-      <find>user.crea</find>
-      <find>external_id =</find>
       <find>Digest</find>
       <find>user.save</find>
       <find>new_user_sign_up</find>
@@ -195,6 +138,10 @@
       <find>btn-li</find>
       <find>btn-prim</find>
       <find>1px solid</find>
+      <find>benutzer hi</find>
+      <find>TAHEDO</find>
+      <find>img</find>
+      <find>thumbn</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -230,7 +177,6 @@
         <option value="$PROJECT_DIR$/app/controllers/api/v1/add_users_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/shared/_sidebar.html.erb" />
         <option value="$PROJECT_DIR$/app/helpers/application_helper.rb" />
-        <option value="$PROJECT_DIR$/app/views/shared/_navigation.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/api/v1/reservations_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/api/v1/join_teams_controller.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20201014145324_add_external_id_to_users.rb" />
@@ -247,7 +193,6 @@
         <option value="$PROJECT_DIR$/app/views/users/_join_team.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/edit.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/_edit_account.html.erb" />
-        <option value="$PROJECT_DIR$/app/javascript/packs/components/UsersApp.jsx" />
         <option value="$PROJECT_DIR$/app/views/users/_new_team.html.erb" />
         <option value="$PROJECT_DIR$/app/views/pages/deskcenter.html.erb" />
         <option value="$PROJECT_DIR$/app/javascript/packs/components/addUser.jsx" />
@@ -257,6 +202,8 @@
         <option value="$PROJECT_DIR$/app/javascript/packs/components/userReservations.jsx" />
         <option value="$PROJECT_DIR$/app/javascript/packs/components/desk_items.jsx" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/application.scss" />
+        <option value="$PROJECT_DIR$/app/views/shared/_navigation.html.erb" />
+        <option value="$PROJECT_DIR$/app/javascript/packs/components/UsersApp.jsx" />
       </list>
     </option>
   </component>
@@ -567,23 +514,23 @@
       <workItem from="1599054778030" duration="57754000" />
       <workItem from="1599423466410" duration="40767000" />
       <workItem from="1599667566554" duration="320848000" />
-      <workItem from="1602763530247" duration="5297000" />
+      <workItem from="1602763530247" duration="5827000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="548542000" />
+    <option name="totallyTimeSpent" value="549072000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49901184" visible="true" weight="0.17887668" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49901184" visible="true" weight="0.17887668" />
       <window_info id="Structure" order="1" sideWeight="0.5009881" side_tool="true" weight="0.12470215" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32925898" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2742111" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2742111" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.32100108" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -910,23 +857,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/UsersApp.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2205">
-          <caret line="117" column="66" selection-start-line="117" selection-start-column="66" selection-end-line="117" selection-end-column="66" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/addUser.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="882">
-          <caret line="48" column="120" selection-start-line="48" selection-start-column="120" selection-end-line="48" selection-end-column="120" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/_new_team.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
@@ -1004,9 +934,6 @@
     <entry file="file://$PROJECT_DIR$/app/assets/images/Basic.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/images/img_avatar.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/userReservations.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
@@ -1017,10 +944,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/images/img_avatar.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/addUser.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="46" column="40" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/desk_items.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="183" column="68" lean-forward="true" selection-start-line="183" selection-start-column="68" selection-end-line="183" selection-end-column="68" />
+        <state relative-caret-position="54">
+          <caret line="171" column="14" lean-forward="true" selection-start-line="171" selection-start-column="14" selection-end-line="171" selection-end-column="14" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -1030,7 +967,17 @@
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
-          <caret line="417" column="32" selection-start-line="417" selection-start-column="32" selection-end-line="417" selection-end-column="32" />
+          <caret line="233" column="7" selection-start-line="233" selection-start-column="1" selection-end-line="233" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/UsersApp.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="148" column="50" lean-forward="true" selection-start-line="148" selection-start-column="50" selection-end-line="148" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
