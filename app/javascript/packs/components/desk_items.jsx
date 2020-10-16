@@ -15,7 +15,6 @@ import Search from 'react-search'
 import moment from "moment-timezone";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import { AiOutlineInfoCircle } from 'react-icons/ai';
 
 const notify = (message) => toast(message);
 

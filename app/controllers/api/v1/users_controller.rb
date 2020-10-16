@@ -13,14 +13,29 @@ class Api::V1::UsersController < ApplicationController
       @users = y
       render json: @users.map { |user| user.as_json.merge({ avatar: url_for(user.avatar)}) }
 
-    else
+    elsif params[:user_search] && params[:user_search]&.length > 2
+      date = params[:date][0..9]
+      user_json = JSON.parse(params[:user_search])
+      name = []
+      user_json.each{|u|  name << u["value"]}
       team = UserTeamId.where(team_id: current_user.team_id)
       team_ids = []
       team.each{|member| team_ids << member.user_id}
       users = User.where(id: team_ids)&.with_attached_avatar
-      x = users.map { |user| user.as_json.merge({ avatar: url_for(user.avatar),  supervisor: Supervisor.find_by(user_id: user['id'], team_id: current_user.team_id).nil? ? false : true }) }
-      @users = x
+      y = users.left_joins(:reservations).where(reservations: {date: date }).uniq
+      @users = []
+      y.map { |user| @users << user.as_json.merge({ avatar: url_for(user.avatar)}) if user.user_name == name[0]}
       render json: @users
+
+    else
+      date = DateTime.now.strftime("%Y-%m-%d")
+      team = UserTeamId.where(team_id: current_user.team_id)
+      team_ids = []
+      team.each{|member| team_ids << member.user_id}
+      users = User.where(id: team_ids)&.with_attached_avatar
+      y = users.left_joins(:reservations).where(reservations: {date: date }).uniq
+      @users = y
+      render json: @users.map { |user| user.as_json.merge({ avatar: url_for(user.avatar)}) }
     end
   end
 
