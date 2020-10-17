@@ -4,6 +4,7 @@ class Api::V1::DesksController < ApplicationController
   def index
     filter_params = params[:filter].present? ? params[:filter] : nil
     item_params = params[:items].present? ? params[:items] : nil
+    floor_params = params[:floor].present? ? params[:floor] : nil
     desks = Desk.where(team_id: current_user.team_id).order(id: :asc)
 
     if filter_params
@@ -15,7 +16,6 @@ class Api::V1::DesksController < ApplicationController
     end
 
     date_params = params[:date].present? ? params[:date] : nil
-
 
     if date_params
        date = date_params[0..9]
@@ -41,7 +41,22 @@ class Api::V1::DesksController < ApplicationController
       @desks = searched_desks.uniq
     end
 
-
+    if floor_params
+      kind = params[:kind]
+      if floor_params == "Alle Etagen"
+        if kind != "Alle Typen" && !kind.nil?
+          @desks = desks.where(kind: kind)
+        else
+          @desks = desks.order(id: :asc)
+        end
+      else
+        if kind != "Alle Typen" && !kind.nil?
+          @desks = desks.where(floor: floor_params.to_i, kind: kind).order(id: :asc)
+        else
+          @desks = desks.where(floor: floor_params.to_i).order(id: :asc)
+        end
+      end
+    end
   end
 
   def show

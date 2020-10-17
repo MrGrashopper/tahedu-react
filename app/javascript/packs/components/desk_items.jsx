@@ -26,11 +26,14 @@ class DeskItems extends Component {
             resDate: new Date(moment.tz("Europe/Berlin")),
             filter: [],
             repos: [],
+            floor: []
         };
         this.handleFilter = this.handleFilter.bind(this)
         this.userDateRef = React.createRef();
         this.kinds = this.kinds.bind(this)
         this.filterKinds = this.filterKinds.bind(this)
+        this.floors = this.floors.bind(this)
+        this.filterFloors = this.filterFloors.bind(this)
     }
 
 
@@ -44,6 +47,7 @@ class DeskItems extends Component {
             .then(response => {
                 this.setState({desks: response.data}),
                 this.kinds()
+                this.floors()
             })
     }
 
@@ -53,9 +57,38 @@ class DeskItems extends Component {
             filterOptions.push(desk.kind)
         ))}
         let filter =  Array.from(new Set(filterOptions))
-        this.setState({
-            filter: filter
-        })
+        this.setState({filter: filter})
+    }
+
+    floors() {
+        let base = ["Alle Etagen"]
+        let floors = []
+        {this.state.desks.map(desk => (
+            floors.push(desk.floor)
+        ))}
+        floors.sort()
+        let filterFloorOptions = base.concat(floors);
+        let filterFloor =  Array.from(new Set(filterFloorOptions))
+        this.setState({floor: filterFloor})
+    }
+
+    filterFloors() {
+        let floor = event.target.value
+        console.log(floor)
+        let kind = document.getElementById("Filter").value
+        setAxiosHeaders()
+        axios
+            .get('/api/v1/desks/', {
+                params: {
+                    date:  this.state.resDate,
+                    floor:  floor,
+                    kind: kind
+                },
+            })
+            .then(response => {
+                this.setState({desks: response.data}),
+                    notify('🦄 Filter aktualisiert')
+            })
     }
 
     filterKinds(event){
@@ -96,8 +129,21 @@ class DeskItems extends Component {
                 let filter =  Array.from(new Set(filterOptions))
                 this.setState({
                     filter: filter,
+                    floor: ["Alle Etagen"]
                 }),
                 label.value = "Alle Typen"
+
+                let floorLabel = document.getElementById("FilterFloor")
+                let base = ["Alle Etagen"]
+                let floors = []
+                {this.state.desks.map(desk => (
+                    floors.push(desk.floor)
+                ))}
+                floors.sort()
+                let filterFloorOptions = base.concat(floors);
+                let filterFloor =  Array.from(new Set(filterFloorOptions))
+                this.setState({floor: filterFloor})
+
                 let list = document.getElementsByClassName("sc-bxivhb iRISHI");
                 let span = list[0].getElementsByTagName("span");
                 span[0].innerHTML = "Platz-ID suchen"
@@ -173,7 +219,7 @@ class DeskItems extends Component {
             <div className="margin-top-xl">
                 <ToastContainer />
                 <div className="row margin-bottom">
-                    <div className="col-sm-6 col-md-6 col-xl-7">
+                    <div className="col-sm-6 col-md-3 col-xl-4">
                         <DatePicker
                             className=""
                             dateFormat="dd/MM/yyyy" selected={this.state.resDate}
@@ -188,6 +234,18 @@ class DeskItems extends Component {
                             <Form.Group>
                                 <Form.Control id="Filter" as="select"  onChange={this.filterKinds} value={this.state.value}>
                                     {this.state.filter.map(filter => (
+                                        <option key={filter}>{filter}</option>
+                                    ))}
+                                </Form.Control>
+                            </Form.Group>
+                        </Form>
+                    </div>
+
+                    <div id="Filter-floor" className="col-sm-6 col-md-3 col-xl-2">
+                        <Form>
+                            <Form.Group>
+                                <Form.Control id="FilterFloor" as="select"  onChange={this.filterFloors} value={this.state.value}>
+                                    {this.state.floor.map(filter => (
                                         <option key={filter}>{filter}</option>
                                     ))}
                                 </Form.Control>
