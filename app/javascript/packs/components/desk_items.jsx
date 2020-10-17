@@ -220,6 +220,7 @@ class DeskItems extends Component {
                                                 <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Sicherheitsabstand zum nächsten Sitzplatz</Tooltip>}><span className="icon"> {desk.enough_distance? `👍` : `👎`}</span></OverlayTrigger>
                                             </div>
                                             <div>Platz-ID: {desk.external_id}</div>
+                                            <div>Etage: {desk.floor}</div>
                                         </div>
                                         <div className="col-sm-3">
                                             <div className="kind-image">
