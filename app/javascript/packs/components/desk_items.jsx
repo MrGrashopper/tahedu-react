@@ -95,7 +95,7 @@ class DeskItems extends Component {
         let filter = event.target.value
         setAxiosHeaders()
         axios
-            .get('/api/v1/desks/', {
+            .get('/api/v1/filter_desks/', {
                 params: {
                     date:  this.state.resDate,
                     filter:  filter,
