@@ -13,6 +13,10 @@
             <%= f.text_field(:external_id, placeholder: @desk.external_id) %>
           </div>
           <div>
+            <%= f.label "Etage", for: :floor, :class => '' %>
+            <%= f.number_field(:floor, placeholder: "#{@desk.floor}", step: 1) %>
+          </div>
+          <div>
             <%= f.label "Sicherheitsabstand gewährleistet? ", for: :enough_distance, :class => 'p' %>
             <%= f.check_box(:enough_distance, checked: @desk.enough_distance) %>
           </div>

@@ -26,26 +26,17 @@ class DeskItems extends Component {
             resDate: new Date(moment.tz("Europe/Berlin")),
             filter: [],
             repos: [],
+            floor: []
         };
         this.handleFilter = this.handleFilter.bind(this)
         this.userDateRef = React.createRef();
         this.kinds = this.kinds.bind(this)
         this.filterKinds = this.filterKinds.bind(this)
+        this.floors = this.floors.bind(this)
+        this.filterFloors = this.filterFloors.bind(this)
     }
 
 
-    componentDidMount() {
-        axios
-            .get('/api/v1/desks/', {
-                params: {
-                    date:  this.state.resDate,
-                },
-            })
-            .then(response => {
-                this.setState({desks: response.data}),
-                this.kinds()
-            })
-    }
 
     kinds() {
         let filterOptions = ["Alle Typen"]
@@ -53,23 +44,56 @@ class DeskItems extends Component {
             filterOptions.push(desk.kind)
         ))}
         let filter =  Array.from(new Set(filterOptions))
-        this.setState({
-            filter: filter
-        })
+        this.setState({filter: filter})
+    }
+
+    floors() {
+        let base = ["Alle Etagen"]
+        let floors = []
+        {this.state.desks.map(desk => (
+            floors.push(desk.floor)
+        ))}
+        floors.sort()
+        let filterFloorOptions = base.concat(floors);
+        let filterFloor =  Array.from(new Set(filterFloorOptions))
+        this.setState({floor: filterFloor})
+    }
+
+    filterFloors() {
+        let floor = event.target.value
+        let kind = document.getElementById("Filter").value
+        setAxiosHeaders()
+        axios
+            .get('/api/v1/floor_desks/', {
+                params: {
+                    date:  this.state.resDate,
+                    floor:  floor,
+                    kind: kind
+                },
+            })
+            .then(response => {
+                this.setState({desks: response.data}),
+                    notify('🦄 Filter aktualisiert')
+            })
     }
 
     filterKinds(event){
         let filter = event.target.value
         setAxiosHeaders()
         axios
-            .get('/api/v1/desks/', {
+            .get('/api/v1/filter_desks/', {
                 params: {
                     date:  this.state.resDate,
                     filter:  filter,
                 },
             })
             .then(response => {
-                this.setState({desks: response.data}),
+                let floor = this.state.floor
+                let floor_id = document.getElementById('FilterFloor')
+                floor_id.value = "Alle Etagen"
+                this.setState({
+                    desks: response.data,
+                    floor: floor})
                     notify('🦄 Filter aktualisiert')
             })
     }
@@ -96,8 +120,21 @@ class DeskItems extends Component {
                 let filter =  Array.from(new Set(filterOptions))
                 this.setState({
                     filter: filter,
+                    floor: ["Alle Etagen"]
                 }),
                 label.value = "Alle Typen"
+
+                let floorLabel = document.getElementById("FilterFloor")
+                let base = ["Alle Etagen"]
+                let floors = []
+                {this.state.desks.map(desk => (
+                    floors.push(desk.floor)
+                ))}
+                floors.sort()
+                let filterFloorOptions = base.concat(floors);
+                let filterFloor =  Array.from(new Set(filterFloorOptions))
+                this.setState({floor: filterFloor})
+
                 let list = document.getElementsByClassName("sc-bxivhb iRISHI");
                 let span = list[0].getElementsByTagName("span");
                 span[0].innerHTML = "Platz-ID suchen"
@@ -156,14 +193,16 @@ class DeskItems extends Component {
 
     FilterItems(items) {
         axios
-            .get('/api/v1/desks/', {
+            .get('/api/v1/item_desks/', {
                 params: {
                     date:  this.state.resDate,
                     items:  items,
                 },
             })
             .then(response => {
-                this.setState({desks: response.data})
+                this.setState({desks: response.data}),
+                this.kinds()
+                this.floors()
             })
     }
 
@@ -173,7 +212,7 @@ class DeskItems extends Component {
             <div className="margin-top-xl">
                 <ToastContainer />
                 <div className="row margin-bottom">
-                    <div className="col-sm-6 col-md-6 col-xl-7">
+                    <div className="col-sm-12 col-md-12 col-xl-4">
                         <DatePicker
                             className=""
                             dateFormat="dd/MM/yyyy" selected={this.state.resDate}
@@ -183,7 +222,7 @@ class DeskItems extends Component {
                         <Button variant="secondary" className="space"  type="submit" onClick={this.handleFilter.bind(this)}>auswählen</Button>{' '}
                     </div>
 
-                    <div id="Filter-kinds" className="col-sm-6 col-md-3 col-xl-2">
+                    <div id="Filter-kinds" className="col-sm-6 col-md-4 col-xl-2">
                         <Form>
                             <Form.Group>
                                 <Form.Control id="Filter" as="select"  onChange={this.filterKinds} value={this.state.value}>
@@ -195,7 +234,19 @@ class DeskItems extends Component {
                         </Form>
                     </div>
 
-                    <div className="col-sm-6 col-md-3 col-xl-3">
+                    <div id="Filter-floor" className="col-sm-6 col-md-4 col-xl-2">
+                        <Form>
+                            <Form.Group>
+                                <Form.Control id="FilterFloor" as="select"  onChange={this.filterFloors} value={this.state.value}>
+                                    {this.state.floor.map(filter => (
+                                        <option key={filter}>{filter}</option>
+                                    ))}
+                                </Form.Control>
+                            </Form.Group>
+                        </Form>
+                    </div>
+
+                    <div className="col-sm-6 col-md-4 col-xl-3">
                         <div id="Search-items">
                             <Search items={this.state.repos}
                                     placeholder='Platz-ID suchen'
@@ -220,6 +271,7 @@ class DeskItems extends Component {
                                                 <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Sicherheitsabstand zum nächsten Sitzplatz</Tooltip>}><span className="icon"> {desk.enough_distance? `👍` : `👎`}</span></OverlayTrigger>
                                             </div>
                                             <div>Platz-ID: {desk.external_id}</div>
+                                            <div>Etage: {desk.floor}</div>
                                         </div>
                                         <div className="col-sm-3">
                                             <div className="kind-image">

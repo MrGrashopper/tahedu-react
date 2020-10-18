@@ -10,8 +10,12 @@
             <%= f.select(:kind, @kinds.each {|a| [a]}) %>
           </div>
           <div>
-            <%= f.label "Platz-ID", for: :kind, :class => '' %>
+            <%= f.label "Platz-ID", for: :external_id, :class => '' %>
             <%= f.text_field(:external_id, placeholder: 'z.B. Platz-01-Sitz-03') %>
+          </div>
+          <div>
+            <%= f.label "Etage", for: :floor, :class => '' %>
+            <%= f.number_field(:floor, placeholder: '0', step: 1) %>
           </div>
           <div>
             <%= f.label "Sicherheitsabstand gewährleistet? ", for: :enough_distance, :class => 'p' %>
@@ -19,7 +23,7 @@
           </div>
           <div>
             <%= f.label "Info", for: :notes, :class => '' %>
-            <%= f.text_field(:notes, placeholder: 'z.B. 3. OG, Raum 1') %>
+            <%= f.text_field(:notes, placeholder: 'Raum 1, Klimaanlage, WC auf Etage') %>
           </div>
           <div>
             <%= f.label "Ausstattung", for: :equipment, :class => '' %>
@@ -57,6 +61,7 @@
                 <div class="col-sm-3"></div>
               </div>
               <p class="card-text">Platz-ID: <%= desk.external_id %></p>
+              <p class="card-text">Etage: <%= desk.floor %></p>
               <p class="card-text">Sicherheitsabstand: <%= desk.enough_distance ? '👍' : '👎' %></p>
               <p class="card-text">Info: <%= desk.notes ? desk.notes : 'Keine' %></p>
               <p class="card-text">Ausstattung: <%= desk.notes ? desk.notes : 'Keine' %></p>

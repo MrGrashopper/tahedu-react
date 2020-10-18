@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_15_082901) do
+ActiveRecord::Schema.define(version: 2020_10_17_163837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2020_10_15_082901) do
     t.text "notes"
     t.string "image_url", default: "../../../assets/images/Basic.png"
     t.string "equipment"
+    t.integer "floor", default: 0
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
