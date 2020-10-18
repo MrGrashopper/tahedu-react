@@ -2,33 +2,45 @@ class Api::V1::DesksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_desk, only: [:show, :edit, :update, :destroy]
   def index
+    # date
+    # filter
+    # items
+    # floor
+    # index
+
+    date_params = params[:date].present? ? params[:date] : nil
     filter_params = params[:filter].present? ? params[:filter] : nil
     item_params = params[:items].present? ? params[:items] : nil
-    floor_params = params[:floor].present? ? params[:floor] : nil
     desks = Desk.where(team_id: current_user.team_id).order(id: :asc)
 
     if filter_params
+      date = date_params[0..9]
+      res_desks = desks.includes(:reservations)
+      res_arr = []
+      res_desks.select {|desk| desk.reservations.map {|res| res_arr << desk if res.date == date}}
+
       if filter_params == "Alle Typen"
-        desks = desks
+        @desks = desks - res_arr.uniq
       else
-        desks = desks.where(kind: filter_params).order(id: :asc)
+        @desks = desks.where(kind: filter_params).order(id: :asc) - res_arr.uniq
       end
+      render json: @desks
     end
 
-    date_params = params[:date].present? ? params[:date] : nil
-
-    if date_params
+    if date_params && filter_params.nil?
        date = date_params[0..9]
        res_desks = desks.includes(:reservations)
        res_arr = []
        res_desks.select {|desk| desk.reservations.map {|res| res_arr << desk if res.date == date}}
        @desks = desks - res_arr.uniq
+       render json: @desks
     else
        date = DateTime.now.strftime("%Y-%m-%d")
        res_desks = desks.includes(:reservations)
        res_arr = []
        res_desks.select {|desk| desk.reservations.map {|res| res_arr << desk if res.date == date}}
        @desks = desks - res_arr.uniq
+       render json: @desks
     end
 
     if item_params
@@ -39,23 +51,7 @@ class Api::V1::DesksController < ApplicationController
       items.each{|item| external_ids << item["value"]}.compact
       external_ids.each{|id| desks.each{ |desk| searched_desks << desk if desk.external_id == id}}
       @desks = searched_desks.uniq
-    end
-
-    if floor_params
-      kind = params[:kind]
-      if floor_params == "Alle Etagen"
-        if kind != "Alle Typen" && !kind.nil?
-          @desks = desks.where(kind: kind)
-        else
-          @desks = desks.order(id: :asc)
-        end
-      else
-        if kind != "Alle Typen" && !kind.nil?
-          @desks = desks.where(floor: floor_params.to_i, kind: kind).order(id: :asc)
-        else
-          @desks = desks.where(floor: floor_params.to_i).order(id: :asc)
-        end
-      end
+      render json: @desks
     end
   end
 

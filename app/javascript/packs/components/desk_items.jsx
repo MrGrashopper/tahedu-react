@@ -74,11 +74,10 @@ class DeskItems extends Component {
 
     filterFloors() {
         let floor = event.target.value
-        console.log(floor)
         let kind = document.getElementById("Filter").value
         setAxiosHeaders()
         axios
-            .get('/api/v1/desks/', {
+            .get('/api/v1/floor_desks/', {
                 params: {
                     date:  this.state.resDate,
                     floor:  floor,
@@ -86,6 +85,7 @@ class DeskItems extends Component {
                 },
             })
             .then(response => {
+                console.log(response.data)
                 this.setState({desks: response.data}),
                     notify('🦄 Filter aktualisiert')
             })
@@ -102,7 +102,7 @@ class DeskItems extends Component {
                 },
             })
             .then(response => {
-                this.setState({desks: response.data}),
+                this.setState({desks: response.data})
                     notify('🦄 Filter aktualisiert')
             })
     }

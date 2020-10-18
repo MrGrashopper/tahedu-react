@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       resource :remove_user_from_teams, only: [:destroy]
       resource :join_teams, only: [:index, :create, :update, :destroy]
       resource :add_companies, only: [:index, :create, :update, :destroy]
+      resource :floor_desks
     end
   end
 
