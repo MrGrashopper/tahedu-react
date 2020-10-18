@@ -37,19 +37,6 @@ class DeskItems extends Component {
     }
 
 
-    componentDidMount() {
-        axios
-            .get('/api/v1/desks/', {
-                params: {
-                    date:  this.state.resDate,
-                },
-            })
-            .then(response => {
-                this.setState({desks: response.data}),
-                this.kinds()
-                this.floors()
-            })
-    }
 
     kinds() {
         let filterOptions = ["Alle Typen"]
@@ -85,7 +72,6 @@ class DeskItems extends Component {
                 },
             })
             .then(response => {
-                console.log(response.data)
                 this.setState({desks: response.data}),
                     notify('🦄 Filter aktualisiert')
             })
@@ -102,7 +88,12 @@ class DeskItems extends Component {
                 },
             })
             .then(response => {
-                this.setState({desks: response.data})
+                let floor = this.state.floor
+                let floor_id = document.getElementById('FilterFloor')
+                floor_id.value = "Alle Etagen"
+                this.setState({
+                    desks: response.data,
+                    floor: floor})
                     notify('🦄 Filter aktualisiert')
             })
     }
@@ -202,14 +193,16 @@ class DeskItems extends Component {
 
     FilterItems(items) {
         axios
-            .get('/api/v1/desks/', {
+            .get('/api/v1/item_desks/', {
                 params: {
                     date:  this.state.resDate,
                     items:  items,
                 },
             })
             .then(response => {
-                this.setState({desks: response.data})
+                this.setState({desks: response.data}),
+                this.kinds()
+                this.floors()
             })
     }
 

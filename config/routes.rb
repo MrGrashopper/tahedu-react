@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       resource :add_companies, only: [:index, :create, :update, :destroy]
       resource :floor_desks
       resource :filter_desks
+      resource :item_desks
     end
   end
 

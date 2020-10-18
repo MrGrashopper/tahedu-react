@@ -3,12 +3,10 @@ class Api::V1::DesksController < ApplicationController
   before_action :set_desk, only: [:show, :edit, :update, :destroy]
   def index
     # date
-    # filter
     # items
     # index
 
     date_params = params[:date].present? ? params[:date] : nil
-    item_params = params[:items].present? ? params[:items] : nil
     desks = Desk.where(team_id: current_user.team_id).order(id: :asc)
 
     if date_params
@@ -25,17 +23,6 @@ class Api::V1::DesksController < ApplicationController
        res_desks.select {|desk| desk.reservations.map {|res| res_arr << desk if res.date == date}}
        @desks = desks - res_arr.uniq
        render json: @desks
-    end
-
-    if item_params
-      items = []
-      external_ids = []
-      searched_desks = []
-      item_params.each {|item| items << JSON.parse(item)}
-      items.each{|item| external_ids << item["value"]}.compact
-      external_ids.each{|id| desks.each{ |desk| searched_desks << desk if desk.external_id == id}}
-      @desks = searched_desks.uniq
-      render json: @desks
     end
   end
 
