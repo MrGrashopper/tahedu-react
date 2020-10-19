@@ -3,6 +3,7 @@ import Basic from "../../../assets/images/Basic.png";
 import IT from "../../../assets/images/IT.png";
 import Meeting from "../../../assets/images/Meeting.png";
 import Design from "../../../assets/images/Design.png";
+import ParkingSlot from "../../../assets/images/parking_slot.png";
 import axios from "axios";
 import setAxiosHeaders from "./AxiosHeaders";
 import DatePicker from "react-datepicker";
@@ -179,6 +180,9 @@ class DeskItems extends Component {
         }
         else if(kind == 'Design') {
             return Design
+        }
+        else if(kind == 'Parkplatz') {
+            return ParkingSlot
         }
         else {
             return Basic
