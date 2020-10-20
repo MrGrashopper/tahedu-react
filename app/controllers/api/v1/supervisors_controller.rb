@@ -45,6 +45,8 @@ class Api::V1::SupervisorsController < ApplicationController
       else
         render json: 404
       end
+    else
+      handle_unauthorized
     end
   end
 
