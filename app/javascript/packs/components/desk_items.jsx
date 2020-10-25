@@ -270,25 +270,23 @@ class DeskItems extends Component {
                             <div className="card">
                                 <div className="card-body">
                                     <div className="row">
-                                        <div className="col-sm-9">
+                                        <div className="col-sm-12">
                                             <div className="margin-bottom">
                                                 <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Platz-Eigenschaft</Tooltip>}><span className="h5">{desk.kind}</span></OverlayTrigger>
                                                 <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Sicherheitsabstand zum nächsten Sitzplatz</Tooltip>}><span className="icon"> {desk.enough_distance? `👍` : `👎`}</span></OverlayTrigger>
                                             </div>
-                                            <div>Platz-ID: {desk.external_id}</div>
-                                            <div>Etage: {desk.floor}</div>
+                                            <h6>Platz-ID: {desk.external_id}</h6>
+                                            <h6>Etage: {desk.floor}</h6>
                                         </div>
-                                        <div className="col-sm-3">
-                                            <div className="kind-image">
-                                                <img  src={this.setImage(desk.kind)} alt="..." ></img>
-                                            </div>
+                                        <div className="kind-image">
+                                            <img  src={this.setImage(desk.kind)} alt="..." ></img>
                                         </div>
                                     </div>
-                                    <div>Info: {desk.notes? desk.notes : `Keine Angabe`}</div>
-                                    <div className="margin-bottom">Ausstattung: {desk.equipment? desk.equipment : `Keine Angabe`}</div>
-                                    <div className="float-right">
+                                    <h6>Info: {desk.notes? desk.notes : `Keine Angabe`}</h6>
+                                    <h6 className="margin-bottom">Ausstattung: {desk.equipment? desk.equipment : `Keine Angabe`}</h6>
+                                    <h6 className="float-right">
                                         <a href="#" className="btn btn-primary" onClick={() => this.createReservation(desk.id)}>Buchen</a>
-                                    </div>
+                                    </h6>
                                 </div>
                             </div>
                         </div>
