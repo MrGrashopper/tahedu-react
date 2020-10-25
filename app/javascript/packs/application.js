@@ -19,8 +19,7 @@ require('./components/DesksApp')
 require('bootstrap')
 import 'bootstrap/dist/css/bootstrap'
 import "@fortawesome/fontawesome-free/js/all";
-
-
+//= require cookies_eu
 
 document.addEventListener("turbolinks:load", () => {
     // Sidebar

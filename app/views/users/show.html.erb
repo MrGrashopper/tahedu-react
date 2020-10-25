@@ -1,4 +1,4 @@
-<div class="container row">
+<div class="container-fluid row">
   <div class="col-xl-12 col-md-12 col-sm-12">
     <div class="card">
       <div class="card-body">
@@ -17,10 +17,10 @@
           <% @reservations.each do |res| %>
               <% desk = Desk.find_by(external_id: res.name) %>
             <tr>
-              <td><%= res.name %></td>
-              <td><%= desk.kind %></td>
-              <td><%= desk.notes %></td>
-              <td><%= res.date %></td>
+              <td><h6><%= res.name %></h6></td>
+              <td><h6><%= desk.kind %></h6></td>
+              <td><h6><%= desk.notes %></h6></td>
+              <td><h6><%= res.date %></h6></td>
               <td>
                 <% if res.date >= DateTime.now.strftime("%Y-%m-%d") %>
                   <%= form_with url: api_v1_reservation_path(res), data: { confirm: "Willst du wirklich stornieren?" }, method: :delete do |f| %>

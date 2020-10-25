@@ -20,7 +20,7 @@
         <% if @user_team_ids.present? %>
           <%= f.select('switch-team', @user_team_ids.each {|a| a}, selected: @selected_team) %>
         <%else %>
-          <p class="red-text">Du musst noch einem Team beitreten (Ein Supervisor muss dich einladen) </br> Oder erstelle unten ein neues Team</p>
+          <p class="red-text">Du musst noch einem Team beitreten (Ein Supervisor muss dich einladen) </br> Oder erstelle selbst ein neues Team</p>
         <%end %>
       </div>
       <%if @selected_team.present? && Supervisor.find_by(team_id: current_user.team_id).nil?%>

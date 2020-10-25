@@ -1,4 +1,9 @@
 <% if @unconfirmed_team_ids.present? %>
+  <div class="row">
+    <div class="col-sm-6 col-md-6 col-xl-6">
+      <h5>Team-Einladungen</h5>
+    </div>
+  </div>
   <% @unconfirmed_team_ids.each do |team| %>
     <div class="row">
       <div class="col-sm-6 col-md-6 col-xl-6">
@@ -16,4 +21,5 @@
       </div>
     </div>
   <% end %>
+  <div class="margin-bottom"></div>
 <% end %>

@@ -2,27 +2,27 @@ class Api::V1::DesksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_desk, only: [:show, :edit, :update, :destroy]
   def index
-    # date
-    # items
-    # index
+    if authorized?
+      date_params = params[:date].present? ? params[:date] : nil
+      desks = Desk.where(team_id: current_user.team_id).order(id: :asc)
 
-    date_params = params[:date].present? ? params[:date] : nil
-    desks = Desk.where(team_id: current_user.team_id).order(id: :asc)
-
-    if date_params
-       date = date_params[0..9]
-       res_desks = desks.includes(:reservations)
-       res_arr = []
-       res_desks.select {|desk| desk.reservations.map {|res| res_arr << desk if res.date == date}}
-       @desks = desks - res_arr.uniq
-       render json: @desks
+      if date_params
+         date = date_params[0..9]
+         res_desks = desks.includes(:reservations)
+         res_arr = []
+         res_desks.select {|desk| desk.reservations.map {|res| res_arr << desk if res.date == date}}
+         @desks = desks - res_arr.uniq
+         render json: @desks
+      else
+         date = DateTime.now.strftime("%Y-%m-%d")
+         res_desks = desks.includes(:reservations)
+         res_arr = []
+         res_desks.select {|desk| desk.reservations.map {|res| res_arr << desk if res.date == date}}
+         @desks = desks - res_arr.uniq
+         render json: @desks
+      end
     else
-       date = DateTime.now.strftime("%Y-%m-%d")
-       res_desks = desks.includes(:reservations)
-       res_arr = []
-       res_desks.select {|desk| desk.reservations.map {|res| res_arr << desk if res.date == date}}
-       @desks = desks - res_arr.uniq
-       render json: @desks
+      handle_unauthorized
     end
   end
 
@@ -37,19 +37,23 @@ class Api::V1::DesksController < ApplicationController
   end
 
   def create
-    desks = Desk.where(team_id: current_user.team_id)
-    desk = desks.find_by(external_id: params[:external_id])
-    if desk.present?
-      redirect_to deskcenter_path, alert: 'Platznummer schon vorhanden'
-    else
-      Desk.create(
-          external_id: params[:external_id],
-          kind: params[:kind].to_i,
-          team_id: current_user.team_id,
-          enough_distance: params[:external_id],
-          notes: params[:notes])
+    if authorized?
+      desks = Desk.where(team_id: current_user.team_id)
+      desk = desks.find_by(external_id: params[:external_id])
+      if desk.present?
+        redirect_to deskcenter_path, alert: 'Platznummer schon vorhanden'
+      else
+        Desk.create(
+            external_id: params[:external_id],
+            kind: params[:kind].to_i,
+            team_id: current_user.team_id,
+            enough_distance: params[:external_id],
+            notes: params[:notes])
 
-      redirect_to deskcenter_path, notice: 'Platznummer erstellt'
+        redirect_to deskcenter_path, notice: 'Platznummer erstellt'
+      end
+    else
+      handle_unauthorized
     end
   end
 
@@ -77,7 +81,6 @@ class Api::V1::DesksController < ApplicationController
   end
 
   def authorized?
-    # MUSS NOCH VERFEINERT WERDEN
     current_user.present?
   end
 

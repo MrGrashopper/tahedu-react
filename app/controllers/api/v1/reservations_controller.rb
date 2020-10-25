@@ -28,12 +28,16 @@ class Api::V1::ReservationsController < ApplicationController
   end
 
   def destroy
-    reservation = Reservation.find_by(id: params[:id])
-    if reservation
-      reservation.destroy
-      redirect_to user_path(current_user), notice: '🚀 Storniert!'
+    if authorized?
+      reservation = Reservation.find_by(id: params[:id])
+      if reservation
+        reservation.destroy
+        redirect_to user_path(current_user), notice: '🚀 Storniert!'
+      else
+        redirect_to user_path(current_user), notice: 'Fehler 3249'
+      end
     else
-      redirect_to user_path(current_user), notice: 'Fehler 3249'
+      handle_unauthorized
     end
   end
 
@@ -42,5 +46,13 @@ class Api::V1::ReservationsController < ApplicationController
   def authorized?
     # MUSS NOCH VERFEINERT WERDEN
     current_user.present?
+  end
+
+  def handle_unauthorized
+    unless authorized?
+      respond_to do |format|
+        format.json { render :unauthorized, status: 401 }
+      end
+    end
   end
 end

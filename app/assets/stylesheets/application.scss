@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+@import "cookie";
+
 $timing: 200ms;
 $timing-function: cubic-bezier(.4,0,.2,1);
 
@@ -251,9 +254,9 @@ a {
 
 .kind-image {
   width: 100px;
-  position: relative;
+  position: absolute;
   height: auto;
-  right: 2rem;
+  right: 1rem;
   img {
     width: 100%;
   }
