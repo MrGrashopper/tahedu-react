@@ -16,7 +16,7 @@ import Search from 'react-search'
 import moment from "moment-timezone";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-
+import Badge from 'react-bootstrap/Badge'
 
 const notify = (message) => toast(message);
 
@@ -28,7 +28,8 @@ class DeskItems extends Component {
             resDate: new Date(moment.tz("Europe/Berlin")),
             filter: [],
             repos: [],
-            floor: []
+            floor: [],
+            slots: []
         };
         this.handleFilter = this.handleFilter.bind(this)
         this.userDateRef = React.createRef();
@@ -156,7 +157,8 @@ class DeskItems extends Component {
             .post('/api/v1/reservations', {
                 reservation: {
                     date: this.state.resDate,
-                    desk_id: id
+                    desk_id: id,
+                    slots: this.state.slots
                 }
             })
              .then(response => {
@@ -209,6 +211,20 @@ class DeskItems extends Component {
                 this.kinds()
                 this.floors()
             })
+    }
+
+    TimeSlots(slot, id) {
+        let slots = this.state.slots
+        let slotId = document.getElementById(id)
+        if (slotId.className.search("active-bg") > 1) {
+            slotId.classList.remove('active-bg')
+            let arr = slots.filter(e => e !== slot)
+            this.setState({slots: arr})
+        } else {
+            slotId.className += " active-bg"
+            slots.push(slot)
+            this.setState({slots: slots})
+        }
     }
 
 
@@ -266,7 +282,7 @@ class DeskItems extends Component {
 
                 <div className="row margin-top">
                     {this.state.desks.map(desk => (
-                        <div className="col-xl-4 col-md-6 col-sm-12" key={desk.id} id={desk.id}>
+                        <div className="col-xl-6 col-md-6 col-sm-12" key={desk.id} id={desk.id}>
                             <div className="card">
                                 <div className="card-body">
                                     <div className="row">
@@ -283,7 +299,19 @@ class DeskItems extends Component {
                                         </div>
                                     </div>
                                     <h6>Info: {desk.notes? desk.notes : `Keine Angabe`}</h6>
-                                    <h6 className="margin-bottom">Ausstattung: {desk.equipment? desk.equipment : `Keine Angabe`}</h6>
+                                    <h6>Ausstattung: {desk.equipment? desk.equipment : `Keine Angabe`}</h6>
+                                    <div className="time-slot margin-bottom">
+                                        <h6>Uhrzeit auswählen:</h6>
+                                            {desk.slot.map( (slot, index) => (
+                                                <Button variant="light" key={slot} id={desk.external_id + "-" + index}>
+                                                <Badge
+                                                    pill
+                                                    onClick={() => this.TimeSlots(slot, desk.external_id + "-" + index)}
+                                                    >{slot}
+                                                </Badge>
+                                                </Button>
+                                            ))}
+                                    </div>
                                     <h6 className="float-right">
                                         <a href="#" className="btn btn-primary" onClick={() => this.createReservation(desk.id)}>Buchen</a>
                                     </h6>

@@ -10,6 +10,7 @@
             <th scope="col">Typ</th>
             <th scope="col">Info</th>
             <th scope="col">Reserviert am</th>
+            <th scope="col">Uhrzeit</th>
           </tr>
           </thead>
           <tbody>
@@ -20,6 +21,15 @@
               <td><h6><%= desk.kind %></h6></td>
               <td><h6><%= desk.notes %></h6></td>
               <td><h6><%= res.date %></h6></td>
+              <td>
+                <%if res.reservated_slots.length > 2 %>
+                  <h6>
+                    <% JSON.parse(res.reservated_slots).each do |slot| %>
+                      <span><%=slot%>, </span>
+                    <% end %>
+                  </h6>
+                <% end %>
+              </td>
             </tr>
           <% end %>
           </tbody>

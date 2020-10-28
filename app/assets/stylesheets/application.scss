@@ -47,6 +47,20 @@ button {
 input {
   padding-left: 0.5rem;
 }
+.time-slot {
+  .btn {
+    padding: 0 !important;
+    margin: 2px !important;
+    min-width: 55px !important;
+    &:focus {
+      box-shadow: none !important;
+    }
+  }
+}
+.active-bg {
+  color: white !important;
+  background-color: $purple !important;
+}
 
 .purple-text {
   color: $purple !important;
@@ -67,6 +81,9 @@ input {
   span {
     font-size: 1.25rem;
   }
+}
+.card-body {
+  min-height: 370px !important;
 }
 body {
   background-color: $light-pink !important;
