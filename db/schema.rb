@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_17_163837) do
+ActiveRecord::Schema.define(version: 2020_10_28_125605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,12 +76,12 @@ ActiveRecord::Schema.define(version: 2020_10_17_163837) do
     t.bigint "desk_id", null: false
     t.bigint "user_id", null: false
     t.string "date", default: "2020"
-    t.string "starts_at", default: "09:00"
-    t.string "ends_at", default: "18:00"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "team_id"
+    t.text "time_slots", default: ""
+    t.text "reservated_slots"
     t.index ["desk_id"], name: "index_reservations_on_desk_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end

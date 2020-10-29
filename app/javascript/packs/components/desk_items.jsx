@@ -16,7 +16,8 @@ import Search from 'react-search'
 import moment from "moment-timezone";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-
+import Badge from 'react-bootstrap/Badge'
+import Accordion from 'react-bootstrap/Accordion'
 
 const notify = (message) => toast(message);
 
@@ -28,7 +29,8 @@ class DeskItems extends Component {
             resDate: new Date(moment.tz("Europe/Berlin")),
             filter: [],
             repos: [],
-            floor: []
+            floor: [],
+            slots: []
         };
         this.handleFilter = this.handleFilter.bind(this)
         this.userDateRef = React.createRef();
@@ -156,14 +158,15 @@ class DeskItems extends Component {
             .post('/api/v1/reservations', {
                 reservation: {
                     date: this.state.resDate,
-                    desk_id: id
+                    desk_id: id,
+                    slots: this.state.slots
                 }
             })
              .then(response => {
-                 this.setState({desks: this.state.desks}),
+                 this.setState({desks: response.data}),
                  notify(' 🎉 Reserviert!')
-                 let desk = document.getElementById(id)
-                 desk.style.display = "none";
+                 //let desk = document.getElementById(id)
+                 //desk.style.display = "none";
              })
             .catch((error)=>console.error(error));
         event.preventDefault();
@@ -209,6 +212,20 @@ class DeskItems extends Component {
                 this.kinds()
                 this.floors()
             })
+    }
+
+    TimeSlots(slot, id) {
+        let slots = this.state.slots
+        let slotId = document.getElementById(id)
+        if (slotId.className.search("active-bg") > 1) {
+            slotId.classList.remove('active-bg')
+            let arr = slots.filter(e => e !== slot)
+            this.setState({slots: arr})
+        } else {
+            slotId.className += " active-bg"
+            slots.push(slot)
+            this.setState({slots: slots})
+        }
     }
 
 
@@ -283,7 +300,29 @@ class DeskItems extends Component {
                                         </div>
                                     </div>
                                     <h6>Info: {desk.notes? desk.notes : `Keine Angabe`}</h6>
-                                    <h6 className="margin-bottom">Ausstattung: {desk.equipment? desk.equipment : `Keine Angabe`}</h6>
+                                    <h6>Ausstattung: {desk.equipment? desk.equipment : `Keine Angabe`}</h6>
+
+                                    <Accordion className="time-slot margin-bottom" defaultActiveKey="0">
+                                        <div>
+                                            <Accordion.Toggle eventKey="1">
+                                                <h6 className="purple-text">Uhrzeit auswählen</h6>
+                                            </Accordion.Toggle>
+                                            <Accordion.Collapse eventKey="1">
+                                                <div>
+                                                    {desk.slot.map( (slot, index) => (
+                                                        <Button variant="light" key={slot} id={desk.external_id + "-" + index}>
+                                                            <Badge
+                                                                pill
+                                                                onClick={() => this.TimeSlots(slot, desk.external_id + "-" + index)}
+                                                            >{slot}
+                                                            </Badge>
+                                                        </Button>
+                                                    ))}
+                                                </div>
+                                            </Accordion.Collapse>
+                                        </div>
+                                    </Accordion>
+
                                     <h6 className="float-right">
                                         <a href="#" className="btn btn-primary" onClick={() => this.createReservation(desk.id)}>Buchen</a>
                                     </h6>

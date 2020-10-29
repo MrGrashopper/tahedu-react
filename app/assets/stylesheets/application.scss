@@ -47,6 +47,28 @@ button {
 input {
   padding-left: 0.5rem;
 }
+.time-slot {
+  .btn {
+    padding: 0 !important;
+    margin: 2px !important;
+    min-width: 65px !important;
+    &:focus {
+      box-shadow: none !important;
+    }
+    span {
+      font-size: 0.9rem !important;
+    }
+    @media (max-width: $medium) {
+      span {
+        font-size: 1rem !important;
+      }
+    }
+  }
+}
+.active-bg {
+  color: white !important;
+  background-color: $purple !important;
+}
 
 .purple-text {
   color: $purple !important;
@@ -68,6 +90,7 @@ input {
     font-size: 1.25rem;
   }
 }
+
 body {
   background-color: $light-pink !important;
 }
@@ -452,6 +475,8 @@ a {
 }
 
 .avatar-bg {
+  width: 10rem;
+  height: 10rem;
   border-radius: 50%;
   overflow: hidden;
   img {

@@ -63,8 +63,8 @@
               <p class="card-text">Platz-ID: <%= desk.external_id %></p>
               <p class="card-text">Etage: <%= desk.floor %></p>
               <p class="card-text">Sicherheitsabstand: <%= desk.enough_distance ? '👍' : '👎' %></p>
-              <p class="card-text">Info: <%= desk.notes ? desk.notes : 'Keine' %></p>
-              <p class="card-text">Ausstattung: <%= desk.notes ? desk.notes : 'Keine' %></p>
+              <p class="card-text">Info: <%= desk.notes ? desk.notes : 'Keine Angabe' %></p>
+              <p class="card-text">Ausstattung: <%= desk.equipment ? desk.equipment : 'Keine Angabe' %></p>
             </div>
           </div>
         </div>
