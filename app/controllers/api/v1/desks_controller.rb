@@ -48,6 +48,7 @@ class Api::V1::DesksController < ApplicationController
     if authorized?
       desks = Desk.where(team_id: current_user.team_id)
       desk = desks.find_by(external_id: params[:external_id])
+
       if desk.present?
         redirect_to deskcenter_path, alert: 'Platznummer schon vorhanden'
       else
@@ -55,7 +56,7 @@ class Api::V1::DesksController < ApplicationController
             external_id: params[:external_id],
             kind: params[:kind].to_i,
             team_id: current_user.team_id,
-            enough_distance: params[:external_id],
+            enough_distance: params[:enough_distance],
             notes: params[:notes])
 
         redirect_to deskcenter_path, notice: 'Platznummer erstellt'

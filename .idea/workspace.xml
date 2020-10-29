@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa0c5746-1a3c-4ab6-986a-bda4ec997604" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/views/pages/deskcenter.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/pages/deskcenter.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/v1/desks_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/v1/desks_controller.rb" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -78,7 +79,7 @@
         <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/desk_items.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="65">
-              <caret line="153" lean-forward="true" selection-start-line="153" selection-end-line="153" />
+              <caret line="153" selection-start-line="153" selection-end-line="153" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -86,11 +87,61 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/pages/deskcenter.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="310">
-              <caret line="58" column="31" lean-forward="true" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
+              <caret line="58" column="31" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/desks_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="472">
+              <caret line="58" column="54" lean-forward="true" selection-start-line="58" selection-start-column="54" selection-end-line="58" selection-end-column="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://c5990767-1199-4336-b0b6-dbe2d9e9d9e4/database/rails_react_example_development/schema/public/table/users">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state projectRestartId="8bd2d957-f5d9-4e53-a128-b46f74c5484f">
+              <filtering>
+                <filter text="" />
+              </filtering>
+              <column-attributes>
+                <column name="encrypted_password" position="8" />
+                <column name="reset_password_token" position="9" />
+                <column name="reset_password_sent_at" position="10" />
+                <column name="remember_created_at" position="11" />
+                <column name="updated_at" position="12" />
+                <column name="team_id" position="4" />
+                <column name="avatar_url" position="13" />
+                <column name="confirmation_token" position="14" />
+                <column name="confirmed_at" position="15" />
+                <column name="confirmation_sent_at" position="16" />
+                <column name="unconfirmed_email" position="17" />
+                <column name="sign_in_count" position="18" />
+                <column name="current_sign_in_at" position="19" />
+                <column name="last_sign_in_at" position="20" />
+                <column name="current_sign_in_ip" position="21" />
+                <column name="last_sign_in_ip" position="22" />
+                <column name="slug" position="5" />
+                <column name="user_name" position="3" />
+                <column name="external_id" position="6" />
+              </column-attributes>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="273">
+              <caret line="479" column="21" lean-forward="true" selection-start-line="479" selection-start-column="21" selection-end-line="479" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -121,8 +172,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>FilterItems</find>
-      <find>debugger</find>
       <find>alle typ</find>
       <find>consent_banner</find>
       <find>text</find>
@@ -151,6 +200,8 @@
       <find>media</find>
       <find>card-b</find>
       <find>collapse</find>
+      <find>avatar-bg</find>
+      <find>desk.create</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -202,17 +253,17 @@
         <option value="$PROJECT_DIR$/db/migrate/20201026134505_add_time_slot_to_reservations.rb" />
         <option value="$PROJECT_DIR$/app/views/api/v1/desks/_desk.json.jbuilder" />
         <option value="$PROJECT_DIR$/db/migrate/20201028125605_add_reservated_slots_to_reservations.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/api/v1/desks_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/api/v1/item_desks_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/api/v1/floor_desks_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/api/v1/filter_desks_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/users/show.html.erb" />
         <option value="$PROJECT_DIR$/app/views/pages/reservations.html.erb" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/application.scss" />
         <option value="$PROJECT_DIR$/app/javascript/packs/components/desk_items.jsx" />
         <option value="$PROJECT_DIR$/app/controllers/api/v1/reservations_controller.rb" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
         <option value="$PROJECT_DIR$/app/views/pages/deskcenter.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/application.scss" />
+        <option value="$PROJECT_DIR$/app/controllers/api/v1/desks_controller.rb" />
       </list>
     </option>
   </component>
@@ -558,12 +609,12 @@
       <workItem from="1599667566554" duration="320848000" />
       <workItem from="1602763530247" duration="37934000" />
       <workItem from="1603627963298" duration="3152000" />
-      <workItem from="1603636841837" duration="41916000" />
+      <workItem from="1603636841837" duration="42407000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="626247000" />
+    <option name="totallyTimeSpent" value="626738000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
@@ -575,7 +626,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32925898" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.2736" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.27312297" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.27312297" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -590,7 +641,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" id="Database" order="3" visible="true" weight="0.17948718" />
+      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.17948718" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49901184" visible="true" weight="0.16178267" />
@@ -824,36 +875,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://c5990767-1199-4336-b0b6-dbe2d9e9d9e4/database/rails_react_example_development/schema/public/table/users">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="f31219b4-c2f5-49b7-80ec-430abedce069">
-          <filtering>
-            <filter text="" />
-          </filtering>
-          <column-attributes>
-            <column name="encrypted_password" position="8" />
-            <column name="reset_password_token" position="9" />
-            <column name="reset_password_sent_at" position="10" />
-            <column name="remember_created_at" position="11" />
-            <column name="updated_at" position="12" />
-            <column name="team_id" position="4" />
-            <column name="avatar_url" position="13" />
-            <column name="confirmation_token" position="14" />
-            <column name="confirmed_at" position="15" />
-            <column name="confirmation_sent_at" position="16" />
-            <column name="unconfirmed_email" position="17" />
-            <column name="sign_in_count" position="18" />
-            <column name="current_sign_in_at" position="19" />
-            <column name="last_sign_in_at" position="20" />
-            <column name="current_sign_in_ip" position="21" />
-            <column name="last_sign_in_ip" position="22" />
-            <column name="slug" position="5" />
-            <column name="user_name" position="3" />
-            <column name="external_id" position="6" />
-          </column-attributes>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20201025121927_add_starts_ends_at_to_desks.rb" />
     <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/in_use_desks_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
@@ -958,13 +979,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/desks_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="9" selection-start-line="9" selection-end-line="30" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://c5990767-1199-4336-b0b6-dbe2d9e9d9e4/database/rails_react_example_development/schema/public/table/reservations">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state projectRestartId="8bd2d957-f5d9-4e53-a128-b46f74c5484f">
@@ -989,20 +1003,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="92" selection-start-line="92" selection-end-line="92" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/javascript/packs/components/desk_items.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="65">
-          <caret line="153" lean-forward="true" selection-start-line="153" selection-end-line="153" />
+          <caret line="153" selection-start-line="153" selection-end-line="153" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/deskcenter.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="58" column="31" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://c5990767-1199-4336-b0b6-dbe2d9e9d9e4/database/rails_react_example_development/schema/public/table/users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="8bd2d957-f5d9-4e53-a128-b46f74c5484f">
+          <filtering>
+            <filter text="" />
+          </filtering>
+          <column-attributes>
+            <column name="encrypted_password" position="8" />
+            <column name="reset_password_token" position="9" />
+            <column name="reset_password_sent_at" position="10" />
+            <column name="remember_created_at" position="11" />
+            <column name="updated_at" position="12" />
+            <column name="team_id" position="4" />
+            <column name="avatar_url" position="13" />
+            <column name="confirmation_token" position="14" />
+            <column name="confirmed_at" position="15" />
+            <column name="confirmation_sent_at" position="16" />
+            <column name="unconfirmed_email" position="17" />
+            <column name="sign_in_count" position="18" />
+            <column name="current_sign_in_at" position="19" />
+            <column name="last_sign_in_at" position="20" />
+            <column name="current_sign_in_ip" position="21" />
+            <column name="last_sign_in_ip" position="22" />
+            <column name="slug" position="5" />
+            <column name="user_name" position="3" />
+            <column name="external_id" position="6" />
+          </column-attributes>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="479" column="21" lean-forward="true" selection-start-line="479" selection-start-column="21" selection-end-line="479" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -1026,10 +1077,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/deskcenter.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/desks_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="58" column="31" lean-forward="true" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
+        <state relative-caret-position="472">
+          <caret line="58" column="54" lean-forward="true" selection-start-line="58" selection-start-column="54" selection-end-line="58" selection-end-column="54" />
         </state>
       </provider>
     </entry>
