@@ -51,9 +51,17 @@ input {
   .btn {
     padding: 0 !important;
     margin: 2px !important;
-    min-width: 55px !important;
+    min-width: 65px !important;
     &:focus {
       box-shadow: none !important;
+    }
+    span {
+      font-size: 0.9rem !important;
+    }
+    @media (max-width: $medium) {
+      span {
+        font-size: 1rem !important;
+      }
     }
   }
 }
@@ -82,9 +90,7 @@ input {
     font-size: 1.25rem;
   }
 }
-.card-body {
-  min-height: 370px !important;
-}
+
 body {
   background-color: $light-pink !important;
 }

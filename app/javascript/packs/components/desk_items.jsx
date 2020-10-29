@@ -17,6 +17,7 @@ import moment from "moment-timezone";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import Badge from 'react-bootstrap/Badge'
+import Accordion from 'react-bootstrap/Accordion'
 
 const notify = (message) => toast(message);
 
@@ -162,10 +163,10 @@ class DeskItems extends Component {
                 }
             })
              .then(response => {
-                 this.setState({desks: this.state.desks}),
+                 this.setState({desks: response.data}),
                  notify(' 🎉 Reserviert!')
-                 let desk = document.getElementById(id)
-                 desk.style.display = "none";
+                 //let desk = document.getElementById(id)
+                 //desk.style.display = "none";
              })
             .catch((error)=>console.error(error));
         event.preventDefault();
@@ -282,7 +283,7 @@ class DeskItems extends Component {
 
                 <div className="row margin-top">
                     {this.state.desks.map(desk => (
-                        <div className="col-xl-6 col-md-6 col-sm-12" key={desk.id} id={desk.id}>
+                        <div className="col-xl-4 col-md-6 col-sm-12" key={desk.id} id={desk.id}>
                             <div className="card">
                                 <div className="card-body">
                                     <div className="row">
@@ -300,18 +301,28 @@ class DeskItems extends Component {
                                     </div>
                                     <h6>Info: {desk.notes? desk.notes : `Keine Angabe`}</h6>
                                     <h6>Ausstattung: {desk.equipment? desk.equipment : `Keine Angabe`}</h6>
-                                    <div className="time-slot margin-bottom">
-                                        <h6>Uhrzeit auswählen:</h6>
-                                            {desk.slot.map( (slot, index) => (
-                                                <Button variant="light" key={slot} id={desk.external_id + "-" + index}>
-                                                <Badge
-                                                    pill
-                                                    onClick={() => this.TimeSlots(slot, desk.external_id + "-" + index)}
-                                                    >{slot}
-                                                </Badge>
-                                                </Button>
-                                            ))}
-                                    </div>
+
+                                    <Accordion className="time-slot margin-bottom" defaultActiveKey="0">
+                                        <div>
+                                            <Accordion.Toggle eventKey="1">
+                                                <h6 className="purple-text">Uhrzeit auswählen</h6>
+                                            </Accordion.Toggle>
+                                            <Accordion.Collapse eventKey="1">
+                                                <div>
+                                                    {desk.slot.map( (slot, index) => (
+                                                        <Button variant="light" key={slot} id={desk.external_id + "-" + index}>
+                                                            <Badge
+                                                                pill
+                                                                onClick={() => this.TimeSlots(slot, desk.external_id + "-" + index)}
+                                                            >{slot}
+                                                            </Badge>
+                                                        </Button>
+                                                    ))}
+                                                </div>
+                                            </Accordion.Collapse>
+                                        </div>
+                                    </Accordion>
+
                                     <h6 className="float-right">
                                         <a href="#" className="btn btn-primary" onClick={() => this.createReservation(desk.id)}>Buchen</a>
                                     </h6>

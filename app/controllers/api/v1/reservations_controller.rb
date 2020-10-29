@@ -10,27 +10,69 @@ class Api::V1::ReservationsController < ApplicationController
       date = params['reservation']['date'][0..9]
       desk = Desk.find_by(id: params['reservation']['desk_id'].to_i)
       slots =  params['reservation']['slots']
+      reservation = Reservation.find_by(user_id: current_user.id, desk_id: desk.id, date: date)
 
       if slots.length >= 1
         time_slots = SLOTS - slots
       else
         time_slots = SLOTS
       end
-      respond_to do |format|
+
       begin
+        if reservation.nil?
           @res = Reservation.create(
-              date: date, desk_id: desk.id,
+              date: date,
+              desk_id: desk.id,
               user_id: current_user.id,
               team_id: current_user.team_id,
               name: desk.external_id,
               time_slots: time_slots,
               reservated_slots: slots)
-          format.json { render json: @res, status: :created}
+        else
+          new_slots = []
+          old_slots = JSON.parse(reservation.reservated_slots)
+          new_slots << old_slots
+          new_slots << slots
+          arr = new_slots.reduce([], :concat).uniq
+
+          @res = reservation.update(
+              date: date,
+              desk_id: desk.id,
+              user_id: current_user.id,
+              team_id: current_user.team_id,
+              name: desk.external_id,
+              time_slots: time_slots,
+              reservated_slots: arr
+          )
         end
       rescue StandardError => e
         puts e
-        format.json { render json: @res, status: 404}
+        render json: @res, status: 404
       end
+
+      desks = Desk.where(team_id: current_user.team_id).order(id: :asc)
+      res_desks = desks.includes(:reservations)
+      desks_merged = []
+
+      res_desks.each do |desk|
+        desk_json = desk.as_json
+        if desk.reservations.where(date: date).first.present?
+          d = desk.reservations.where(date: date)
+          arr = []
+          d.each do |x|
+            arr << JSON.parse(x.reservated_slots)
+          end
+          new_arr = arr.reduce([], :concat).uniq
+          desk_json[:slot] = SLOTS - new_arr
+        else
+          desk_json[:slot] = SLOTS
+        end
+        desks_merged << desk_json
+      end
+      new_desks = desks_merged.uniq
+      @desks = []
+      new_desks.each{|desk| @desks << desk if desk[:slot].length > 2}
+      render json: @desks
 
     else
       handle_unauthorized
