@@ -6,7 +6,8 @@ class Desk < ApplicationRecord
       IT: 2,
       Design: 3,
       Meeting: 4,
-      Parkplatz: 5
+      Parkplatz: 5,
+      Labor: 6
   }
 
 end
