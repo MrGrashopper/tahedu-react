@@ -3,6 +3,8 @@ import Basic from "../../../assets/images/Basic.png";
 import IT from "../../../assets/images/IT.png";
 import Meeting from "../../../assets/images/Meeting.png";
 import Design from "../../../assets/images/Design.png";
+import Lab from "../../../assets/images/Lab.png";
+import Distance from "../../../assets/images/Distance.png";
 import ParkingSlot from "../../../assets/images/parking_slot.png";
 import axios from "axios";
 import setAxiosHeaders from "./AxiosHeaders";
@@ -188,6 +190,9 @@ class DeskItems extends Component {
         else if(kind == 'Parkplatz') {
             return ParkingSlot
         }
+        else if(kind == 'Labor') {
+            return Lab
+        }
         else {
             return Basic
         }
@@ -290,7 +295,9 @@ class DeskItems extends Component {
                                         <div className="col-sm-12">
                                             <div className="margin-bottom">
                                                 <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Platz-Eigenschaft</Tooltip>}><span className="h5">{desk.kind}</span></OverlayTrigger>
-                                                <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Sicherheitsabstand zum nächsten Sitzplatz</Tooltip>}><span className="icon"> {desk.enough_distance? `👍` : `👎`}</span></OverlayTrigger>
+                                                <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Sicherheitsabstand zum nächsten Sitzplatz</Tooltip>}><span >
+                                                    {desk.enough_distance? <img className="distance-image" src={Distance} /> : ``}</span>
+                                                </OverlayTrigger>
                                             </div>
                                             <h6>Platz-ID: {desk.external_id}</h6>
                                             <h6>Etage: {desk.floor}</h6>
