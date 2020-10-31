@@ -16,6 +16,7 @@ require('jquery')
 require('./components/TodoApp')
 require('./components/UsersApp')
 require('./components/DesksApp')
+require('./components/ChatApp')
 require('bootstrap')
 import 'bootstrap/dist/css/bootstrap'
 import "@fortawesome/fontawesome-free/js/all";

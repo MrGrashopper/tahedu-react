@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       resource :floor_desks
       resource :filter_desks
       resource :item_desks
+      resources :support_chats, only: [:index, :create, :update, :destroy]
     end
   end
 
