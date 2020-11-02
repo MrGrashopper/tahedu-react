@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many :skills, dependent: :destroy
   has_many :reservations, dependent: :destroy
   has_one_attached :avatar
+  has_many :support_chats
   validate :avatar_validation
   after_commit :add_default_avatar, on: [:create, :update]
   after_create :send_confirmation_email, :create_external_id
