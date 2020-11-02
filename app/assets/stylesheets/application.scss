@@ -658,32 +658,43 @@ a {
 }
 
 .chat {
-  width: 25rem;
+  width: 14rem;
   position: fixed;
   right: 1rem;
   bottom: 0;
+  .card {
+    //border: 1px solid $light-grey !important;
+    background-color: $dark-grey !important;
+  }
   .card-body {
-    padding: 1rem 1.25rem;
+    padding: 1rem;
   }
   h6 {
     margin-bottom: 0;
+    color: white;
     svg {
-      font-size: 1.5rem;
+      position: relative;
+      font-size: 1.5rem !important;
+      color: white;
+      padding: 1px;
       margin-right: 1rem;
+      bottom: 2px;
     }
   }
   .receiver-container {
-    padding-left: 5rem;
+    padding-left: 1rem;
     display: block;
     width: 100%;
   }
   .sender-container {
-    padding-right: 5rem;
-    display: block;
+    padding-right: 1rem;
+    display: inline-flex;
     width: 100%;
   }
   .receive-chat-message {
-    display: block;
+    display: inline-flex;
+    float: right;
+    clear: both;
     background: $purple;
     padding: 1rem;
     border-radius: 20px 20px 0 20px;
@@ -691,26 +702,50 @@ a {
   }
   .sender-chat-message {
     display: block;
+    float: left;
+    clear: both;
     background: $light-grey;
     padding: 1rem;
     border-radius: 20px 20px 20px 0;
     color: black;
+  }
+  .chat-container {
+    max-height: 350px;
+    overflow: scroll;
+    padding: 1rem 0;
   }
   select {
     margin-top: 1rem;
     border: none;
   }
   input {
+    width: 79% !important;
     border: none;
     border-bottom: 1px solid $purple !important;
+    margin-right: 5px;
+    background-color: $dark-grey;
+    color: white;
+    &:focus {
+      background-color: $dark-grey;
+      color: white;
+    }
     &:focus {
       box-shadow: none;
     }
   }
   button {
     border: none;
+    &:hover {
+      background-color: transparent !important;
+    }
     svg {
       font-size: 1.2rem;
+    }
+    .btn-primary {
+      padding: 0 !important;
+      &:hover {
+        background-color: transparent !important;
+      }
     }
   }
 }

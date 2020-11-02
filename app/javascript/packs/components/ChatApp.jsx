@@ -15,7 +15,8 @@ class ChatApp extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            chatMessages: []
+            chatMessages: [],
+            id: []
         };
     }
 
@@ -23,14 +24,27 @@ class ChatApp extends React.Component {
         setAxiosHeaders()
         axios
             .get('/api/v1/support_chats', {
-
             })
             .then(response => {
                 this.setState({
-                    chatMessages: response.data
+                    chatMessages: response.data,
+                    id: response.data[0]['user_id']
                 });
-                console.log(this.state.chatMessages)
             })
+    }
+
+    sendMessage() {
+        let room = document.getElementById("room_channel")
+        let text = room.value
+
+        setAxiosHeaders()
+        axios
+            .post('/api/v1/support_chats', {
+                message: text
+            })
+            .then(
+                room.value = ''
+            )
     }
 
     render() {
@@ -42,17 +56,25 @@ class ChatApp extends React.Component {
                             <Accordion.Toggle eventKey="0"><h6><BsChatDots></BsChatDots>Support | Feedback</h6></Accordion.Toggle>
                             <Accordion.Collapse eventKey="0">
                                 <InputGroup>
-                                    <div className="receiver-container">
-                                        <p className="receive-chat-message margin-top-sm"> Hallo! Schreibe uns ein Feedback oder stelle eine Frage</p>
-                                    </div>
-                                    {this.state.chatMessages.map( chat => (
-                                        <div className={chat.kind == "admin"? "receiver-container" : "sender-container"} key={chat.id}>
-                                            <p className={chat.kind == "admin"? "receive-chat-message margin-top-sm": "sender-chat-message margin-top-sm"}>{chat.message}</p>
+                                    <div className="chat-container margin-top-sm">
+                                        <div className="receiver-container">
+                                            <p className="receive-chat-message margin-top-sm"> Hallo! Schreibe uns ein Feedback oder stelle eine Frage</p>
                                         </div>
-                                    ))}
-                                    <FormControl placeholder="Text eingeben" aria-label="Text eingeben"/>
+                                        {this.state.chatMessages.map( chat => (
+                                            <div className={chat.kind == "admin"? "receiver-container" : "sender-container"} key={chat.id}>
+                                                <p className={chat.kind == "admin"? "receive-chat-message": "sender-chat-message"}>{chat.message}</p>
+                                            </div>
+                                        ))}
+                                        <div id="newMessages"></div>
+                                    </div>
+                                    <FormControl
+                                        id="room_channel"
+                                        data-room-id={this.state.id}
+                                        onKeyPress={event => {if (event.key === 'Enter') {this.sendMessage()}}}
+                                        placeholder="Text eingeben"
+                                        aria-label="Text eingeben"/>
                                     <InputGroup.Append>
-                                        <Button><IoMdSend></IoMdSend></Button>
+                                        <Button onClick={() => this.sendMessage()}><IoMdSend></IoMdSend></Button>
                                     </InputGroup.Append>
                                 </InputGroup>
                             </Accordion.Collapse>

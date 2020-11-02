@@ -13,9 +13,11 @@ class Api::V1::SupportChatsController < ApplicationController
 
   def create
     if authorized?
-      user = current_user
-      text = params[:text]
+      message = params[:message]
+      kind = current_user.admin? ? 0 : 1
 
+      SupportChat.create(user_id: current_user.id, message: message, kind: kind)
+      ActionCable.server.broadcast "room_channel_#{current_user.id}", message: message, kind: kind
     else
       handle_unauthorized
     end
