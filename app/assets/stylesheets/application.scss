@@ -418,6 +418,8 @@ a {
 }
 
 .btn-secondary {
+  background-color: $dark-grey !important;
+  border-color: $dark-grey !important;
   &:focus {
     box-shadow: none !important;
   }
@@ -719,7 +721,7 @@ a {
     border: none;
   }
   input {
-    width: 79% !important;
+    width: 75% !important;
     border: none;
     border-bottom: 1px solid $purple !important;
     margin-right: 5px;
