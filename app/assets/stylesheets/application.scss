@@ -658,12 +658,16 @@ a {
 
 
 }
-
 .chat {
   width: 14rem;
   position: fixed;
   right: 1rem;
   bottom: 0;
+}
+.admin-chat {
+  width: 100%;
+}
+.chat, .admin-chat {
   .card {
     //border: 1px solid $light-grey !important;
     background-color: $dark-grey !important;
@@ -713,6 +717,7 @@ a {
   }
   .chat-container {
     max-height: 350px;
+    width: 100%;
     overflow: scroll;
     padding: 1rem 0;
   }

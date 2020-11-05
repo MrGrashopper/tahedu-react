@@ -219,17 +219,30 @@ class DeskItems extends Component {
             })
     }
 
-    TimeSlots(slot, id) {
-        let slots = this.state.slots
+    TimeSlots(slot, id, external_id) {
         let slotId = document.getElementById(id)
         if (slotId.className.search("active-bg") > 1) {
             slotId.classList.remove('active-bg')
+            let slots = this.state.slots
             let arr = slots.filter(e => e !== slot)
             this.setState({slots: arr})
+            let button = document.getElementById("Action_" + external_id)
+            if (arr.length >= 1) {
+                button.style.display = "block";
+            } else {
+                button.style.display = "none";
+            }
         } else {
             slotId.className += " active-bg"
+            let slots = this.state.slots
             slots.push(slot)
             this.setState({slots: slots})
+            let button = document.getElementById("Action_" + external_id)
+            if (slots.length >= 1) {
+                button.style.display = "block";
+            } else {
+                button.style.display = "none";
+            }
         }
     }
 
@@ -320,7 +333,7 @@ class DeskItems extends Component {
                                                         <Button variant="light" key={slot} id={desk.external_id + "-" + index}>
                                                             <Badge
                                                                 pill
-                                                                onClick={() => this.TimeSlots(slot, desk.external_id + "-" + index)}
+                                                                onClick={() => this.TimeSlots(slot, desk.external_id + "-" + index, desk.external_id)}
                                                             >{slot}
                                                             </Badge>
                                                         </Button>
@@ -330,7 +343,7 @@ class DeskItems extends Component {
                                         </div>
                                     </Accordion>
 
-                                    <h6 className="float-right">
+                                    <h6 id={"Action_" + desk.external_id} className="float-right" style={{display: this.state.slots > 1 ? 'block' : 'none' }}>
                                         <a href="#" className="btn btn-primary" onClick={() => this.createReservation(desk.id)}>Buchen</a>
                                     </h6>
                                 </div>

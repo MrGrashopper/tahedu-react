@@ -1,21 +1,27 @@
 <% if user_signed_in? && !current_user.team_id.nil? %>
-<nav id="Sidebar" class="bg-dark sidebar">
-  <div class="sidebar-sticky">
-    <div id="Close-btn" class="close-btn">X</div>
-    <ul class="nav flex-column">
-        <li class="nav-item"><div class="nav-link"><%= link_to "Platz Buchen", root_path %></div></li>
-        <li class="nav-item"><div class="nav-link"><%= link_to "Deine Buchungen", user_path(current_user) %></div></li></li>
-        <% if @supervisor %>
-          <li class="nav-item"><div class="nav-link"><%= link_to "Sitzplätze verwalten", deskcenter_path %></div></li>
-          <li class="nav-item"><div class="nav-link"><%= link_to('Benutzer verwalten', users_path,class: "")%></div></li>
-        <% end %>
-        <div class="hide-element">
-          <li><%= link_to('Account', edit_user_path(current_user) , class: "hide-element nav-link")%></li>
-          <li><%= link_to('Logout', destroy_user_session_path, method: :delete, class: "hide-element nav-link") %></li>
-        </div>
-    </ul>
-  </div>
-</nav>
+  <% if current_user.admin? %>
+    <li><%= link_to('Account', edit_user_path(current_user) , class: "hide-element nav-link")%></li>
+    <li><%= link_to('Logout', destroy_user_session_path, method: :delete, class: "hide-element nav-link") %></li>
+  <% else %>
+    <nav id="Sidebar" class="bg-dark sidebar">
+      <div class="sidebar-sticky">
+        <div id="Close-btn" class="close-btn">X</div>
+        <ul class="nav flex-column">
+          <li class="nav-item"><div class="nav-link"><%= link_to "Platz Buchen", root_path %></div></li>
+          <li class="nav-item"><div class="nav-link"><%= link_to "Deine Buchungen", user_path(current_user) %></div></li></li>
+          <% if @supervisor %>
+            <li class="nav-item"><div class="nav-link"><%= link_to "Sitzplätze verwalten", deskcenter_path %></div></li>
+            <li class="nav-item"><div class="nav-link"><%= link_to('Benutzer verwalten', users_path,class: "")%></div></li>
+          <% end %>
+          <div class="hide-element">
+            <li><%= link_to('Account', edit_user_path(current_user) , class: "hide-element nav-link")%></li>
+            <li><%= link_to('Logout', destroy_user_session_path, method: :delete, class: "hide-element nav-link") %></li>
+          </div>
+        </ul>
+      </div>
+    </nav>
+  <% end %>
+
 <% else %>
 <div id="Hide-Sidebar">
   <nav id="Sidebar" class="bg-dark sidebar">

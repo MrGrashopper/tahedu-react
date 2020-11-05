@@ -17,6 +17,7 @@ require('./components/TodoApp')
 require('./components/UsersApp')
 require('./components/DesksApp')
 require('./components/ChatApp')
+require('./components/AdminChatApp')
 require('../channels')
 require('bootstrap')
 import 'bootstrap/dist/css/bootstrap'

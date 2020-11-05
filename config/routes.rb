@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :admins
   resources :desks, only: [:index, :show, :create, :update, :destroy, :search, :freedesks]
   get "/pages/deskcenter", as: 'deskcenter'
   get "/pages/reservations", as: 'reservations'
@@ -9,7 +10,9 @@ Rails.application.routes.draw do
   authenticated :user do
     root "desks#index", as: :authenticated_root
   end
+
   root "pages#home"
+
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
@@ -28,6 +31,7 @@ Rails.application.routes.draw do
       resource :floor_desks
       resource :filter_desks
       resource :item_desks
+      resources :admin_users, only: [:index, :create, :update, :destroy]
       resources :support_chats, only: [:index, :create, :update, :destroy]
     end
   end
@@ -36,6 +40,13 @@ Rails.application.routes.draw do
 
   resources :users do
     get :confirm_email, on: :member
+    get :index, on: :collection
+    get :show, on: :member
+    get :edit, on: :member
+    post :edit, on: :member
+  end
+
+  resources :admins do
     get :index, on: :collection
     get :show, on: :member
     get :edit, on: :member

@@ -1,11 +1,10 @@
 import consumer from "./consumer"
-import InputGroup from "react-bootstrap/InputGroup";
 import React from "react";
 
 document.addEventListener('turbolinks:load', () => {
   setTimeout(function(){
-    const element = document.getElementById("room_channel")
-    const room_id = element.getAttribute('data-room-id')
+    const room_channel = document.getElementById("room_channel")
+    const room_id = room_channel.getAttribute('data-room-id')
     console.log(room_id)
     consumer.subscriptions.create({channel: "RoomChannel", room_id: room_id },{
       connected() {
