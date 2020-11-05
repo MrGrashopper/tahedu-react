@@ -5,6 +5,7 @@ class AdminsController < ApplicationController
   # GET /admins.json
   def index
     @admins = User.all
+    @last_support_messages = SupportChat.all.where(kind: 1).order(created_at: :desc).limit(10)
   end
 
   # GET /admins/1

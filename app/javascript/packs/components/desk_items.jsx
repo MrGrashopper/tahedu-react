@@ -322,13 +322,13 @@ class DeskItems extends Component {
                                     <h6>Info: {desk.notes? desk.notes : `Keine Angabe`}</h6>
                                     <h6>Ausstattung: {desk.equipment? desk.equipment : `Keine Angabe`}</h6>
 
-                                    <Accordion className="time-slot margin-bottom" defaultActiveKey="0">
+                                    <Accordion className="time-slot" defaultActiveKey="0">
                                         <div>
                                             <Accordion.Toggle eventKey="1">
-                                                <h6 className="purple-text">Uhrzeit auswählen</h6>
+                                                <h6 className="purple-text">Zeit auswählen</h6>
                                             </Accordion.Toggle>
                                             <Accordion.Collapse eventKey="1">
-                                                <div>
+                                                <div className="margin-bottom">
                                                     {desk.slot.map( (slot, index) => (
                                                         <Button variant="light" key={slot} id={desk.external_id + "-" + index}>
                                                             <Badge
