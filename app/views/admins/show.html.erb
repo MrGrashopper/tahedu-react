@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-12 margin-bottom"><h5><%= @admin.email%></h5></div>
+  <div class="col-6">
+    <div class="admin-chat">
+      <div id="admin-chat-app" data-user-id=<%= @admin.id %> ></div>
+    </div>
+  </div>
+</div>
+
+<%= link_to 'Back', admins_path %>
