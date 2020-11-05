@@ -1,34 +1,36 @@
 
-<div class="container-fluid row">
-  <div class="col-xl-12 col-md-12 col-sm-12">
-    <div class="card table-responsive-sm">
-      <div class="card-body">
+<div class=" row">
+  <div class="col-xl-3 col-md-3 col-sm-3 admin">
+    <h5 class="margin-bottom">Benutzer</h5>
+    <table>
+      <thead>
+      <tr>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
 
-        <h1>Benutzer</h1>
+      <tbody>
+      <% @admins.each do |admin| %>
+        <tr>
+          <td><%= link_to "#{admin.email}", admin_path(admin.id) %></td>
+          <!-- <td><%#= link_to 'Edit', edit_admin_path(admin) %></td>-->
+          <!-- <td><%#= link_to 'Destroy', admin, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
 
-        <table>
-          <thead>
-          <tr>
-            <th colspan="3"></th>
-          </tr>
-          </thead>
-
-          <tbody>
-          <% @admins.each do |admin| %>
-            <tr>
-              <td><%= link_to "#{admin.email}", admin_path(admin.id) %></td>
-              <td><%= link_to 'Edit', edit_admin_path(admin) %></td>
-              <td><%= link_to 'Destroy', admin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
-          <% end %>
-          </tbody>
-        </table>
-
-        <br>
-
-        <%= link_to 'New Admin', new_admin_path %>
-
+  <div class="col-xl-9 col-md-9 col-sm-9 admin">
+    <h5 class="margin-bottom">Letzten Nachrichten</h5>
+    <% @last_support_messages.each do |sm|%>
+      <div class="card table-responsive-sm">
+        <div class="card-body">
+          <% user = User.find_by(id: sm.user_id) %>
+          <td><%= link_to "#{user.email}", admin_path(user.id), class: "purple-text" %></td>
+          <p><%= sm.message %></p>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>

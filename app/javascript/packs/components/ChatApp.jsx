@@ -33,6 +33,7 @@ class ChatApp extends React.Component {
             })
     }
 
+
     sendMessage() {
         let room = document.getElementById("room_channel")
         let text = room.value
@@ -47,13 +48,24 @@ class ChatApp extends React.Component {
             )
     }
 
+    toggleWidth() {
+        let chatWindow = document.getElementById("Chat")
+        if (chatWindow.style.width < "25rem") {
+            chatWindow.style.width = "25rem"
+        } else if(chatWindow.style.width == "9rem") {
+            chatWindow.style.width = "25rem"
+        } else {
+            chatWindow.style.width = "9rem"
+        }
+    }
+
     render() {
         return(
             <div className="card">
                 <div className="card-body">
                     <Accordion defaultActiveKey="1">
                         <div>
-                            <Accordion.Toggle eventKey="0"><h6><BsChatDots></BsChatDots>Support | Feedback</h6></Accordion.Toggle>
+                            <Accordion.Toggle eventKey="0" onClick={() => this.toggleWidth()}><h6><BsChatDots></BsChatDots>Support</h6></Accordion.Toggle>
                             <Accordion.Collapse eventKey="0">
                                 <InputGroup>
                                     <div className="chat-container margin-top-sm">
