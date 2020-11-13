@@ -329,7 +329,7 @@ class DeskItems extends Component {
                                     <Accordion className="time-slot" defaultActiveKey="0">
                                         <div className="margin-top">
                                             <Accordion.Toggle eventKey="1">
-                                                <h6 className="btn btn-primary"><a>Zeiten</a></h6>
+                                                <h6 className="btn btn-primary"><a>Zeit auswählen</a></h6>
                                             </Accordion.Toggle>
                                             <Accordion.Collapse eventKey="1">
                                                 <div className="margin-top-sm margin-bottom">

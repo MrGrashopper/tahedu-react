@@ -50,6 +50,11 @@
         font-size: 1rem;
         color: $text;
         padding: 0.7rem;
+        &:hover {
+          background: $light-grey;
+          border-radius: 20px;
+          color: $text !important;
+        }
       }
     }
   }
@@ -70,12 +75,12 @@
 .li-bg {
   a {
     //box-shadow: $shadow-inset;
-    background: $dark-grey;
+    background: $light-grey;
     border-radius: 20px;
-    color: white !important;
+    color: $text !important;
     &:hover {
       text-decoration: none !important;
-      background: $dark-grey;
+      background: $light-grey;
     }
   }
 }
