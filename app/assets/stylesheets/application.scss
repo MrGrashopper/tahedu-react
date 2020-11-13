@@ -26,13 +26,26 @@ $large: 1200px;
 $pink: #fbefef;
 $light-pink: rgba(251, 239, 239, 0.03);
 $light-grey: #eff2f5;
-$dark-grey: #343a40;
+//$dark-grey: #23272b;
+$dark-grey: #222d3a;
 $dark-pink: #eadfdf;
-$green: #79AF9C;
-$dark-green: #84bfaa;
-$purple: #6c63ff;
-$purple-light: #6c63ffe8;
-$shadow: 0 1px 5px 0 rgba(0,0,0,.1), 0 2px 5px 0 rgba(0,0,0,.05);
+$main: #f9f9f9;
+$purple: #222;
+$background: #fff;
+$main-card: $background;
+$card: $background;
+$text: #222;
+$shadow: 6px 6px 16px 0 rgba(217, 210, 200, .51), -6px -6px 26px 0 rgba(255, 255, 255, .83);
+$shadow-inset: inset 6px 6px 16px 0 rgba(217, 210, 200, .51), inset -6px -6px 26px 0 rgba(255, 255, 255, .83);
+
+body {
+  background-color: $background !important;
+
+}
+
+p, h1, h2, h4, h5, h6 {
+  color: $text;
+}
 
 #delete-button {
   margin-left: 5px;
@@ -49,6 +62,8 @@ button {
 
 input {
   padding-left: 0.5rem;
+  border-color: transparent;
+  border-bottom: 1px solid $purple;
 }
 .time-slot {
   .btn {
@@ -71,8 +86,18 @@ input {
 .active-bg {
   color: white !important;
   background-color: $purple !important;
-}
+  border-color: $purple !important;
+  .badge-pill {
+    color: white !important;
+  }
 
+}
+.white-text {
+  color: white !important;
+}
+.black-text {
+  color: black !important;
+}
 .purple-text {
   color: $purple !important;
 }
@@ -94,9 +119,6 @@ input {
   }
 }
 
-body {
-  background-color: $light-pink !important;
-}
 
 a {
   &:hover {
@@ -107,10 +129,21 @@ a {
 
 .progress {
   width: 100%;
+  background-color: $main !important;
+  box-shadow: $shadow-inset
 }
 .progress-bar {
   background-color: $purple !important;
+  color: white !important;
 }
+
+#mobile-nav {
+  display: none;
+  @media (max-width: $large) {
+    display: block;
+  }
+}
+
 .navbar-toggler {
   position: absolute !important;
   z-index: 2000 !important;
@@ -156,25 +189,26 @@ a {
   color: black;
   position: fixed;
   z-index: 100;
-  bottom: 0;
-  top: 0;
-  background: $dark-grey;
+  bottom: 3rem;
+  top: 3rem;
+  padding-left: 1rem;
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   transition: right $timing;
   transition-timing-function: $timing-function;
   transform: translateX(0px);
+  border-radius: 20px;
+
   ul {
     list-style: none;
+    padding: 0;
     li {
-      padding: 1rem 0;
+      padding: 1rem;
       a {
         font-size: 1rem;
-        color: white;
-        &:hover {
-          color: $purple;
-        }
+        color: $text;
+        padding: 0.7rem;
       }
     }
   }
@@ -188,17 +222,37 @@ a {
   top: -2px;
   font-size: 1.25rem;
 }
+.note-icons {
+  svg {
+    font-size: 1.5rem;
+    margin-right: 5px;
+  }
+}
 
 #logo-brand {
   a {
     font-size: 1.5rem !important;
-    color: white !important;
-    padding: 2.5rem !important;
+    color: $purple !important;
+    padding: 1.5rem !important;
   }
 }
 
 .navbar-toggler {
   margin-top: 10px;
+  line-height: 1.5 !important;
+  border-color: transparent !important;
+  svg {
+    font-size: 1.9rem;
+  }
+}
+
+.li-bg {
+  a {
+    //box-shadow: $shadow-inset;
+    background: $dark-grey;
+    border-radius: 20px;
+    color: white !important;
+  }
 }
 
 #myNavbar {
@@ -279,13 +333,16 @@ a {
 }
 
 .kind-image {
-  width: 100px;
   position: absolute;
-  height: auto;
   right: 1rem;
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
   overflow: hidden;
+  box-shadow: $shadow-inset;
   img {
-    width: 100%;
+    width: 130%;
+    margin: 0 -15px;
   }
 }
 
@@ -335,12 +392,24 @@ a {
       font-size: 0.7rem !important;
     }
 }
+
 .card {
   margin-bottom: 30px;
   border-radius: 20px !important;
   border: none !important;
-  background: #fafafa;
-  box-shadow:  20px 20px 60px #ececec, -20px -20px 60px #ffffff;
+  background-color: $card !important;
+  box-shadow: $shadow;
+
+  span {
+    font-family: 'Kulim Park', sans-serif;
+    color: $text;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .badge-pill {
+    color: $purple;
+  }
   @media (max-width: $medium) {
     h5 {
       font-size: 1.5rem;
@@ -349,6 +418,12 @@ a {
       font-size: 1.2rem !important;
     }
   }
+}
+.main-card {
+  border-radius: 20px;
+  padding: 1.5rem;
+  background-color: $main-card;
+  overflow: hidden;
 }
 
 .input-width {
@@ -362,25 +437,57 @@ a {
 .btn {
   border-radius: 20px!important;
 }
+.iRISHI {
+  background-color: transparent;
+  border-radius: 20px;
+}
 
 #Filter-kinds, #Filter-floor {
   padding: 0 27px 0 10px;
   .form-control {
     border: none !important;
+    box-shadow: none;
+    background-color: $background;
+    border-radius: 20px !important;
+    &:hover {
+      background-color: #ebebeb;
+      border-radius: 20px;
+    }
   }
   @media (max-width: $small) {
     padding: 27px 27px 0 10px;
   }
 }
-
-#Search-items, #Search-user, #Search-user-supervisor {
+#Search-items {
+  box-shadow: none;
+  position: relative;
+  height: 39px !important;
+  border-radius: 20px !important;
+  background: white;
+  max-width: 195px;
+  span {
+    font-size: 1rem !important;
+    color: #495057 !important;
+    line-height: 1.5;
+  }
+  .LBGII {
+    border-bottom: 1px solid $purple !important;
+    padding: 10px 0;
+  }
+}
+#Search-user, #Search-user-supervisor {
   #search-input {
     font-size: 1rem !important;
     border-bottom: 1px solid $purple !important;
     padding: 10px 0;
+
   }
   .cqaNcS {
     padding: 4px !important;
+    background-color: $background;
+  }
+  .sc-bxivhb {
+    box-shadow: none;
   }
   input {
     font-size: 1rem;
@@ -401,9 +508,14 @@ a {
 }
 
 .btn-primary {
-  border-color: $purple !important;
+  border-color: transparent !important;
   color: $purple !important;
-  background-color: transparent !important;
+  background-color: inherit !important;
+  position: relative;
+  outline: none;
+  border: 1px solid $purple !important;
+  box-shadow: $shadow;
+  cursor: pointer;
   &:visited {
     color: $purple !important;
   }
@@ -467,15 +579,16 @@ a {
 }
 
 .react-datepicker__input-container {
-  input, input {
+  input {
     width: 120px;
-    border: 1px solid lightgrey;
-    background: $light-grey;
+    border: 1px solid $background;
     border-radius: 20px;
+    color: black;
     padding: 6px 15px;
     position: relative;
     top: 2px;
-    box-shadow: none;
+    box-shadow: $shadow-inset !important;
+    background-color: $background !important;
     &:focus {
       outline: none;
     }
@@ -520,7 +633,6 @@ a {
 .Toastify__progress-bar--default {
   background: $purple !important;
 }
-
 
   ////////// Toast
 
@@ -669,31 +781,35 @@ a {
     }
   }
 }
-
+.set-avatar {
+  input {
+    border-bottom: none !important;
+  }
+}
 #Chat {
   width: 9rem;
   position: fixed;
-  right: 1rem;
+  right: 2rem;
   bottom: 0;
 }
 .admin-chat {
   width: 100%;
 }
 .chat, .admin-chat {
+
   .card {
     //border: 1px solid $light-grey !important;
-    background-color: $dark-grey !important;
+    background-color: $card !important;
+    //border: 1px solid $background !important;
   }
   .card-body {
     padding: 1rem;
   }
   h6 {
     margin-bottom: 0;
-    color: white;
     svg {
       position: relative;
       font-size: 1.5rem !important;
-      color: white;
       padding: 1px;
       margin-right: 1rem;
       bottom: 2px;
@@ -742,11 +858,11 @@ a {
     border: none;
     border-bottom: 1px solid $purple !important;
     margin-right: 5px;
-    background-color: $dark-grey;
-    color: white;
+    background-color: transparent;
+    color: $text;
     &:focus {
-      background-color: $dark-grey;
-      color: white;
+      background-color: transparent;
+      color: $text;
     }
     &:focus {
       box-shadow: none;

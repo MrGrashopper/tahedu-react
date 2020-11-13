@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
   resources :admins
   resources :desks, only: [:index, :show, :create, :update, :destroy, :search, :freedesks]
-  get "/pages/deskcenter", as: 'deskcenter'
-  get "/pages/reservations", as: 'reservations'
+  get "deskcenter",  to: 'pages#deskcenter', as: 'deskcenter'
+  get "dashboard", to: 'pages#dashboard', as: 'dashboard'
+  get "reservations", to: 'pages#reservations', as: 'reservations'
 
 
   devise_for :users
   
   authenticated :user do
-    root "desks#index", as: :authenticated_root
+    root "pages#dashboard", as: :authenticated_root
   end
 
   root "pages#home"

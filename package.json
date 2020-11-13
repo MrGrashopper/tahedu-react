@@ -13,6 +13,8 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "bootstrap": "^4.5.2",
     "bootstrap-daterangepicker": "^3.1.0",
+    "chart.js": "^2.9.4",
+    "chartkick": "^3.2.1",
     "jquery": "^3.4.1",
     "js.cookie": "^0.0.4",
     "lodash": "^4.17.15",

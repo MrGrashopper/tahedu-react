@@ -20,6 +20,10 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import Badge from 'react-bootstrap/Badge'
 import Accordion from 'react-bootstrap/Accordion'
+import { FcAbout } from "react-icons/fc";
+import { FcDepartment } from "react-icons/fc";
+import { FcAddressBook } from "react-icons/fc";
+import { FcPackage } from "react-icons/fc";
 
 const notify = (message) => toast(message);
 
@@ -299,7 +303,7 @@ class DeskItems extends Component {
                     </div>
                 </div>
 
-                <div className="row margin-top">
+                <div className="row margin-top note-icons">
                     {this.state.desks.map(desk => (
                         <div className="col-xl-4 col-md-6 col-sm-12" key={desk.id} id={desk.id}>
                             <div className="card">
@@ -307,28 +311,28 @@ class DeskItems extends Component {
                                     <div className="row">
                                         <div className="col-sm-12">
                                             <div className="margin-bottom">
-                                                <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Platz-Eigenschaft</Tooltip>}><span className="h5">{desk.kind}</span></OverlayTrigger>
+                                                <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Platz-Eigenschaft</Tooltip>}><span className="h4">{desk.kind}</span></OverlayTrigger>
                                                 <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Sicherheitsabstand zum nächsten Sitzplatz</Tooltip>}><span >
                                                     {desk.enough_distance? <img className="distance-image" src={Distance} /> : ``}</span>
                                                 </OverlayTrigger>
                                             </div>
-                                            <h6>Platz-ID: {desk.external_id}</h6>
-                                            <h6>Etage: {desk.floor}</h6>
+                                            <h6><FcAddressBook/>{desk.external_id}</h6>
+                                            <h6><FcDepartment/> {desk.floor}</h6>
                                         </div>
                                         <div className="kind-image">
                                             <img  src={this.setImage(desk.kind)} alt="..." ></img>
                                         </div>
                                     </div>
-                                    <h6>Info: {desk.notes? desk.notes : `Keine Angabe`}</h6>
-                                    <h6>Ausstattung: {desk.equipment? desk.equipment : `Keine Angabe`}</h6>
+                                    <h6><FcAbout/>{desk.notes? desk.notes : `Keine Angabe`}</h6>
+                                    <h6><FcPackage/>{desk.equipment? desk.equipment : `Keine Angabe`}</h6>
 
                                     <Accordion className="time-slot" defaultActiveKey="0">
-                                        <div>
+                                        <div className="margin-top">
                                             <Accordion.Toggle eventKey="1">
-                                                <h6 className="purple-text">Zeit auswählen</h6>
+                                                <h6 className="btn btn-primary"><a>Zeiten</a></h6>
                                             </Accordion.Toggle>
                                             <Accordion.Collapse eventKey="1">
-                                                <div className="margin-bottom">
+                                                <div className="margin-top-sm margin-bottom">
                                                     {desk.slot.map( (slot, index) => (
                                                         <Button variant="light" key={slot} id={desk.external_id + "-" + index}>
                                                             <Badge

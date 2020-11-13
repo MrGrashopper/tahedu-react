@@ -6,6 +6,6 @@ module ApplicationHelper
   end
 
   def current_class?(test_path)
-    request.path == test_path ? 'purple-text' : ''
+    request.path == test_path ? 'li-bg' : ''
   end
 end

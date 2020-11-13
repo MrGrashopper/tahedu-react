@@ -9,6 +9,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application' %>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kulim+Park:wght@200;400;600&family=Open+Sans&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
   <body>
@@ -17,16 +18,14 @@
     <% @supervisor = Supervisor&.find_by(user_id: current_user.id, team_id: current_user.team_id) %>
     <%= render "shared/navigation" %>
     <%= render "shared/sidebar" %>
-    <div id="main" class="container-fluid">
-      <div class="container-fluid">
-        <%= yield %>
-        <%= render 'shared/chat'%>
-      </div>
+    <div id="main" class="container-fluid margin-top">
+      <%= yield %>
+      <%= render 'shared/chat'%>
     </div>
 
   <% elsif user_signed_in? && current_user.admin?%>
     <%= render "shared/navigation" %>
-    <div id="main" class="container-fluid">
+    <div id="main" class="container-fluid margin-top">
       <div class="container-fluid">
         <%= yield %>
       </div>
