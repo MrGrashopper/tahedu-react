@@ -1,0 +1,158 @@
+@import "variables";
+
+.progress {
+  width: 100%;
+  background-color: $main !important;
+  box-shadow: $shadow-inset
+}
+.progress-bar {
+  background-color: $purple !important;
+  color: white !important;
+}
+
+.progress, .btn-info {
+  height: 2.35rem !important;
+  border-radius: 20px !important;
+}
+
+.Toastify__toast-container--top-right {
+  top: 4.5em !important;
+}
+
+// Toast
+
+.Toastify__toast-body {
+  margin: auto 15px !important;
+}
+.Toastify__progress-bar--default {
+  background: $purple !important;
+}
+
+.toast-title {
+  font-weight: bold;
+}
+.toast-message {
+  font-size: 1.1rem;
+  display: block;
+  position: fixed;
+  z-index: 9999;
+  color: rgba(0, 0, 0, 0.5) !important;
+  word-wrap: break-word;
+  span {
+    // color: white !important;
+
+  }
+}
+
+.toast-message a,
+.toast-message label{
+  color: white !important;
+}
+.toast-message a:hover {
+  color: white !important;
+  text-decoration: none;
+}
+
+.toast-top-left {
+  top: 120px;
+  left: 1000px;
+}
+
+.toast-bottom-right {
+  right: 12px;
+  bottom: 12px;
+}
+
+.toast-bottom-left {
+  left: 12px;
+  bottom: 12px;
+}
+
+#toast-container  {
+  position: fixed;
+  z-index: 9999;
+}
+
+#toast-container > div {
+  opacity: 1;
+  position: fixed;
+  z-index: 9999;
+  top: 60px;
+  height: 64px !important;
+  margin: 0 0 6px;
+  padding: 20px 15px 15px 30px;
+  width: 250px;
+  right: 20px;
+  background-color: white;
+  background-position: 15px center;
+  background-repeat: no-repeat;
+  box-shadow: $shadow !important;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border: none;
+  border-radius: 3px;
+  -moz-box-shadow: 0 0 12px #999999;
+  -webkit-box-shadow: 0 0 12px #999999;
+  -o-box-shadow: 0 0 12px $pink;
+  color: #FFFFFF !important;
+}
+
+.toast {
+  background-color: #030303;
+}
+
+.toast-success{
+  background-color: #81BE9D;
+}
+
+.toast-error{
+  background-color: #FC6E6D;
+}
+
+.toast-info{
+  background-color: #4407F1;
+}
+
+.toast-warning{
+  background-color: #FDB12A;
+}
+.toast-top-right {
+  top: 12px;
+  right: 12px;
+}
+
+#toast-container > :hover {
+  -moz-box-shadow: 0 0 12px #000000;
+  -webkit-box-shadow: 0 0 12px #000000;
+  -o-box-shadow: 0 0 12px #000000;
+  box-shadow: 0 0 12px #000000;
+  filter: alpha(opacity=100);
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  opacity: 1;
+  cursor: pointer;
+}
+
+#toast-container > .toast-info {
+  color: white !important;
+  background-size: 10%;
+
+}
+
+#toast-container > .toast-error {
+  color: white !important;
+  background-size: 10%;
+
+}
+
+#toast-container > .toast-success {
+  color: white !important;
+  background-size: 10%;
+
+}
+
+#toast-container > .toast-warning {
+  color: white !important;
+  background-size: 10%;
+
+
+}

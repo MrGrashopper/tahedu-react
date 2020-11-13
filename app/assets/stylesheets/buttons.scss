@@ -1,0 +1,174 @@
+@import "variables";
+
+#delete-button {
+  margin-left: 5px;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  &:focus {
+    outline: none !important;
+  }
+}
+
+.input-width {
+  width: 60%;
+}
+
+.space {
+  margin: 0 0.5rem;
+}
+
+.DateRangePickerChildren {
+  input {
+    font-size: 0.7rem !important;
+  }
+}
+
+.btn {
+  border-radius: 20px!important;
+}
+
+
+.iRISHI {
+  background-color: transparent;
+  border-radius: 20px;
+}
+
+#Filter-kinds, #Filter-floor {
+  padding: 0 27px 0 10px;
+  .form-control {
+    border: none !important;
+    box-shadow: none;
+    background-color: $background;
+    border-radius: 20px !important;
+    &:hover {
+      background-color: #ebebeb;
+      border-radius: 20px;
+    }
+  }
+  @media (max-width: $small) {
+    padding: 27px 27px 0 10px;
+  }
+}
+#Search-items {
+  box-shadow: none;
+  position: relative;
+  height: 39px !important;
+  border-radius: 20px !important;
+  background: white;
+  max-width: 195px;
+  span {
+    font-size: 1rem !important;
+    color: #495057 !important;
+    line-height: 1.5;
+  }
+  .LBGII {
+    border-bottom: 1px solid $purple !important;
+    padding: 10px 0;
+  }
+}
+#Search-user, #Search-user-supervisor {
+  #search-input {
+    font-size: 1rem !important;
+    border-bottom: 1px solid $purple !important;
+    padding: 10px 0;
+
+  }
+  .cqaNcS {
+    padding: 4px !important;
+    background-color: $background;
+  }
+  .sc-bxivhb {
+    box-shadow: none;
+  }
+  input {
+    font-size: 1rem;
+  }
+  li {
+    span {
+      top: 1px;
+      position: relative;
+      font-size: 1rem;
+      color: #495057;
+      line-height: 1.2;
+    }
+    svg {
+      top: 2px;
+      position: relative;
+    }
+  }
+}
+
+.btn-primary {
+  border-color: transparent !important;
+  color: $purple !important;
+  background-color: inherit !important;
+  position: relative;
+  outline: none;
+  border: 1px solid $purple !important;
+  box-shadow: $shadow;
+  cursor: pointer;
+  &:visited {
+    color: $purple !important;
+  }
+  &:hover {
+    color: white !important;
+    border-color: $purple !important;
+    background-color: $purple !important;
+  }
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+.btn-secondary {
+  background-color: $dark-grey !important;
+  border-color: $dark-grey !important;
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+.btn-alert {
+  border-color: red !important;
+  color: red !important;
+  background-color: transparent !important;
+  &:visited {
+    color: red !important;
+  }
+  &:hover {
+    color: white !important;
+    border-color: red !important;
+    background-color: red !important;
+  }
+}
+
+.btn-danger {
+  color: white !important;
+  &:visited {
+    color: white !important;
+  }
+}
+
+.react-datepicker__input-container {
+  input {
+    width: 120px;
+    border: 1px solid $background;
+    border-radius: 20px;
+    color: black;
+    padding: 6px 15px;
+    position: relative;
+    top: 2px;
+    box-shadow: $shadow-inset !important;
+    background-color: $background !important;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+.react-datepicker__tab-loop {
+  display: inline-block;
+}
