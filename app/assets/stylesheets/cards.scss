@@ -1,0 +1,71 @@
+@import "variables";
+
+.time-slot {
+  .btn {
+    padding: 0 !important;
+    margin: 2px !important;
+    min-width: 65px !important;
+    &:focus {
+      box-shadow: none !important;
+    }
+    span {
+      font-size: 0.9rem !important;
+    }
+    a {
+      padding: 0 10px;
+    }
+    @media (max-width: $medium) {
+      span {
+        font-size: 1rem !important;
+      }
+    }
+  }
+}
+.active-bg {
+  color: white !important;
+  background-color: $purple !important;
+  border-color: $purple !important;
+  .badge-pill {
+    color: white !important;
+  }
+}
+
+.delete {
+  svg {
+    color: red;
+    font-size: 22px;
+  }
+}
+
+.card {
+  margin-bottom: 30px;
+  border-radius: 20px !important;
+  border: none !important;
+  background-color: $card !important;
+  box-shadow: $shadow;
+
+  span {
+    font-family: 'Kulim Park', sans-serif;
+    color: $text;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .badge-pill {
+    color: $purple;
+  }
+  @media (max-width: $medium) {
+    h5 {
+      font-size: 1.5rem;
+    }
+    span, a {
+      font-size: 1.2rem !important;
+    }
+  }
+}
+.main-card {
+  border-radius: 20px;
+  padding: 1.5rem;
+  background-color: $main-card;
+  overflow: hidden;
+}

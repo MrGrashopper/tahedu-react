@@ -1,0 +1,128 @@
+@import "variables";
+
+#main {
+  position: absolute;
+  left: 250px;
+  width: 84vw;
+  @media (max-width: $large) {
+    left: 0;
+    width: 100vw;
+    margin-top: 2rem;
+  }
+}
+
+body {
+  background-color: $background !important;
+}
+
+a, p, h1, h2, h4, h5, h6 {
+  color: $text;
+}
+
+input {
+  padding-left: 0.5rem;
+  border-color: transparent;
+  border-bottom: 1px solid $purple;
+}
+
+.white-text {
+  color: white !important;
+}
+.black-text {
+  color: black !important;
+}
+.purple-text {
+  color: $purple !important;
+}
+.red-text {
+  color: red !important;
+}
+.green-text {
+  color: #0ba75d !important;
+}
+
+.bg-pink {
+  background: $pink;
+}
+
+.small-text {
+  font-size: 0.9rem !important;
+}
+.center {
+  text-align: center !important;
+}
+.card-title {
+  span {
+    font-size: 1.25rem;
+  }
+}
+
+a {
+  &:hover {
+    background-color: transparent;
+    text-decoration: none !important;
+  }
+}
+
+.container-custom {
+  width: 100%;
+  padding-right: 4rem;
+  padding-left: 4rem;
+  margin-right: auto;
+  margin-left: auto;
+  @media (max-width: $small) {
+    padding-right: 0rem;
+    padding-left: 0rem;
+    margin-right: 0rem;
+    margin-left: 1rem;
+  }
+}
+
+.right {
+  position: absolute;
+  right: 0px;
+  width: 300px;
+  padding: 10px;
+}
+
+.padding {
+  padding: 15px;
+}
+
+.margin-bottom {
+  margin-bottom: 30px;
+}
+
+.margin-top-zero {
+  margin-top: 0;
+}
+
+.margin-top-sm {
+  margin-top: 1rem;
+}
+
+.margin-xl {
+  margin-top: 150px;
+}
+
+.margin-mid {
+  margin-top: 5rem;
+}
+
+.admin {
+  max-height: 500px !important;
+  overflow: scroll;
+  padding: 2rem;
+  a {
+    color: black;
+    &:hover {
+      color: $purple;
+    }
+  }
+}
+
+.set-avatar {
+  input {
+    border-bottom: none !important;
+  }
+}

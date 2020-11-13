@@ -80,6 +80,7 @@ class ChatApp extends React.Component {
                                         <div id="newMessages"></div>
                                     </div>
                                     <FormControl
+                                        autocomplete="off"
                                         id="room_channel"
                                         data-room-id={this.state.id}
                                         onKeyPress={event => {if (event.key === 'Enter') {this.sendMessage()}}}

@@ -1,0 +1,83 @@
+@import "variables";
+
+#logo-brand {
+  a {
+    font-size: 1.5rem !important;
+    color: $purple !important;
+    padding: 1.5rem !important;
+  }
+}
+
+.icon {
+  position: relative;
+  top: -2px;
+  font-size: 1.25rem;
+}
+
+.note-icons {
+  svg {
+    font-size: 1.5rem;
+    margin-right: 5px;
+  }
+}
+
+.thumbnail {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  float: right;
+  clear: both;
+  overflow: hidden;
+  border-color: transparent;
+  background: $light-grey;
+  img {
+    width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+}
+
+.kind-image {
+  position: absolute;
+  right: 1rem;
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: $shadow-inset;
+  img {
+    width: 130%;
+    margin: 0 -15px;
+  }
+}
+
+.distance-image {
+  width: 100px;
+  top: -24px;
+  position: absolute;
+  height: auto;
+  overflow: hidden;
+  img {
+    width: 150%;
+  }
+}
+
+.avatar-bg {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.emoji {
+  font-size: 1.1rem;
+}

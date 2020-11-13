@@ -90,7 +90,7 @@ class UserReservations extends Component {
                             getItemsAsync={this.getUsersAsync.bind(this)}
                             onItemsChanged={this.FilterUsers.bind(this)} />
                 </div>
-                <div className="row col-sm-12 col-md-12 col-lg-12" id="User-Reservations">
+                <div className="row col-sm-12 col-md-12 col-lg-12 margin-top-sm" id="User-Reservations">
                     {this.state.userReservations.map(user => (
                         <div key={user.id}>
                             <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{user.user_name}</Tooltip>}>

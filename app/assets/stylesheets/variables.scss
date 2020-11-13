@@ -1,0 +1,21 @@
+$timing: 200ms;
+$timing-function: cubic-bezier(.4,0,.2,1);
+
+$small: 576px;
+$medium: 991px;
+$large: 1200px;
+
+$pink: #fbefef;
+$light-pink: rgba(251, 239, 239, 0.03);
+$light-grey: #ebebeb;
+//$dark-grey: #23272b;
+$dark-grey: #222d3a;
+$dark-pink: #eadfdf;
+$main: #f9f9f9;
+$purple: #222;
+$background: #fff;
+$main-card: $background;
+$card: $background;
+$text: #222;
+$shadow: 6px 6px 16px 0 rgba(217, 210, 200, .51), -6px -6px 26px 0 rgba(255, 255, 255, .83);
+$shadow-inset: inset 6px 6px 16px 0 rgba(217, 210, 200, .51), inset -6px -6px 26px 0 rgba(255, 255, 255, .83);
