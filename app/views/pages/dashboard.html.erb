@@ -30,7 +30,7 @@
     <div class="card">
       <div class="card-body">
         <h5>Deine Buchungen pro Sitzplatz</h5>
-        <%= pie_chart @user_reservations.group(:name).count, donut: true, colors: ["#222"] %>
+        <%= pie_chart @user_reservations.group(:name).count, donut: true, colors: ["#222d3a"] %>
       </div>
     </div>
   </div>
@@ -39,7 +39,7 @@
     <div class="card">
       <div class="card-body">
         <h5>Top Scorer letzten 30 Tage</h5>
-        <%= bar_chart @users_reservations, donut: true, colors: ["222"]  %>
+        <%= bar_chart @users_reservations, donut: true, colors: ["#222d3a"]  %>
       </div>
     </div>
   </div>
@@ -50,7 +50,7 @@
     <div class="card">
       <div class="card-body">
         <h5>Gesamten Buchungen aller Teammitglieder pro Tag im Office</h5>
-        <%= area_chart @reservations.group(:created_at).count, xtitle: "Datum", ytitle: "Buchungen", colors: ["#222"]  %>
+        <%= area_chart @reservations.group(:created_at).count, xtitle: "Datum", ytitle: "Buchungen", colors: ["#222d3a"]  %>
       </div>
     </div>
   </div>

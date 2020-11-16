@@ -48,7 +48,7 @@
       padding: 1rem;
       a {
         font-size: 1rem;
-        color: $text;
+        color: $text !important;
         padding: 0.7rem;
         &:hover {
           background: $light-grey;
@@ -89,6 +89,7 @@
   padding-top: 6px;
   font-size: 2rem !important;
   padding-left: 5rem;
+  color: white !important;
   @media (max-width: $medium) {
     margin-right: -1rem;
   }

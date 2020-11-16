@@ -110,6 +110,7 @@ $medium: 991px;
   @media (max-width: $medium) {
     display: none !important;
     a {
+      color: white !important;
       text-align: center !important;
     }
   }

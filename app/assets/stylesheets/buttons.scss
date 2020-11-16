@@ -33,7 +33,7 @@ button {
 
 
 .iRISHI {
-  background-color: transparent;
+  background-color: transparent !important;
   border-radius: 20px;
 }
 
@@ -58,7 +58,7 @@ button {
   position: relative;
   height: 39px !important;
   border-radius: 20px !important;
-  background: white;
+  background: $background;
   max-width: 195px;
   span {
     font-size: 1rem !important;

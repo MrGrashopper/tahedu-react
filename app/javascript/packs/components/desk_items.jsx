@@ -296,7 +296,7 @@ class DeskItems extends Component {
                                     placeholder='Platz-ID suchen'
                                     maxSelected={1}
                                     multiple={false}
-                                    autoComplete={false}
+                                    autoComplete="off"
                                     getItemsAsync={this.getItemsAsync.bind(this)}
                                     onItemsChanged={this.FilterItems.bind(this)} />
                         </div>

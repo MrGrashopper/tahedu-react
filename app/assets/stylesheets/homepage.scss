@@ -1,3 +1,4 @@
+@import "variables";
 $pink: #fbefef;
 $black: #212529;
 $purple: #6c63ff;
@@ -5,9 +6,10 @@ $purple-light: #6c63ffe8;
     
 
 .jumbotron {
-    background-color: $pink !important;
+    background-color: $text !important;
     height: 450px;
     overflow: hidden;
+    border-radius: 0 !important;
     .jumbo-img {
         width: 25rem;
         position: relative;

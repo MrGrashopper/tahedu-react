@@ -17,6 +17,9 @@ body {
 
 a, p, h1, h2, h4, h5, h6 {
   color: $text;
+  &:visited {
+    color: white !important;
+  }
 }
 
 input {
@@ -35,14 +38,14 @@ input {
   color: $purple !important;
 }
 .red-text {
-  color: red !important;
+  color: $red !important;
 }
 .green-text {
   color: #0ba75d !important;
 }
 
 .bg-pink {
-  background: $pink;
+  background: $text;
 }
 
 .small-text {
