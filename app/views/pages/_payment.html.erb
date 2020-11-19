@@ -1,0 +1,33 @@
+<div class="credit-card">
+  <div class="form-header">
+    <% company = CompanyAccount.find_by(team_id: current_user.team_id) %>
+    <% card = CreditCard.find_by(company_account_id: company.id) %>
+    <h4 class="title">Kreditkarte hinterlegen für <%= company.title %></h4>
+  </div>
+
+  <div class="form-body margin-bottom">
+    <%= form_with url: api_v1_credit_cards_path(@user), method: :post do |cc| %>
+      <p><%= cc.text_field 'card_holder', placeholder: card.present? ? card.card_holder : 'Karteninhaber' , class: 'card-number' %></p>
+      <p><%= cc.text_field 'card_number', placeholder: card.present? ? card.card_number : 'Kartennummer', class: 'card-number' %></p>
+      <div class="date-field">
+        <div class="month">
+          <%= cc.select :exp_month, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], class: 'month', name: 'month', include_blank: card.present? ? card.expiration_date.first : 'Monat' %>
+        </div>
+      </div>
+      <div class="date-field">
+        <div class="year">
+          <%= cc.select :exp_year, [2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030], class: 'year', name: 'year', include_blank: card.present? ? card.expiration_date.last(4) : 'Jahr' %>
+        </div>
+      </div>
+      <div class="card-verification">
+        <div class="cvv-input">
+          <p><%= cc.text_field 'cvv', placeholder: card.present? ? card.ccv : 'CVV*', class: 'card-number' %></p>
+        </div>
+        <div class="cvv-details">
+          <p>*3-4 Stellen auf Signaturstreifen</p>
+        </div>
+      </div>
+      <%= cc.submit 'speichern', :class => 'btn proceed-btn' %>
+    <% end %>
+  </div>
+</div>

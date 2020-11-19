@@ -102,7 +102,7 @@ button {
   }
 }
 
-.btn-primary {
+.btn-primary, .proceed-btn {
   border-color: transparent !important;
   color: $purple !important;
   background-color: inherit !important;
@@ -162,8 +162,8 @@ button {
     padding: 6px 15px;
     position: relative;
     top: 2px;
-    box-shadow: $shadow-inset !important;
-    background-color: $background !important;
+    //box-shadow: $shadow-inset !important;
+    background-color: $light-grey !important;
     &:focus {
       outline: none;
     }

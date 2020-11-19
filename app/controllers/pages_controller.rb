@@ -17,6 +17,13 @@ class PagesController < ApplicationController
         end
     end
 
+    def subscription
+        if !current_user.supervisor
+            redirect_to root_path, notice: 'Nicht berechtigt'
+        else
+        end
+    end
+
   def reservations
       if !current_user.supervisor
           redirect_to root_path, notice: 'Nicht berechtigt'
