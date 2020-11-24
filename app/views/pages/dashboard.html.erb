@@ -17,10 +17,10 @@
           <h6>von <%= JSON.parse(last_reservation.reservated_slots).first %> bis <%= JSON.parse(last_reservation.reservated_slots).last %></h6>
           <% desk = Desk.find_by(id: last_reservation.desk_id) %>
           <h6>Platz-ID: <%= desk.external_id %></h6>
-          <h6>Etage: <%= desk.floor %></h6>
-          <h6>Platzeigenschaft: <%= desk.kind %></h6>
-          <h6>Ausstattung: <%= desk.equipment %></h6>
-          <h6>Anmerkungen: <%= desk.notes %></h6>
+          <!-- <h6>Etage: <%#= desk.floor %></h6>
+          <h6>Platzeigenschaft: <%#= desk.kind %></h6>
+          <h6>Ausstattung: <%#= desk.equipment %></h6>
+          <h6>Anmerkungen: <%#= desk.notes %></h6>-->
         </div>
       </div>
     </div>
@@ -39,7 +39,7 @@
     <div class="card">
       <div class="card-body">
         <h5>Top Scorer letzten 30 Tage</h5>
-        <%= bar_chart @users_reservations, donut: true, colors: ["#222d3a"]  %>
+        <%= bar_chart @users_reservations, donut: true, colors: ["#6a3ef5"]  %>
       </div>
     </div>
   </div>
@@ -50,7 +50,7 @@
     <div class="card">
       <div class="card-body">
         <h5>Gesamten Buchungen aller Teammitglieder pro Tag im Office</h5>
-        <%= area_chart @reservations.group(:created_at).count, xtitle: "Datum", ytitle: "Buchungen", colors: ["#222d3a"]  %>
+        <%= area_chart @reservations.group(:created_at).count, xtitle: "Datum", ytitle: "Buchungen", colors: ["#6a3ef5"]  %>
       </div>
     </div>
   </div>

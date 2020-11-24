@@ -2,12 +2,15 @@ class Api::V1::CreditCardsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    if current_user.supervisor
+    supervisor = Supervisor&.find_by(user_id: current_user.id, team_id: current_user.team_id)
+    if supervisor
       card_number = params[:card_number]
       exp_month = params[:exp_month]
       exp_year = params[:exp_year]
       cvv = params[:cvv]
       card_holder = params[:card_holder]
+
+      exp_month = "0" + exp_month if exp_month.length < 2
       expiration = exp_month + "/" + exp_year
       company_account = CompanyAccount.find_by(team_id: current_user.team_id)
       company_card = CreditCard.find_by(company_account_id: company_account.id)

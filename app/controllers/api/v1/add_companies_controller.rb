@@ -10,7 +10,7 @@ class Api::V1::AddCompaniesController < ApplicationController
         company_exists = CompanyAccount.find_by(title: company).present?
         if !company_exists
           current_user.update(team_id: team_id)
-          CompanyAccount.create(team_id: team_id, title: company)
+          CompanyAccount.create(team_id: team_id, title: company, main_email: current_user.email)
           UserTeamId.create(user_id: current_user.id, team_id: team_id, title: company, confirmed: true)
           redirect_to edit_user_path(current_user.id), notice: '🚀 Team erstellt'
         else
