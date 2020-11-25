@@ -84,4 +84,25 @@ class StripeService
       print "#{e} 💢"
     end
   end
+
+  def self.cancel_subscription(current_user)
+    Stripe.api_key = ENV["stripe_api_key"]
+    company = CompanyAccount.find_by(team_id: current_user.team_id)
+    stripe_users = Stripe::Customer.list()
+    stripe_user =  stripe_users.find(email: company.main_email)
+    subscriptions = Stripe::Subscription.list({limit: 500000})
+    customer_id = stripe_user.first.id
+    sub_arr = []
+    subscriptions.each{|subscription| sub_arr << subscription if subscription["customer"] == customer_id}
+    sub_id = []
+    sub_arr.select{|sub| sub_id << sub["id"]}
+
+    begin
+      Stripe::Subscription.delete(sub_id&.first)
+      puts "... cancel subscription OK 🚀"
+    rescue StandardError => e
+      print "#{e} 💢"
+    end
+
+  end
 end

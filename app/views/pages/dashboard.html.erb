@@ -1,56 +1,51 @@
 <% team = UserTeamId.find_by(team_id: current_user.team_id) %>
 <div class="row margin-top">
   <div class="col-xs-3 col-md-3 col-xl-3">
-    <div class="col-xs-12 col-md-12 col-xl-12">
-      <div class="card">
-        <div class="card-body">
-          <h6>Aktuelles Team: <span class="purple-text"> <%= team.title %></span></h6>
+    <div class="card">
+      <div class="card-body">
+        <div class="col-xs-12 col-md-12 col-xl-12">
+          <div>
+            <h5 class="purple-text">Aktuelles Team</h5><%= team.title %></div>
         </div>
-      </div>
-    </div>
-    <div class="col-xs-12 col-md-12 col-xl-12">
-      <div class="card">
-        <div class="card-body">
-          <h6>Du bist nächstes Mal im Office</h6>
-          <% last_reservation = @user_reservations.order(created_at: :asc).last %>
-          <h2 class="purple-text"><%= last_reservation.created_at.strftime("%d.%m.%Y") %></h2>
-          <h6>von <%= JSON.parse(last_reservation.reservated_slots).first %> bis <%= JSON.parse(last_reservation.reservated_slots).last %></h6>
-          <% desk = Desk.find_by(id: last_reservation.desk_id) %>
-          <h6>Platz-ID: <%= desk.external_id %></h6>
-          <!-- <h6>Etage: <%#= desk.floor %></h6>
-          <h6>Platzeigenschaft: <%#= desk.kind %></h6>
-          <h6>Ausstattung: <%#= desk.equipment %></h6>
-          <h6>Anmerkungen: <%#= desk.notes %></h6>-->
+        <div class="col-xs-12 col-md-12 col-xl-12">
+          <div class="margin-top">
+              <h5 class="purple-text">nächstes Mal im Office am</h5>
+              <% last_reservation = @user_reservations.order(created_at: :asc).last %>
+              <h3><%= last_reservation.created_at.strftime("%d.%m.%Y") %></h3>
+              <h6>von <%= JSON.parse(last_reservation.reservated_slots).first %> bis <%= JSON.parse(last_reservation.reservated_slots).last %></h6>
+              <% desk = Desk.find_by(id: last_reservation.desk_id) %>
+              <h6>Platz-ID: <%= desk.external_id %></h6>
+            </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="col-xs-5 col-md-5 col-xl-5">
+  <div class="col-xs-12 col-md-9 col-xl-9">
     <div class="card">
       <div class="card-body">
-        <h5>Deine Buchungen pro Sitzplatz</h5>
-        <%= pie_chart @user_reservations.group(:name).count, donut: true, colors: ["#222d3a"] %>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-xs-4 col-md-4 col-xl-4">
-    <div class="card">
-      <div class="card-body">
-        <h5>Top Scorer letzten 30 Tage</h5>
-        <%= bar_chart @users_reservations, donut: true, colors: ["#6a3ef5"]  %>
+        <h5 class="purple-text">Gesamten Buchungen aller Teammitglieder pro Tag im Office</h5>
+        <%= area_chart @reservations.group(:created_at).count, xtitle: "Datum", ytitle: "Buchungen", colors: ["#6c757d"]  %>
       </div>
     </div>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-xs-12 col-md-12 col-xl-12">
+  <div class="col-xs-5 col-md-6 col-xl-6">
     <div class="card">
       <div class="card-body">
-        <h5>Gesamten Buchungen aller Teammitglieder pro Tag im Office</h5>
-        <%= area_chart @reservations.group(:created_at).count, xtitle: "Datum", ytitle: "Buchungen", colors: ["#6a3ef5"]  %>
+        <h5 class="purple-text">Deine Buchungen pro Sitzplatz</h5>
+        <%= pie_chart @user_reservations.group(:name).count, donut: true, colors: ["#6c757d"] %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-4 col-md-6 col-xl-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="purple-text">Top Scorer letzten 30 Tage</h5>
+        <%= bar_chart @users_reservations, donut: true, colors: ["#6c757d"]  %>
       </div>
     </div>
   </div>

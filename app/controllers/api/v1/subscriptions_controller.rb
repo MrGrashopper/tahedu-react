@@ -14,10 +14,13 @@ class Api::V1::SubscriptionsController < ApplicationController
     case subsrciption_type
     when "0"
       price = PRICE_0
+      kind = "SMALL"
     when "1"
       price = PRICE_1
+      kind = "MEDIUM"
     when "2"
       price = PRICE_2
+      kind = "LARGE"
     end
 
     if supervisor
@@ -39,6 +42,24 @@ class Api::V1::SubscriptionsController < ApplicationController
         )
       end
       redirect_to subscription_path, notice: 'Abonniert!'
+      StripeService.create_payment_method(current_user)
+      StripeService.create_subscription(current_user, quantity.to_i, kind)
+    else
+      redirect_to root_path, notice: 'Nicht berechtigt'
+    end
+  end
+
+  def destroy
+    supervisor = Supervisor&.find_by(user_id: current_user.id, team_id: current_user.team_id)
+    company_account = CompanyAccount.find_by(team_id: current_user.team_id)
+    subscription = Subscription.find_by(company_account_id: company_account.id)
+
+    if supervisor
+      if subscription
+        subscription.delete
+        redirect_to subscription_path, notice: 'Abo beendet!'
+        StripeService.cancel_subscription(current_user)
+      end
     else
       redirect_to root_path, notice: 'Nicht berechtigt'
     end
