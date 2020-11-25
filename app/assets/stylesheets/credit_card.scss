@@ -116,11 +116,11 @@
 /* Buttons Section */
 
 .proceed-btn {
-  position      : absolute;
+  position      : relative;
   cursor        : pointer;
   margin-bottom : 10px;
-  bottom        : 10px;
-  left          : 20px;
+  bottom        : -80px;
+  left          : -144px;
 }
 
 .paypal-btn a,

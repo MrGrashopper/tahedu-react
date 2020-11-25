@@ -22,7 +22,7 @@ a, p, h1, h2, h4, h5, h6 {
   }
 }
 
-input {
+ input {
   padding-left: 0.5rem;
   border-color: transparent;
   border-bottom: 1px solid $purple;
@@ -127,5 +127,14 @@ a {
 .set-avatar {
   input {
     border-bottom: none !important;
+  }
+}
+
+.form-control {
+  padding-left: 0.5rem !important;
+  border-color: transparent !important;
+  border-bottom: 1px solid $purple !important;
+  &:focus, &:active {
+    box-shadow: none !important;
   }
 }

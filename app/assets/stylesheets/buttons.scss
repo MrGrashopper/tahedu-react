@@ -172,3 +172,17 @@ button {
 .react-datepicker__tab-loop {
   display: inline-block;
 }
+
+.spinner-border, .spinner-grow {
+  display: block;
+  position: fixed;
+  width: 6rem !important;
+  height: 6rem !important;
+  left: 4rem;
+  bottom: 2rem;
+  z-index: 1000;
+}
+
+#preloader {
+  display: none;
+}

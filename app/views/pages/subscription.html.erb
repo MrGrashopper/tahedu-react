@@ -1,20 +1,21 @@
 <% company = CompanyAccount.find_by(team_id: current_user.team_id ) %>
 <% subscription = Subscription.find_by(company_account_id: company.id) %>
-<% if !subscription %>
-  <div class="row">
-    <div class="col-sm-12 col-md-12 col-xl-12">
-      <div class="price_table">
-        <%= render 'price_table' %>
-      </div>
+
+<div class="row">
+  <div class="col-sm-12 col-md-12 col-xl-12">
+    <div class="price_table">
+      <%= render 'price_table' %>
     </div>
   </div>
-<% end %>
+</div>
+
 
 
 <div class="row margin-top">
-  <div class="col-sm-12 col-md-6 col-xl-6">
+  <div class="col-sm-12 col-md-12 col-xl-4">
     <div class="card">
       <div class="card-body">
+        <button class="title" data-toggle="collapse" href="#collapseExample">Kreditkarte für <%= company.title %></button>
         <%= render 'payment' %>
       </div>
     </div>
@@ -25,7 +26,7 @@
   <div class="row margin-top margin-bottom">
     <div class="col-sm-12 col-md-6 col-xl-6">
       <%= form_with(url: api_v1_subscriptions_path(@user), method: :delete )do |d| %>
-        <%= d.submit 'Abo beenden', data: { confirm: 'Willst du wirklich dein Abo beenden?'}, :class => 'btn' %>
+        <%= d.submit 'Abo beenden', data: { confirm: 'Willst du wirklich dein Abo beenden?'}, :class => 'btn', onclick:"spinner()" %>
       <% end %>
     </div>
   </div>
