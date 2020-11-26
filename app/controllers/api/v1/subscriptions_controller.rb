@@ -9,18 +9,21 @@ class Api::V1::SubscriptionsController < ApplicationController
     company_account = CompanyAccount.find_by(team_id: current_user.team_id)
     subscription = Subscription.find_by(company_account_id: company_account.id)
     subsrciption_type = params[:subscription_type]
-    quantity = UserTeamId.where(team_id: current_user.team_id).count
+    team = UserTeamId.where(team_id: current_user.team_id)
 
     case subsrciption_type
     when "0"
       price = PRICE_0
       kind = "SMALL"
+      quantity = 5
     when "1"
       price = PRICE_1
       kind = "MEDIUM"
+      quantity = team.count
     when "2"
       price = PRICE_2
       kind = "LARGE"
+      quantity = team.count < 50? 50 : team.count
     end
 
     if supervisor
@@ -29,7 +32,7 @@ class Api::V1::SubscriptionsController < ApplicationController
             company_account_id: company_account.id,
             subscribed_by: current_user.email,
             price: price.to_f,
-            quantity: quantity.to_i,
+            quantity: quantity,
             kind: subsrciption_type.to_i
         )
       else
@@ -37,9 +40,10 @@ class Api::V1::SubscriptionsController < ApplicationController
             company_account_id: company_account.id,
             subscribed_by: current_user.email,
             price: price.to_f,
-            quantity: quantity.to_i,
+            quantity: quantity,
             kind: subsrciption_type.to_i
         )
+        StripeService.cancel_subscription(current_user)
       end
       redirect_to subscription_path, notice: 'Abonniert!'
       StripeService.create_payment_method(current_user)
