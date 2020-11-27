@@ -6,16 +6,18 @@ $purple-light: #6c63ffe8;
     
 
 .jumbotron {
-    background-color: $text !important;
+    background-color: white !important;
     height: 450px;
     overflow: hidden;
     border-radius: 0 !important;
+    padding: 4rem 0 !important;
+    margin-bottom: 0 !important;
     .jumbo-img {
-        width: 25rem;
+        width: 45rem;
         position: relative;
         float: right;
-        bottom: 180px;
-        right: 3rem;
+        bottom: 13rem;
+        right: -4rem;
         clear: both;
         img {
             width: 130%;
@@ -26,7 +28,7 @@ $purple-light: #6c63ffe8;
 
 .jumbo-white {
     .jumbotron {
-        background-color: white !important;
+        background: $purple-variant !important;
     }
 }
 

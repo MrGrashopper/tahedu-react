@@ -35,11 +35,9 @@ class PagesController < ApplicationController
 
   def dashboard
       if current_user.team_id.present?
-
           @reservations = Reservation.where(team_id: current_user.team_id)
-
           @user_reservations = Reservation.where(team_id: current_user.team_id, user_id: current_user.id)
-
+          @last_reservations = Reservation.where(team_id: current_user.team_id,  user_id: current_user.id).order(created_at: :desc).limit(7)
           users_reservations = Reservation.where(team_id: current_user.team_id).order(created_at: :asc).limit(30)
           users_res_arr = []
           users_reservations.each do |res|
@@ -49,7 +47,6 @@ class PagesController < ApplicationController
               users_res_arr << user
           end
           @users_reservations = users_res_arr.uniq.collect{|i| [i[:name],i[:count]]}.sort.take(10)
-
 
       else
           redirect_to user_path(current_user)

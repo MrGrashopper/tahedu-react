@@ -1,7 +1,7 @@
 @import "variables";
 section.pricing {
   background: $purple;
-  background: linear-gradient(to right, $purple, $purple-light);
+  background: $purple-variant
 }
 
 .pricing .card {

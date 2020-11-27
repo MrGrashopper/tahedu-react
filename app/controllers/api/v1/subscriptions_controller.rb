@@ -7,7 +7,7 @@ class Api::V1::SubscriptionsController < ApplicationController
   def create
     supervisor = Supervisor&.find_by(user_id: current_user.id, team_id: current_user.team_id)
     company_account = CompanyAccount.find_by(team_id: current_user.team_id)
-    subscription = Subscription.find_by(company_account_id: company_account.id)
+    subscription = Subscription.find_by(company_account_id: company_account&.id)
     subsrciption_type = params[:subscription_type]
     team = UserTeamId.where(team_id: current_user.team_id)
 

@@ -18,7 +18,7 @@ body {
 a, p, h1, h2, h4, h5, h6 {
   color: $text;
   &:visited {
-    color: white !important;
+    color: $text;
   }
 }
 

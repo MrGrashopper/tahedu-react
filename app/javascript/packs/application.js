@@ -27,24 +27,6 @@ import "@fortawesome/fontawesome-free/js/all";
 //= require cookies_eu
 
 document.addEventListener("turbolinks:load", () => {
-    window.spinner = function() {
-        let preloader = document.getElementById('preloader');
-        preloader.style.display = "block";
-    }
-
-    // preloader
-    let preload = document.getElementsByClassName('preloader')[0];
-    let preloader = document.getElementById('preloader');
-    preload.addEventListener('click', function () {
-        console.log("test");
-            if (preloader.style.display == "") {
-                preloader.style.display = "block";
-            } else {
-                preloader.style.display = "";
-            }
-        }
-    );
-
     // Sidebar
     var button = document.querySelector('#Sidebar-toggler');
     var menu = document.querySelector('#Sidebar');
@@ -68,6 +50,23 @@ document.addEventListener("turbolinks:load", () => {
         }
     );
 
+    window.spinner = function() {
+        let preloader = document.getElementById('preloader');
+        preloader.style.display = "block";
+    }
+
+    // preloader
+    let preload = document.getElementsByClassName('preloader')[0];
+    let preloader = document.getElementById('preloader');
+    preload.addEventListener('click', function () {
+        console.log("test");
+            if (preloader.style.display == "") {
+                preloader.style.display = "block";
+            } else {
+                preloader.style.display = "";
+            }
+        }
+    );
 
 // Toastr
 

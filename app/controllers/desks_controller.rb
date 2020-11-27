@@ -4,7 +4,10 @@ class DesksController < ApplicationController
   # GET /desks
   # GET /desks.json
   def index
-    if current_user.team_id.nil?
+    company_account = CompanyAccount.find_by(team_id: current_user.team_id)
+    subscription = Subscription.find_by(company_account_id: company_account&.id)
+
+    if current_user.team_id.nil? && subscription
       redirect_to edit_user_path(current_user.id)
     end
     @desks = Desk.all
