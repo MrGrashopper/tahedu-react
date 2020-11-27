@@ -9,8 +9,8 @@
   <div class="col-xs-12 col-md-8 col-xl-8">
     <h5>
       <span class="purple-text">nächstes Mal im Office:</span>
-      <span><% last_reservation = @user_reservations.order(created_at: :asc).last %></span>
-      <span><%= last_reservation.created_at.strftime("%d.%m.%Y") %></span>
+      <% last_reservation = @user_reservations.order(created_at: :asc).last %>
+      <span><%= last_reservation.date.to_date.strftime("%d.%m.%Y")%></span>
     </h5>
   </div>
 </div>

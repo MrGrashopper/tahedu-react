@@ -45,11 +45,11 @@ class Api::V1::SubscriptionsController < ApplicationController
         )
         StripeService.cancel_subscription(current_user)
       end
-      redirect_to subscription_path, notice: 'Abonniert!'
+      redirect_to subscription_path, notice: '🚀 Abonniert!'
       StripeService.create_payment_method(current_user)
       StripeService.create_subscription(current_user, quantity.to_i, kind)
     else
-      redirect_to root_path, notice: 'Nicht berechtigt'
+      redirect_to root_path, notice: '😟 Nicht berechtigt'
     end
   end
 
@@ -61,11 +61,11 @@ class Api::V1::SubscriptionsController < ApplicationController
     if supervisor
       if subscription
         subscription.delete
-        redirect_to subscription_path, notice: 'Abo beendet!'
+        redirect_to subscription_path, notice: '😟 Abo beendet!'
         StripeService.cancel_subscription(current_user)
       end
     else
-      redirect_to root_path, notice: 'Nicht berechtigt'
+      redirect_to root_path, notice: '😟 Nicht berechtigt'
     end
   end
 end

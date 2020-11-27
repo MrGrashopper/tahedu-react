@@ -179,7 +179,7 @@ class DeskItems extends Component {
     };
 
     setImage = kind => {
-        if(kind == 'Basic') {
+        if(kind == 'Standard') {
             return Basic
         }
         else if(kind == 'IT') {

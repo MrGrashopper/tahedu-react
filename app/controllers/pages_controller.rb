@@ -9,24 +9,32 @@ class PagesController < ApplicationController
     end
 
     def deskcenter
-        if !current_user.supervisor
-            redirect_to root_path, notice: 'Nicht berechtigt'
+        if current_user.supervisor
+            company_account = CompanyAccount.find_by(team_id: current_user.team_id)
+            subscription = Subscription.find_by(company_account_id: company_account&.id)
+            if current_user.team_id.nil?
+                redirect_to edit_user_path(current_user.id), notice: '😟 Team nicht vorhanden'
+            elsif subscription.nil?
+                redirect_to subscription_path, notice: '❤️ Abo wählen'
+            else
+                @kinds = Desk.kinds
+                @desks = Desk.where(team_id: current_user.team_id).order(id: :asc)
+            end
         else
-            @kinds = Desk.kinds
-            @desks = Desk.where(team_id: current_user.team_id).order(id: :asc)
+            redirect_to root_path, notice: '😟 Nicht berechtigt'
         end
     end
 
     def subscription
         if !current_user.supervisor
-            redirect_to root_path, notice: 'Nicht berechtigt'
+            redirect_to root_path, notice: '😟 Nicht berechtigt'
         else
         end
     end
 
   def reservations
       if !current_user.supervisor
-          redirect_to root_path, notice: 'Nicht berechtigt'
+          redirect_to root_path, notice: '😟 Nicht berechtigt'
       else
           @user = User.find_by(email: params[:email])
           @reservations = Reservation.where(user_id: @user.id, team_id: current_user.team_id).order(date: :desc)
@@ -49,7 +57,7 @@ class PagesController < ApplicationController
           @users_reservations = users_res_arr.uniq.collect{|i| [i[:name],i[:count]]}.sort.take(10)
 
       else
-          redirect_to user_path(current_user)
+          redirect_to edit_user_path(current_user)
       end
   end
 end

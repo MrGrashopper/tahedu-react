@@ -26,6 +26,9 @@ a, p, h1, h2, h4, h5, h6 {
   padding-left: 0.5rem;
   border-color: transparent;
   border-bottom: 1px solid $purple;
+   &:focus, &:active {
+     outline: none !important;
+   }
 }
 
 .white-text {
@@ -135,6 +138,14 @@ a {
   border-color: transparent !important;
   border-bottom: 1px solid $purple !important;
   &:focus, &:active {
+    box-shadow: none !important;
+  }
+}
+
+select {
+  border: none;
+  &:focus, &:active {
+    outline: none !important;
     box-shadow: none !important;
   }
 }

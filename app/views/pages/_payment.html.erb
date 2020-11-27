@@ -8,7 +8,7 @@
         <p><%= cc.text_field 'card_number', placeholder: card.present? ? card.card_number : 'Kartennummer', class: 'card-number', :pattern => '^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$' %></p>
         <div class="date-field">
           <div class="month">
-            <%= cc.select :exp_month, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], class: 'month', name: 'month', include_blank: card.present? ? card.expiration_date.first : 'Monat' %>
+            <%= cc.select :exp_month, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], class: 'month', name: 'month', include_blank: card.present? ? card.expiration_date[0..1] : 'Monat' %>
           </div>
         </div>
         <div class="date-field">
