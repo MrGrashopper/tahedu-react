@@ -4,10 +4,16 @@ class DesksController < ApplicationController
   # GET /desks
   # GET /desks.json
   def index
+    company_account = CompanyAccount.find_by(team_id: current_user.team_id)
+    subscription = Subscription.find_by(company_account_id: company_account&.id)
+
     if current_user.team_id.nil?
-      redirect_to edit_user_path(current_user.id)
+      redirect_to edit_user_path(current_user.id), notice: '😟 Team nicht vorhanden'
+    elsif subscription.nil?
+    redirect_to subscription_path, notice: '️❤️ Abo wählen'
+    else
+      @desks = Desk.all
     end
-    @desks = Desk.all
   end
 
   # GET /desks/1
@@ -59,7 +65,7 @@ class DesksController < ApplicationController
       redirect_to deskcenter_path, notice: '🚀 Gespeichert'
     rescue StandardError, LoadError => e
       puts "#{e}"
-      redirect_to desk_path(@desk.id), notice: 'Etwas ist schief gelaufen!'
+      redirect_to desk_path(@desk.id), notice: '😟 Etwas ist schief gelaufen!'
     end
   end
 

@@ -20,6 +20,7 @@
         <% if @supervisor %>
           <li class="<%= current_class?(deskcenter_path) %>"><%= link_to "Sitzplätze verwalten", deskcenter_path%></li>
           <li class="<%= current_class?(users_path) %>"><%= link_to('Benutzer verwalten', users_path) %></li>
+          <li class="<%= current_class?(subscription_path) %>"><%= link_to "Abo verwalten", subscription_path%></li>
         <% end %>
       <% end %>
     <% if current_user.admin?%>

@@ -31,11 +31,13 @@
   border-color: transparent;
   background: $light-grey;
   img {
-    width: 100%;
+    position: relative;
+    width: 150%;
     height: auto;
-    margin-left: auto;
+    margin-left: -24%;
     margin-right: auto;
     display: block;
+    bottom: 4px;
   }
 }
 
@@ -46,7 +48,7 @@
   width: 100px;
   border-radius: 50px;
   overflow: hidden;
-  box-shadow: $shadow-inset;
+  //box-shadow: $shadow-inset;
   img {
     width: 130%;
     margin: 0 -15px;

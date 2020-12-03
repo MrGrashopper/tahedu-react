@@ -50,6 +50,7 @@ $medium: 991px;
     .navlink, a {
       font-size: 1.5rem !important;
       margin: 1rem auto;
+      color: white !important;
     }
   }
 }
@@ -75,7 +76,7 @@ $medium: 991px;
 .sidebar .nav-link {
   padding: 1rem 2rem;
   font-weight: 500;
-  color: #ccc;
+  color: $text;
   font-size: 1rem;
 }
 
@@ -110,6 +111,7 @@ $medium: 991px;
   @media (max-width: $medium) {
     display: none !important;
     a {
+      color: white !important;
       text-align: center !important;
     }
   }
@@ -140,10 +142,10 @@ $medium: 991px;
 .sidebar-sticky {
   .nav-link {
     a {
-      color: #ccc;
+      color: $text;
       display: inline-block !important;
       &:hover {
-        color: #ccc;
+        color: $purple;
         background: none;
         text-decoration: none;
       }

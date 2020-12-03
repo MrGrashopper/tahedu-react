@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_01_153921) do
+ActiveRecord::Schema.define(version: 2020_11_20_144427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,18 @@ ActiveRecord::Schema.define(version: 2020_11_01_153921) do
     t.string "team_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "main_email"
+  end
+
+  create_table "credit_cards", force: :cascade do |t|
+    t.bigint "company_account_id"
+    t.text "card_number"
+    t.text "card_holder"
+    t.text "expiration_date"
+    t.string "ccv"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_account_id"], name: "index_credit_cards_on_company_account_id"
   end
 
   create_table "desks", force: :cascade do |t|
@@ -96,6 +108,15 @@ ActiveRecord::Schema.define(version: 2020_11_01_153921) do
     t.string "first_name"
     t.string "last_name"
     t.index ["user_id"], name: "index_skills_on_user_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "company_account_id"
+    t.string "subscribed_by"
+    t.float "price"
+    t.integer "quantity"
+    t.integer "kind"
+    t.index ["company_account_id"], name: "index_subscriptions_on_company_account_id"
   end
 
   create_table "supervisors", force: :cascade do |t|

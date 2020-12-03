@@ -4,14 +4,26 @@ class Api::V1::AddUsersController < ApplicationController
   def create
     if authorized?
       team_id = current_user.team_id
+      team = UserTeamId.where(team_id: current_user.team_id)
       user = User.find_by(email: params[:add_user])
       users = User.where(team_id: team_id)
       company = CompanyAccount.find_by(team_id: team_id)
+      subscription = Subscription.find_by(company_account_id: company&.id)
+
+      if subscription.kind = 0
+        max_quantity = 5
+      elsif subscription.kind = 1
+        max_quantity = 50
+      else
+        max_quantity = 1000000
+      end
 
       if user
         still_exists = UserTeamId.find_by(user_id: user.id, team_id: team_id)
         if still_exists
           render json: 400
+        elsif team.count <= max_quantity
+          render json: 408
         else
           UserTeamId.create(user_id: user.id, title: company.title, team_id: team_id)
 

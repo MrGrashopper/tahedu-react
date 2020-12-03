@@ -17,12 +17,18 @@ body {
 
 a, p, h1, h2, h4, h5, h6 {
   color: $text;
+  &:visited {
+    color: $text;
+  }
 }
 
-input {
-  padding-left: 0.5rem;
+ input {
+  padding: 5px;
   border-color: transparent;
   border-bottom: 1px solid $purple;
+   &:focus, &:active {
+     outline: none !important;
+   }
 }
 
 .white-text {
@@ -35,14 +41,14 @@ input {
   color: $purple !important;
 }
 .red-text {
-  color: red !important;
+  color: $red !important;
 }
 .green-text {
   color: #0ba75d !important;
 }
 
 .bg-pink {
-  background: $pink;
+  background: $text;
 }
 
 .small-text {
@@ -58,6 +64,7 @@ input {
 }
 
 a {
+  -webkit-appearance:none !important;
   &:hover {
     background-color: transparent;
     text-decoration: none !important;
@@ -124,5 +131,49 @@ a {
 .set-avatar {
   input {
     border-bottom: none !important;
+  }
+}
+
+.form-control {
+  padding-left: 0.5rem !important;
+  border-color: transparent !important;
+  border-bottom: 1px solid $purple !important;
+  &:focus, &:active {
+    box-shadow: none !important;
+  }
+}
+
+select {
+  -webkit-appearance:none;
+  border: none;
+  &:focus, &:active {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+.slots {
+  span {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+}
+
+.arrow {
+  svg {
+    position: relative;
+    top: -2rem;
+    right: -6rem;
+    @media (max-width: $small) {
+
+    }
+  }
+}
+
+.standard-arrow {
+  svg {
+    position: relative;
+    top: -2px;
+    right: 0rem;
   }
 }

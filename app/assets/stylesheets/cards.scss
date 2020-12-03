@@ -2,7 +2,7 @@
 
 .time-slot {
   .btn {
-    padding: 0 !important;
+    padding: 5px !important;
     margin: 2px !important;
     min-width: 65px !important;
     &:focus {
@@ -43,9 +43,7 @@
   border: none !important;
   background-color: $card !important;
   box-shadow: $shadow;
-
   span {
-    font-family: 'Kulim Park', sans-serif;
     color: $text;
     font-weight: 600;
     text-transform: uppercase;
@@ -63,6 +61,7 @@
     }
   }
 }
+
 .main-card {
   border-radius: 20px;
   padding: 1.5rem;

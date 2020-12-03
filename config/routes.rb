@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :admins
   resources :desks, only: [:index, :show, :create, :update, :destroy, :search, :freedesks]
   get "deskcenter",  to: 'pages#deskcenter', as: 'deskcenter'
+  get "subscription",  to: 'pages#subscription', as: 'subscription'
   get "dashboard", to: 'pages#dashboard', as: 'dashboard'
   get "/pages/reservations", as: 'reservations'
 
@@ -29,6 +30,8 @@ Rails.application.routes.draw do
       resource :remove_user_from_teams, only: [:destroy]
       resource :join_teams, only: [:index, :create, :update, :destroy]
       resource :add_companies, only: [:index, :create, :update, :destroy]
+      resource :credit_cards, only: [:index, :create, :update, :destroy]
+      resource :subscriptions, only: [:index, :create, :update, :destroy]
       resource :floor_desks
       resource :filter_desks
       resource :item_desks

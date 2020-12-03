@@ -1,3 +1,4 @@
+@import "variables";
 $pink: #fbefef;
 $black: #212529;
 $purple: #6c63ff;
@@ -5,26 +6,32 @@ $purple-light: #6c63ffe8;
     
 
 .jumbotron {
-    background-color: $pink !important;
+    background-color: white !important;
     height: 450px;
-    overflow: hidden;
+    overflow: hidden !important;
+    border-radius: 0 !important;
+    padding: 4rem 0 !important;
+    margin-bottom: 0 !important;
     .jumbo-img {
-        width: 25rem;
-        position: relative;
-        float: right;
-        bottom: 180px;
-        right: 3rem;
-        clear: both;
+      width: 45rem;
+      position: relative;
+      bottom: -5rem;
         img {
-            width: 130%;
+            width: 100%;
             height: auto;
         }
+      @media (max-width: $small) {
+        width: 100%;
+        position: relative;
+        bottom: 6rem;
+        right: -7rem;
+      }
     }
 }
 
 .jumbo-white {
     .jumbotron {
-        background-color: white !important;
+        background: $purple-variant !important;
     }
 }
 

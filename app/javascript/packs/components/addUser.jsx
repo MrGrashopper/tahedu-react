@@ -19,17 +19,20 @@ class AddUser extends Component {
     async addEmail(){
         let user = document.getElementById('AddEmail').value
         setAxiosHeaders()
+        spinner()
         axios
             .post('/api/v1/add_users', {
                 add_user: user
             })
             .then(response => {
                     if(response.data == 400) {notify(' 🎉 Benutzer schon vorhanden')}
-                    else if(response.data == 404) {notify(' 🎉 Benutzer nicht gefunden')}
+                    else if(response.data == 404) {notify(' ❌ Benutzer nicht gefunden')}
+                    else if(response.data == 408) {notify(' ❌ Maximale Anzahl an Benutzern erreicht, bitte Abo Upgraden!')}
                     else {
                         this.props.handleStateChange(response.data);
                         let input = document.getElementById('AddEmail')
                         input.value = null
+                        deleteSpinner();
                         notify(' 🎉 Benutzer eingeladen')
                     }
             })
@@ -47,7 +50,7 @@ class AddUser extends Component {
                             <Form.Label>Benutzer hinzufügen</Form.Label>
                             <div className="row">
                                 <div className="col-xl-4 col-md-8 col-sm-12"><Form.Control type="email" placeholder="E-Mail"/></div>
-                                <div className="col-xl-3 col-md-4 col-sm-12"><a className="btn btn-primary" type="submit" onClick={() => this.addEmail()}>Hinzufügen</a></div>
+                                <div className="col-xl-3 col-md-4 col-sm-12"><a className="btn btn-primary" role="button" onClick={() => this.addEmail()}>Hinzufügen</a></div>
                             </div>
                             <Form.Text className="text-muted">
                                 Nur registrierte Nutzer können ins Team hinzugefügt werden

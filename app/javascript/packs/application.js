@@ -54,7 +54,6 @@ document.addEventListener("turbolinks:load", () => {
 // Toastr
 
 
-
 (function (define) {
     define(['jquery'], function ($) {
         return (function () {
@@ -521,4 +520,28 @@ document.addEventListener("turbolinks:load", () => {
         window.toastr = factory(window.jQuery);
     }
 }));
+
+    window.spinner = function() {
+        let preloader = document.getElementById('preloader');
+        preloader.style.display = "block";
+    }
+
+    window.deleteSpinner = function() {
+        let preloader = document.getElementById('preloader');
+        preloader.style.display = "none";
+    };
+
+    // preloader
+    let preload = document.getElementsByClassName('preloader')[0];
+    let preloader = document.getElementById('preloader');
+    preload.addEventListener('click', function () {
+            console.log("test");
+            if (preloader.style.display == "") {
+                preloader.style.display = "block";
+            } else {
+                preloader.style.display = "";
+            }
+        }
+    );
+
 })

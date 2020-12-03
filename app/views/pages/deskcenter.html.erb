@@ -3,7 +3,7 @@
     <div class="col-xl-6 col-md-8 col-sm-12">
       <div class="card">
       <div class="card-body">
-        <div class="card-title"><h5>Desk erstellen</h5></div>
+        <div class="card-title"><h5>Platz erstellen</h5></div>
         <%= form_with url: api_v1_desks_path(@desk), method: :post do |f| %>
           <div>
             <%= f.label "Kategorie", for: :kind, :class => 'p' %>
@@ -23,7 +23,7 @@
           </div>
           <div>
             <%= f.label "Info", for: :notes, :class => '' %>
-            <%= f.text_field(:notes, placeholder: 'Raum 1, Klimaanlage, WC auf Etage') %>
+            <%= f.text_field(:notes, placeholder: 'Raum 1, Klimaanlage, WC auf Etage', :class => 'input-width') %>
           </div>
           <div>
             <%= f.label "Ausstattung", for: :equipment, :class => '' %>
@@ -37,18 +37,19 @@
   </div>
 </section>
 
-<section class="container-fluid ">
-  <div class="container-fluid" >
-    <h3>Sitzplätze</h3>
-  </div>
-  <div class="container-fluid row margin-top">
-    <% @desks.each do |desk|%>
-      <div class="col-xl-3 col-md-6 col-sm-12">
+<% if @desks.count > 0 %>
+  <section class="container-fluid ">
+    <div class="container-fluid" >
+      <h3>Sitzplätze</h3>
+    </div>
+    <div class="container-fluid row margin-top">
+      <% @desks.each do |desk|%>
+        <div class="col-xl-3 col-md-6 col-sm-12">
           <div class="card">
             <div class="card-body">
               <div class="text-right">
-                  <span><%= link_to desk_path(desk.id), class: "purple-text " do %><i class="far fa-edit"></i><% end %></span>
-                  <span>
+                <span><%= link_to desk_path(desk.id), class: "purple-text " do %><i class="far fa-edit"></i><% end %></span>
+                <span>
                     <%= form_with url: desk_path(desk), method: :delete, class: 'd-inline' do |f| %>
                       <%= button_tag type: 'submit', class: "red-text", id: "delete-button" do %>
                         <i class="far fa-trash-alt"></i>
@@ -68,7 +69,8 @@
             </div>
           </div>
         </div>
-    <%end %>
-  </div>
-</section>
+      <%end %>
+    </div>
+  </section>
+<% end %>
 
