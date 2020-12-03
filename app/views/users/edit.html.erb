@@ -1,6 +1,10 @@
 <div class="container-fluid">
   <div class="row">
-
+    <div class="col-sm-12 col-md-12 col-xl-12">
+      <% if !@user_team_ids.present? %>
+        <p class="red-text"><i class="fas fa-info-circle"></i> Du musst noch einem Team beitreten (Ein Supervisor muss dich einladen) oder erstelle selbst ein neues Team</p>
+      <% end %>
+    </div>
     <div class="col-sm-12 col-md-8 col-xl-6">
       <div class="card">
         <div class="card-body">
@@ -10,12 +14,10 @@
     </div>
 
     <div class="col-sm-12 col-md-4 col-xl-4">
-      <div class="card">
-        <div class="card-body">
+
           <%= render 'join_team' %>
           <%= render 'new_team' %>
-        </div>
-      </div>
+
     </div>
   </div>
 </div>

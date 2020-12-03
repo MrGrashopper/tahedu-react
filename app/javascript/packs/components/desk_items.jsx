@@ -255,50 +255,55 @@ class DeskItems extends Component {
         return (
             <div className="margin-top-xl">
                 <ToastContainer />
-                <div className="row margin-bottom">
-                    <div className="col-sm-12 col-md-12 col-xl-4">
+                <div className="row">
+                    <div className="col-sm-12 col-md-4 col-xl-6">
                         <DatePicker
-                            className=""
+                            className="datepicker"
                             dateFormat="dd/MM/yyyy" selected={this.state.resDate}
                             minDate={moment().toDate()}
                             onChange={this.handleChangeDate}
                             ref={this.userDateRef}/>
                         <Button variant="secondary" className="space"  type="submit" onClick={this.handleFilter.bind(this)}>auswählen</Button>{' '}
                     </div>
-
-                    <div id="Filter-kinds" className="col-sm-6 col-md-4 col-xl-2">
-                        <Form>
-                            <Form.Group>
-                                <Form.Control id="Filter" as="select"  onChange={this.filterKinds} value={this.state.value}>
-                                    {this.state.filter.map(filter => (
-                                        <option key={filter}>{filter}</option>
-                                    ))}
-                                </Form.Control>
-                            </Form.Group>
-                        </Form>
+                    <div className="col-sm-12 col-md-2 col-xl-2">
+                        <div id="" className="filter">
+                            <Form>
+                                <Form.Group>
+                                    <Form.Control id="Filter" as="select"  onChange={this.filterKinds} value={this.state.value}>
+                                        {this.state.filter.map(filter => (
+                                            <option key={filter}>{filter}</option>
+                                        ))}
+                                    </Form.Control>
+                                    <span className="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span>
+                                </Form.Group>
+                            </Form>
+                        </div>
                     </div>
-
-                    <div id="Filter-floor" className="col-sm-6 col-md-4 col-xl-2">
-                        <Form>
-                            <Form.Group>
-                                <Form.Control id="FilterFloor" as="select"  onChange={this.filterFloors} value={this.state.value}>
-                                    {this.state.floor.map(filter => (
-                                        <option key={filter}>{filter}</option>
-                                    ))}
-                                </Form.Control>
-                            </Form.Group>
-                        </Form>
+                    <div className="col-sm-12 col-md-2 col-xl-2">
+                        <div id="" className="filter">
+                            <Form>
+                                <Form.Group>
+                                    <Form.Control id="FilterFloor" as="select"  onChange={this.filterFloors} value={this.state.value}>
+                                        {this.state.floor.map(filter => (
+                                            <option key={filter}>{filter}</option>
+                                        ))}
+                                    </Form.Control>
+                                    <span className="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span>
+                                </Form.Group>
+                            </Form>
+                        </div>
                     </div>
-
-                    <div className="col-sm-6 col-md-4 col-xl-3">
-                        <div id="Search-items">
-                            <Search items={this.state.repos}
-                                    placeholder='Platz-ID suchen'
-                                    maxSelected={1}
-                                    multiple={false}
-                                    autoComplete="off"
-                                    getItemsAsync={this.getItemsAsync.bind(this)}
-                                    onItemsChanged={this.FilterItems.bind(this)} />
+                    <div className="col-sm-12 col-md-2 col-xl-2">
+                        <div className="">
+                            <div id="Search-items">
+                                <Search items={this.state.repos}
+                                        placeholder='Platz-ID suchen'
+                                        maxSelected={1}
+                                        multiple={false}
+                                        autoComplete="off"
+                                        getItemsAsync={this.getItemsAsync.bind(this)}
+                                        onItemsChanged={this.FilterItems.bind(this)} />
+                            </div>
                         </div>
                     </div>
                 </div>

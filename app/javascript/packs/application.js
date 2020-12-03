@@ -526,6 +526,11 @@ document.addEventListener("turbolinks:load", () => {
         preloader.style.display = "block";
     }
 
+    window.deleteSpinner = function() {
+        let preloader = document.getElementById('preloader');
+        preloader.style.display = "none";
+    };
+
     // preloader
     let preload = document.getElementsByClassName('preloader')[0];
     let preloader = document.getElementById('preloader');

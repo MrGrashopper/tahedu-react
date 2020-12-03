@@ -23,7 +23,7 @@ a, p, h1, h2, h4, h5, h6 {
 }
 
  input {
-  padding-left: 0.5rem;
+  padding: 5px;
   border-color: transparent;
   border-bottom: 1px solid $purple;
    &:focus, &:active {
@@ -64,6 +64,7 @@ a, p, h1, h2, h4, h5, h6 {
 }
 
 a {
+  -webkit-appearance:none !important;
   &:hover {
     background-color: transparent;
     text-decoration: none !important;
@@ -143,9 +144,36 @@ a {
 }
 
 select {
+  -webkit-appearance:none;
   border: none;
   &:focus, &:active {
     outline: none !important;
     box-shadow: none !important;
+  }
+}
+
+.slots {
+  span {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+}
+
+.arrow {
+  svg {
+    position: relative;
+    top: -2rem;
+    right: -6rem;
+    @media (max-width: $small) {
+
+    }
+  }
+}
+
+.standard-arrow {
+  svg {
+    position: relative;
+    top: -2px;
+    right: 0rem;
   }
 }

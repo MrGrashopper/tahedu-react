@@ -8,7 +8,7 @@ class Api::V1::AddUsersController < ApplicationController
       user = User.find_by(email: params[:add_user])
       users = User.where(team_id: team_id)
       company = CompanyAccount.find_by(team_id: team_id)
-      subscription = Subscription.find_by(company_account_id: company_account&.id)
+      subscription = Subscription.find_by(company_account_id: company&.id)
 
       if subscription.kind = 0
         max_quantity = 5

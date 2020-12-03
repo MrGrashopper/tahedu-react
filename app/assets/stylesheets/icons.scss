@@ -31,11 +31,13 @@
   border-color: transparent;
   background: $light-grey;
   img {
-    width: 100%;
+    position: relative;
+    width: 150%;
     height: auto;
-    margin-left: auto;
+    margin-left: -24%;
     margin-right: auto;
     display: block;
+    bottom: 4px;
   }
 }
 

@@ -5,6 +5,7 @@
 }
 
 button {
+  -webkit-appearance:none;
   background: none;
   border: none;
   padding: 0;
@@ -37,29 +38,36 @@ button {
   border-radius: 20px;
 }
 
-#Filter-kinds, #Filter-floor {
-  padding: 0 27px 0 10px;
+
+.filter {
+  display: inline-block;
   .form-control {
     border: none !important;
-    box-shadow: none;
-    background-color: $background;
-    border-radius: 20px !important;
     &:hover {
-      background-color: #ebebeb;
       border-radius: 20px;
+      cursor: pointer;
     }
   }
   @media (max-width: $small) {
-    padding: 27px 27px 0 10px;
+    .form-group {
+      margin-bottom: 0;
+    }
   }
 }
+
+.datepicker {
+  @media (max-width: $small) {
+    margin-bottom: 1rem;
+  }
+}
+
 #Search-items {
   box-shadow: none;
   position: relative;
   height: 39px !important;
   border-radius: 20px !important;
   background: $background;
-  max-width: 195px;
+  width: 172px;
   span {
     font-size: 1rem !important;
     color: #495057 !important;
@@ -68,6 +76,13 @@ button {
   .LBGII {
     border-bottom: 1px solid $purple !important;
     padding: 10px 0;
+  }
+  @media (max-width: $small) {
+    padding: 27px 0 0 16px;
+    margin-top: 0;
+  }
+  @media (max-width: $medium) {
+    padding: 0;
   }
 }
 #Search-user, #Search-user-supervisor {
@@ -102,15 +117,15 @@ button {
   }
 }
 
-.btn-primary, .proceed-btn {
-  border-color: transparent !important;
+.btn-primary, .proceed-btn, .btn-default {
   color: $purple !important;
-  background-color: inherit !important;
+  background-color: transparent !important;
   position: relative;
   outline: none;
   border: 1px solid $purple !important;
   box-shadow: $shadow;
   cursor: pointer;
+  -webkit-background-image: none;
   &:visited {
     color: $purple !important;
   }
