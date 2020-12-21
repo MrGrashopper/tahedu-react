@@ -189,12 +189,12 @@ button {
 }
 
 .spinner-border, .spinner-grow {
-  display: block;
   position: fixed;
-  width: 6rem !important;
-  height: 6rem !important;
-  left: 4rem;
-  bottom: 2rem;
+  display: block;
+  width: 3rem !important;
+  height: 3rem !important;
+  top: 2rem;
+  left: 95vw;
   z-index: 1000;
 }
 

@@ -12,21 +12,47 @@ $purple-light: #6c63ffe8;
     border-radius: 0 !important;
     padding: 4rem 0 !important;
     margin-bottom: 0 !important;
-    .jumbo-img {
-      width: 45rem;
-      position: relative;
-      bottom: -5rem;
-        img {
-            width: 100%;
-            height: auto;
-        }
-      @media (max-width: $small) {
-        width: 100%;
-        position: relative;
-        bottom: 6rem;
-        right: -7rem;
-      }
-    }
+}
+
+.jumbo-img {
+  display: block;
+  width: 45rem;
+  position: relative;
+  bottom: -5rem;
+  img {
+    width: 100%;
+    height: auto;
+  }
+  @media (max-width: $small) {
+    width: 100%;
+    position: relative;
+    bottom: 6rem;
+    right: -7rem;
+  }
+}
+.jumbo-img-left, .jumbo-img-right  {
+  overflow: hidden;
+  display: block;
+  img {
+    width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media (max-width: $medium) {
+    margin: 1rem auto;
+  }
+}
+.jumbo-img-left {
+  @media (max-width: $medium) {
+    top: 2rem;
+    margin-bottom: 4rem;
+  }
+}
+.jumbo-img-right {
+  @media (max-width: $medium) {
+    bottom: 2rem;
+  }
 }
 
 .jumbo-white {

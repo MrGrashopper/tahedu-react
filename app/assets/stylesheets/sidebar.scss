@@ -139,6 +139,14 @@ $medium: 991px;
   }
 }
 
+.navbar-nav {
+  a{
+    &:hover {
+      color: $purple !important;
+    }
+  }
+}
+
 .sidebar-sticky {
   .nav-link {
     a {

@@ -1,14 +1,14 @@
 <% team = UserTeamId.find_by(team_id: current_user.team_id) %>
 <div class="row margin-bottom">
   <div class="col-xs-12 col-md-3 col-xl-3 ">
-    <h5>
-      <span class="purple-text">Aktuelles Team:</span>
+    <h5 class="purple-text">
+      <span>Aktuelles Team:</span>
       <span><%= team.title %></span>
     </h5>
   </div>
   <div class="col-xs-12 col-md-8 col-xl-8">
-    <h5>
-      <span class="purple-text">nächstes Mal im Office:</span>
+    <h5 class="purple-text">
+      <span>nächstes Mal im Office:</span>
       <% last_reservation = @user_reservations.order(created_at: :asc).last %>
       <span><%= last_reservation.date.to_date.strftime("%d.%m.%Y")%></span>
     </h5>
@@ -19,8 +19,8 @@
   <div class="col-xs-5 col-md-6 col-xl-6">
     <div class="card">
       <div class="card-body">
-        <h5 class="purple-text">Deine Buchungen pro Sitzplatz</h5>
-        <%= pie_chart @user_reservations.group(:name).count, donut: true, colors: ["#6c757d"] %>
+        <h5>Deine Buchungen pro Sitzplatz</h5>
+        <%= pie_chart @user_reservations.group(:name).count, donut: true, colors: ["#222222e8"] %>
       </div>
     </div>
   </div>
@@ -28,8 +28,8 @@
   <div class="col-xs-4 col-md-6 col-xl-6">
     <div class="card">
       <div class="card-body">
-        <h5 class="purple-text">Top Scorer letzten 30 Tage</h5>
-        <%= bar_chart @users_reservations, donut: true, colors: ["#6c757d"]  %>
+        <h5>Top Scorer letzten 30 Tage</h5>
+        <%= bar_chart @users_reservations, donut: true, colors: ["#222222e8"]  %>
       </div>
     </div>
   </div>
@@ -39,8 +39,8 @@
   <div class="col-xs-12 col-md-12 col-xl-12">
     <div class="card">
       <div class="card-body">
-        <h5 class="purple-text">Gesamten Buchungen aller Teammitglieder pro Tag im Office</h5>
-        <%= area_chart @reservations.group(:created_at).count, xtitle: "Datum", ytitle: "Buchungen", colors: ["#6c757d"]  %>
+        <h5>Gesamten Buchungen aller Teammitglieder pro Tag im Office</h5>
+        <%= area_chart @reservations.group(:created_at).count, xtitle: "Datum", ytitle: "Buchungen", colors: ["#222222e8"]  %>
       </div>
     </div>
   </div>
