@@ -25,9 +25,9 @@ class AddUser extends Component {
                 add_user: user
             })
             .then(response => {
-                    if(response.data == 400) {notify(' 🎉 Benutzer schon vorhanden')}
-                    else if(response.data == 404) {notify(' ❌ Benutzer nicht gefunden')}
-                    else if(response.data == 408) {notify(' ❌ Maximale Anzahl an Benutzern erreicht, bitte Abo Upgraden!')}
+                    if(response.data == 400) {notify(' 🎉 Benutzer schon vorhanden'), deleteSpinner();}
+                    else if(response.data == 404) {notify(' ❌ Benutzer nicht gefunden'), deleteSpinner();}
+                    else if(response.data == 408) {notify(' ❌ Maximale Anzahl an Benutzern erreicht, bitte Abo Upgraden!'), deleteSpinner();}
                     else {
                         this.props.handleStateChange(response.data);
                         let input = document.getElementById('AddEmail')

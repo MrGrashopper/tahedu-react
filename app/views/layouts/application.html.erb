@@ -34,7 +34,10 @@
   <% else %>
     <%= render 'shared/cookies' %>
     <div class="d-flex flex-grow-1">
-      <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
+      <span class="w-100 d-lg-none d-block">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" id="Sidebar-toggler">
+        <span class=""><i class="fas fa-bars"></i></span>
+      </button></span>
       <%= link_to "Tahed:o:", root_path, class: "navbar-brand"%>
       <div class="w-100 text-right">
         <div class="" id="myNavbar">
@@ -45,6 +48,7 @@
         </div>
       </div>
     </div>
+    <%= render "shared/sidebar" %>
     <div class="">
     </div>
     <%= yield %>
