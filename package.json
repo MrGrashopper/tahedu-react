@@ -17,7 +17,7 @@
     "chartkick": "^3.2.1",
     "jquery": "^3.4.1",
     "js.cookie": "^0.0.4",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.31",
     "popper.js": "^1.16.0",
