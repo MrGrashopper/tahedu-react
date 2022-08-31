@@ -19,7 +19,7 @@
     "js.cookie": "^0.0.4",
     "lodash": "^4.17.15",
     "moment": "^2.29.1",
-    "moment-timezone": "^0.5.31",
+    "moment-timezone": "^0.5.35",
     "popper.js": "^1.16.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
